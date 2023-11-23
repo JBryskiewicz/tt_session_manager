@@ -1,0 +1,49 @@
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary_color;
+  padding: 4rem 200px 0;
+  overflow: auto;
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+
+    .actions-button {
+      background-color: $secondary_color;
+      margin: 0 24px;
+
+      &:hover {
+        background-color: $accent_color;
+      }
+    }
+  }
+
+  .session-card {
+    max-width: 475px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+
+    &-content {
+
+      div {
+        justify-content: space-between;
+      }
+    }
+
+    &-actions {
+
+      .card-action-btn {
+        background-color: $secondary_color;
+
+        &:hover {
+          background-color: $accent_color;
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sessionReducer from "./sessionSlice";
+import sessionListReducer from "./sessionListSlice";
 
 export const store = configureStore({
   reducer: {
     session: sessionReducer,
+    sessionList: sessionListReducer,
   },
 });
 

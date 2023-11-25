@@ -1,11 +1,12 @@
 import { Session } from "../types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getSessions } from "../utils/API_communication";
+import { getSortedSessions } from "../utils/API_communication";
 
 export const fetchAllSessions = createAsyncThunk(
   "sessionList/fetchAllSessions",
   async (): Promise<Session[]> => {
-    const sessionList = await getSessions();
+    const sessionList = await getSortedSessions();
+    console.log(sessionList);
     return sessionList;
   }
 );

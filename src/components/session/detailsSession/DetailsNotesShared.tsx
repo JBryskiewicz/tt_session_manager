@@ -4,31 +4,33 @@ import { Paper } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { useEffect, useState } from "react";
+import { Note, Npc } from "../../../types/types";
 
-export function DetailsNotes() {
-  const notes = useSelector((state: RootState) => state.session.notes);
-  const [noteId, setNoteId] = useState<number>(notes[0].id);
-  const [note, setNote] = useState<string>(notes[0].note);
+type Props = {
+  dataCollection: Note[] | Npc[];
+};
+
+export const DetailsNotesShared = ({ dataCollection }: Props) => {
+  const [dataId, setDataId] = useState<number>(dataCollection[0].id);
+  const [note, setNote] = useState<string>(dataCollection[0].information);
 
   useEffect(() => {
-    notes.forEach((note) => {
-      if (note.id === noteId) {
-        setNote(note.note);
+    dataCollection.forEach((data) => {
+      if (data.id === dataId) {
+        setNote(data.information);
       }
     });
-  }, [noteId]);
+  }, [dataId]);
 
   return (
     <Box className="session-body-notes">
       <List className="session-body-notes-list">
-        {notes.map((note) => (
-          <ListItem key={note.id} className="notes-list-item" disablePadding>
+        {dataCollection.map((data) => (
+          <ListItem key={data.id} className="notes-list-item" disablePadding>
             <Paper elevation={4} className={"notes-list-item_wrapper"}>
-              <ListItemButton onClick={() => setNoteId(note.id)}>
-                <ListItemText primary={note.title} />
+              <ListItemButton onClick={() => setDataId(data.id)}>
+                <ListItemText primary={data.name} />
               </ListItemButton>
             </Paper>
           </ListItem>
@@ -41,4 +43,4 @@ export function DetailsNotes() {
       </Box>
     </Box>
   );
-}
+};

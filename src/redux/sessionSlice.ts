@@ -22,7 +22,7 @@ const initialState: Session = {
   plannedDate: null,
   editedDate: null,
   edited: false,
-  notes: [{ id: 0, title: "", note: "" }],
+  notes: [{ id: 0, name: "", information: "" }],
   npcs: [{ id: 0, name: "", information: "", avatar: "" }],
 };
 

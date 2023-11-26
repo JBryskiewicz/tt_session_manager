@@ -1,2 +1,1 @@
-#Game Master screen - it is meant to be used by game masters playing 5th edition of Dungeons & Dragons TTRPG.
-This app provides information and rules about this game, while allowing users to create their own notes.
+#Table top session manager - Demo of functionalities for small web app designed to create notes and describe NPCs for table top RPG sessions. 

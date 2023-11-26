@@ -6,7 +6,6 @@ export const fetchAllSessions = createAsyncThunk(
   "sessionList/fetchAllSessions",
   async (): Promise<Session[]> => {
     const sessionList = await getSortedSessions();
-    console.log(sessionList);
     return sessionList;
   }
 );

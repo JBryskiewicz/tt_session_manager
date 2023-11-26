@@ -1,8 +1,8 @@
-import { SessionDetailsActions } from "./SessionDetailsActions";
-import { SessionDetailsHeader } from "./SessionDetailsHeader";
+import { DetailsActions } from "./DetailsActions";
+import { DetailsHeader } from "./DetailsHeader";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { SessionDetailsBody } from "./SessionDetailsBody";
+import { DetailsNotesBody } from "./DetailsNotesBody";
 import { useDispatch } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { fetchSession } from "../../../redux/sessionSlice";
@@ -23,9 +23,9 @@ export function SessionDetails() {
 
   return (
     <>
-      <SessionDetailsActions />
-      <SessionDetailsHeader />
-      <SessionDetailsBody />
+      <DetailsActions />
+      <DetailsHeader />
+      <DetailsNotesBody />
     </>
   );
 }

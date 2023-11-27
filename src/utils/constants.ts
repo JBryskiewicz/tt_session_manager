@@ -5,4 +5,6 @@ export const DRAWER_WIDTH = 200;
 export const SESSION_FIELDS = {
   title: "title",
   desc: "description",
+  note: "note",
+  npc: "npc",
 };

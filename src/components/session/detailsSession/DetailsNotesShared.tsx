@@ -6,22 +6,28 @@ import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
 import { Note, Npc } from "../../../types/types";
+import { DetailsNotesSharedInformation } from "./DetailsNotesSharedInformation";
+import { DetailsNotesSharedInfoEdit } from "../editSession/DetailsNotesSharedInfoEdit";
 
 type Props = {
   dataCollection: Note[] | Npc[];
+  category: string;
 };
 
-export const DetailsNotesShared = ({ dataCollection }: Props) => {
+export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
+  const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
   const [dataId, setDataId] = useState<number>(dataCollection[0].id);
+  const [data, setData] = useState<Note | Npc>(dataCollection[0]);
   const [note, setNote] = useState<string>(dataCollection[0].information);
 
   useEffect(() => {
     dataCollection.forEach((data) => {
       if (data.id === dataId) {
         setNote(data.information);
+        setData(data);
       }
     });
-  }, [dataId]);
+  }, [dataId, dataCollection]);
 
   return (
     <Box className="session-body-notes">
@@ -36,11 +42,18 @@ export const DetailsNotesShared = ({ dataCollection }: Props) => {
           </ListItem>
         ))}
       </List>
-      <Box className="note-box">
-        <Paper elevation={4} className="note-box-text">
-          <div>{note}</div>
-        </Paper>
-      </Box>
+      {!isEditable[0] ? (
+        <DetailsNotesSharedInformation
+          note={note}
+          setIsEditable={setIsEditable}
+        />
+      ) : (
+        <DetailsNotesSharedInfoEdit
+          data={data}
+          setIsEditable={setIsEditable}
+          category={category}
+        />
+      )}
     </Box>
   );
 };

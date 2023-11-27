@@ -42,10 +42,6 @@ export const DetailsHeaderInfoEdit = ({
     checkCategoryToSetEditable(category, setIsEditable, false);
   };
 
-  function handleCancel() {
-    checkCategoryToSetEditable(category, setIsEditable, false);
-  }
-
   return (
     <Box className="session-header">
       <Paper elevation={4} className="session-description">
@@ -64,7 +60,12 @@ export const DetailsHeaderInfoEdit = ({
             <Button variant="contained" className="edit-button" type="submit">
               Save
             </Button>
-            <Button variant="contained" onClick={handleCancel}>
+            <Button
+              variant="contained"
+              onClick={() =>
+                checkCategoryToSetEditable(category, setIsEditable, false)
+              }
+            >
               Cancel
             </Button>
           </Box>

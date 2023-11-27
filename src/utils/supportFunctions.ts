@@ -1,9 +1,9 @@
-import { Session } from "../types/types";
+import { Note, Npc, Session } from "../types/types";
 import { Dispatch, SetStateAction } from "react";
-import { updateSession } from "./API_communication";
+import { updateNote, updateNpc, updateSession } from "./API_communication";
 import { SESSION_FIELDS } from "./constants";
 
-const { title } = SESSION_FIELDS;
+const { title, desc, note, npc } = SESSION_FIELDS;
 
 /**
  * This function takes Date data type argument and returns it in form of
@@ -28,13 +28,16 @@ export const checkCategoryToSetEditable = (
   setIsEditable: Dispatch<SetStateAction<boolean[]>>,
   changeStateTo: boolean
 ): void => {
-  category === title
-    ? setIsEditable((prevState) => [changeStateTo, ...prevState.slice(1)])
-    : setIsEditable((prevState) => [
-        prevState[0],
-        changeStateTo,
-        ...prevState.slice(2),
-      ]);
+  if (category === title || category === note || category == npc) {
+    setIsEditable((prevState) => [changeStateTo, ...prevState.slice(1)]);
+  }
+  if (category === desc) {
+    setIsEditable((prevState) => [
+      prevState[0],
+      changeStateTo,
+      ...prevState.slice(2),
+    ]);
+  }
 };
 
 /**
@@ -52,4 +55,22 @@ export const checkCategoryToUpdateSession = async (
     ? (updatedSession.name = formValue)
     : (updatedSession.description = formValue);
   await updateSession(session.id, updatedSession);
+};
+
+/**
+ * Check Category of editable data and overwrite either npc's or note's matching
+ * attribute. Then send update request to API to modify it in database
+ */
+
+export const checkCategoryToUpdateNotes = async (
+  category: string,
+  notes: Note | Npc,
+  formValue: string
+): Promise<void> => {
+  const updatedNotes = { ...notes };
+  updatedNotes.information = formValue;
+
+  category === note
+    ? await updateNote(notes.id, updatedNotes)
+    : await updateNpc(notes.id, updatedNotes);
 };

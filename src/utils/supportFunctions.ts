@@ -61,14 +61,15 @@ export const checkCategoryToUpdateSession = async (
  * Check Category of editable data and overwrite either npc's or note's matching
  * attribute. Then send update request to API to modify it in database
  */
-
 export const checkCategoryToUpdateNotes = async (
   category: string,
   notes: Note | Npc,
-  formValue: string
+  infoValue: string,
+  nameValue: string
 ): Promise<void> => {
   const updatedNotes = { ...notes };
-  updatedNotes.information = formValue;
+  updatedNotes.information = infoValue;
+  updatedNotes.name = nameValue;
 
   category === note
     ? await updateNote(notes.id, updatedNotes)

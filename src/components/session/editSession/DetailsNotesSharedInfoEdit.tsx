@@ -27,12 +27,13 @@ export const DetailsNotesSharedInfoEdit = ({
   category,
 }: Props) => {
   const { id } = useParams<RouteParams>();
-  const [formValue, setFormValue] = useState<string>(data.information);
+  const [nameValue, setNameValue] = useState<string>(data.name);
+  const [infoValue, setInfoValue] = useState<string>(data.information);
   const dispatch: ThunkDispatch<RootState, undefined, any> = useDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await checkCategoryToUpdateNotes(category, data, formValue);
+    await checkCategoryToUpdateNotes(category, data, infoValue, nameValue);
     dispatch(fetchSession({ id }));
     checkCategoryToSetEditable(category, setIsEditable, false);
   };
@@ -43,12 +44,19 @@ export const DetailsNotesSharedInfoEdit = ({
         <form onSubmit={handleSubmit}>
           <TextField
             id="outlined-textarea"
+            label="name"
+            value={nameValue}
+            sx={{ width: "100%", marginBottom: "1rem" }}
+            onChange={(event) => setNameValue(event.target.value)}
+          />
+          <TextField
+            id="outlined-textarea"
             label="information"
-            value={formValue}
-            rows={17}
+            value={infoValue}
+            rows={14}
             sx={{ width: "100%" }}
             multiline
-            onChange={(event) => setFormValue(event.target.value)}
+            onChange={(event) => setInfoValue(event.target.value)}
           />
           <div style={{ display: "flex", gap: ".5rem", marginTop: ".5rem" }}>
             <Button variant="contained" type="submit">

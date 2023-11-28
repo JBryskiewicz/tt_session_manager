@@ -1,15 +1,15 @@
 import Container from "@mui/material/Container";
 import { DetailsHeaderDates } from "./DetailsHeaderDates";
-import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import { DetailsHeaderInformation } from "./DetailsHeaderInformation";
 import { useState } from "react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import { SESSION_FIELDS } from "../../../utils/constants";
+import { selectOneSession } from "../../../redux/sessionSlice";
 
 export function DetailsHeader() {
   const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
-  const session = useSelector((state: RootState) => state.session);
+  const session = useSelector(selectOneSession);
   const { name, description } = session;
   const { title, desc } = SESSION_FIELDS;
 

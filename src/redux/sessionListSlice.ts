@@ -1,6 +1,7 @@
 import { Session } from "../types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getSortedSessions } from "../utils/API_communication";
+import { RootState } from "./store";
 
 export const fetchAllSessions = createAsyncThunk(
   "sessionList/fetchAllSessions",
@@ -10,18 +11,22 @@ export const fetchAllSessions = createAsyncThunk(
   }
 );
 
-const initialState: Session[] = [];
+const initialState: {
+  sessions: Session[];
+} = {
+  sessions: [],
+};
 
 export const sessionListSlice = createSlice({
   name: "sessionList",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // @ts-expect-error/state-must-be-declared-but-not-used
     builder.addCase(fetchAllSessions.fulfilled, (state, action) => {
-      return action.payload;
+      state.sessions = action.payload;
     });
   },
 });
 
+export const selectSessions = (state: RootState) => state.sessionList.sessions;
 export default sessionListSlice.reducer;

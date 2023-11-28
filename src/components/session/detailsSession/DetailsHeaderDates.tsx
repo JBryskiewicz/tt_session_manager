@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { Chip, Stack } from "@mui/material";
 import { applyDate } from "../../../utils/supportFunctions";
 import Box from "@mui/material/Box";
+import { selectOneSession } from "../../../redux/sessionSlice";
 
 export function DetailsHeaderDates() {
-  const session = useSelector((state: RootState) => state.session);
+  const session = useSelector(selectOneSession);
 
   const datePlanned = new Date(session.plannedDate!);
   const dateCreated = new Date(session.creationDate!);

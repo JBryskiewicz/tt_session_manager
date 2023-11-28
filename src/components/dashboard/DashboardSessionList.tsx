@@ -2,14 +2,13 @@ import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import { DashboardSessionCard } from "./DashboardSessionCard";
 import Container from "@mui/material/Container";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { fetchAllSessions } from "../../redux/sessionListSlice";
+import { useSelector } from "react-redux";
+import { fetchAllSessions, selectSessions } from "../../redux/sessionListSlice";
+import { useAppDispatch } from "../../redux/hooks";
 
 export function DashboardSessionList() {
-  const dispatch: ThunkDispatch<RootState, undefined, any> = useDispatch();
-  const sessionList = useSelector((state: RootState) => state.sessionList);
+  const dispatch = useAppDispatch();
+  const sessionList = useSelector(selectSessions);
 
   useEffect(() => {
     dispatch(fetchAllSessions());

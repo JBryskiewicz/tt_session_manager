@@ -1,6 +1,7 @@
 import { Session } from "../types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getOneSession } from "../utils/API_communication";
+import { RootState } from "./store";
 
 type FetchSessionPayload = {
   id: string | undefined;
@@ -14,16 +15,18 @@ export const fetchSession = createAsyncThunk(
   }
 );
 
-const initialState: Session = {
-  id: 0,
-  name: "",
-  description: "",
-  creationDate: new Date(),
-  plannedDate: null,
-  editedDate: null,
-  edited: false,
-  notes: [{ id: 0, name: "", information: "" }],
-  npcs: [{ id: 0, name: "", information: "", avatar: "" }],
+const initialState: { session: Session } = {
+  session: {
+    id: 0,
+    name: "",
+    description: "",
+    creationDate: new Date(),
+    plannedDate: null,
+    editedDate: null,
+    edited: false,
+    notes: [{ id: 0, name: "", information: "" }],
+    npcs: [{ id: 0, name: "", information: "", avatar: "" }],
+  },
 };
 
 export const sessionSlice = createSlice({
@@ -31,11 +34,11 @@ export const sessionSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // @ts-expect-error/state-must-be-declared-but-not-used
     builder.addCase(fetchSession.fulfilled, (state, action) => {
-      return action.payload;
+      state.session = action.payload;
     });
   },
 });
 
+export const selectOneSession = (state: RootState) => state.session.session;
 export default sessionSlice.reducer;

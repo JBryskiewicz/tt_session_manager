@@ -3,10 +3,8 @@ import { DetailsHeader } from "./DetailsHeader";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DetailsNotesBody } from "./DetailsNotesBody";
-import { useDispatch } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { fetchSession } from "../../../redux/sessionSlice";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useAppDispatch } from "../../../redux/hooks";
 
 type RouteParams = {
   id: string;
@@ -14,8 +12,7 @@ type RouteParams = {
 
 export function SessionDetails() {
   const { id } = useParams<RouteParams>();
-  //undefined and any??? Must be better solution
-  const dispatch: ThunkDispatch<RootState, undefined, any> = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchSession({ id }));

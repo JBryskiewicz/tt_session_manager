@@ -1,19 +1,13 @@
 import { Grid } from "@mui/material";
-import { useEffect } from "react";
 import { DashboardSessionCard } from "./DashboardSessionCard";
 import Container from "@mui/material/Container";
-import { useSelector } from "react-redux";
-import { fetchAllSessions, selectSessions } from "../../redux/sessionListSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { Session } from "../../types/types";
 
-export function DashboardSessionList() {
-  const dispatch = useAppDispatch();
-  const sessionList = useSelector(selectSessions);
+type Props = {
+  sessionList: Session[];
+};
 
-  useEffect(() => {
-    dispatch(fetchAllSessions());
-  }, [dispatch]);
-
+export function DashboardSessionList({ sessionList }: Props) {
   return (
     <Container maxWidth="xl">
       <Grid container spacing={4} rowSpacing={4}>

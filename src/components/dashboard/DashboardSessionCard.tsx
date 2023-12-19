@@ -16,7 +16,7 @@ export function DashboardSessionCard({ session }: Props) {
 
   return (
     <Grid item xs={4}>
-      <Card className="session-card">
+      <Card className="session-card" data-testid="session-card">
         <CardContent className="session-card-content">
           <div>
             <Typography gutterBottom variant="h5" component="div">
@@ -31,7 +31,7 @@ export function DashboardSessionCard({ session }: Props) {
           </Typography>
         </CardContent>
         <CardActions className="session-card-actions">
-          <Link to={`/session-details/${id}`}>
+          <Link to={`/session-details/${id}`} data-testid="details-btn">
             <Button
               className="card-action-btn"
               variant="contained"

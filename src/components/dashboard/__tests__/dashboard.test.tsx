@@ -1,28 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { DashboardActions } from "../DashboardActions";
-import { MemoryRouter } from "react-router-dom";
-import { ReactElement } from "react";
-import { Session } from "../../../types/types";
 import { DashboardSessionList } from "../DashboardSessionList";
-
-const renderWithRouter = (ui: ReactElement) => {
-  return render(<MemoryRouter>{ui}</MemoryRouter>);
-};
-
-const MOCK_SESSION_LIST: Session[] = [
-  {
-    id: 999,
-    name: "test1",
-    description: "test1",
-    creationDate: new Date(),
-    plannedDate: new Date(),
-    editedDate: null,
-    edited: false,
-    notes: [],
-    npcs: [],
-  },
-];
+import { renderWithRouter } from "../../../utils/test-utils";
+import { MOCK_SESSION_LIST } from "../../../utils/test-mock-data";
 
 describe("Renders dashboard elements", () => {
   it("Should render working new session link button", () => {

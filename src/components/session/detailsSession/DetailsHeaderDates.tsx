@@ -4,7 +4,7 @@ import { applyDate } from "../../../utils/supportFunctions";
 import Box from "@mui/material/Box";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
-export function DetailsHeaderDates() {
+export const DetailsHeaderDates = () => {
   const session = useSelector(selectOneSession);
 
   const datePlanned = new Date(session.plannedDate!);
@@ -31,4 +31,4 @@ export function DetailsHeaderDates() {
       </Stack>
     </Box>
   );
-}
+};

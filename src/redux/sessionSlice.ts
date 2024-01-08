@@ -20,7 +20,7 @@ const initialState: { session: Session } = {
     id: 0,
     name: "",
     description: "",
-    creationDate: new Date(),
+    creationDate: new Date().toISOString(),
     plannedDate: null,
     editedDate: null,
     edited: false,

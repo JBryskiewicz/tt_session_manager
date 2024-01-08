@@ -9,13 +9,12 @@ const { title, desc, note, npc } = SESSION_FIELDS;
  * This function takes Date data type argument and returns it in form of
  * string formatted to YYYY.mm.dd standard
  */
-export function applyDate(date: Date) {
+export function applyDate(date: string | null): string {
   if (date === null) {
     return "Session is not planned";
   }
-  return `${date.getFullYear()}-${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+  const result = date.substring(0, 10);
+  return result;
 }
 
 /**

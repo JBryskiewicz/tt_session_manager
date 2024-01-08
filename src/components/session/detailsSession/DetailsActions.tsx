@@ -1,8 +1,7 @@
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
+import { ActionButton } from "../../ActionButton";
 
-export function DetailsActions() {
+export const DetailsActions = () => {
   return (
     <Box
       sx={{
@@ -11,18 +10,12 @@ export function DetailsActions() {
         alignItems: "center",
       }}
     >
-      <Box className="dashboard-actions">
-        <Link to="/">
-          <Button variant="contained" className="actions-button">
-            Exit to dashboard
-          </Button>
-        </Link>
-      </Box>
-      <Box className="dashboard-actions">
-        <Button variant="contained" className="actions-button">
-          Delete
-        </Button>
-      </Box>
+      <ActionButton
+        addressPath="/"
+        label="Exit to Dashboard"
+        testId="action-btn"
+      />
+      <ActionButton addressPath="/delete" label="Delete" testId="action-btn" />
     </Box>
   );
-}
+};

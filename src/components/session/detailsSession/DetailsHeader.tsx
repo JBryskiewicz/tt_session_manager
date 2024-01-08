@@ -7,7 +7,7 @@ import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import { SESSION_FIELDS } from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
-export function DetailsHeader() {
+export const DetailsHeader = () => {
   const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
   const session = useSelector(selectOneSession);
   const { name, description } = session;
@@ -46,4 +46,4 @@ export function DetailsHeader() {
       )}
     </Container>
   );
-}
+};

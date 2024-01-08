@@ -4,31 +4,26 @@ import { applyDate } from "../../../utils/supportFunctions";
 import Box from "@mui/material/Box";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
-export function DetailsHeaderDates() {
+export const DetailsHeaderDates = () => {
   const session = useSelector(selectOneSession);
-
-  const datePlanned = new Date(session.plannedDate!);
-  const dateCreated = new Date(session.creationDate!);
-  const dateEdited = new Date(session.editedDate!);
-
   return (
     <Box className="session-dates">
       <Stack direction="row" spacing={1}>
         <Chip
           className="date-display"
-          label={`planned: ${applyDate(datePlanned)}`}
+          label={`planned: ${applyDate(session.plannedDate)}`}
         />
         <Chip
           className="date-display"
-          label={`created: ${applyDate(dateCreated)}`}
+          label={`created: ${applyDate(session.creationDate)}`}
         />
         {!session.edited ? null : (
           <Chip
             className="date-display"
-            label={`last edited: ${applyDate(dateEdited)}`}
+            label={`last edited: ${applyDate(session.editedDate)}`}
           />
         )}
       </Stack>
     </Box>
   );
-}
+};

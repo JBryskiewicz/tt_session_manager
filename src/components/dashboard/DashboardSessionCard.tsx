@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function DashboardSessionCard({ session }: Props) {
-  const datePlanned = new Date(session.plannedDate!);
+  const datePlanned = session.plannedDate;
   const { id, name, description } = session;
 
   return (

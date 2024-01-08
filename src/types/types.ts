@@ -20,9 +20,9 @@ export interface Npc extends NewNpc {
 export type NewSession = {
   name: string;
   description: string;
-  creationDate: Date;
-  plannedDate: Date | null;
-  editedDate: Date | null;
+  creationDate: string;
+  plannedDate: string | null;
+  editedDate: string | null;
   edited: boolean;
   notes: Note[];
   npcs: Npc[];

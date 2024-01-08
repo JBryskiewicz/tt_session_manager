@@ -1,5 +1,6 @@
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
+import { DetailsNotesButton } from "./DetailsNotesButton";
 
 type Props = {
   display: number;
@@ -12,27 +13,27 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
       <Paper className="actions-label">
         <span>Display:</span>
       </Paper>
-      <Button
-        disabled
-        variant="contained"
-        className={`display-btn ${display === 0 ? "selected" : ""}`}
-      >
-        None
-      </Button>
-      <Button
-        variant="contained"
-        className={`display-btn ${display === 1 ? "selected" : ""}`}
-        onClick={() => setDisplay(1)}
-      >
-        Notes
-      </Button>
-      <Button
-        variant="contained"
-        className={`display-btn ${display === 2 ? "selected" : ""}`}
-        onClick={() => setDisplay(2)}
-      >
-        NPCs
-      </Button>
+      <DetailsNotesButton
+        label="None"
+        changeDisplayTo={0}
+        selectedWhen={0}
+        display={display}
+        setDisplay={setDisplay}
+      />
+      <DetailsNotesButton
+        label="Notes"
+        changeDisplayTo={1}
+        selectedWhen={1}
+        display={display}
+        setDisplay={setDisplay}
+      />
+      <DetailsNotesButton
+        label="Npcs"
+        changeDisplayTo={2}
+        selectedWhen={2}
+        display={display}
+        setDisplay={setDisplay}
+      />
     </Box>
   );
 };

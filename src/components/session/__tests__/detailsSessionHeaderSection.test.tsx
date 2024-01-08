@@ -9,7 +9,7 @@ const mocks = {
   buttonFunction: vi.fn(),
 };
 
-describe("renders session details elements", () => {
+describe("renders session details action & header elements", () => {
   it("should render action buttons", () => {
     renderWithRouter(<DetailsActions />);
     const [exitButton, deleteButton] = screen.getAllByTestId("action-btn");
@@ -40,8 +40,4 @@ describe("renders session details elements", () => {
     editButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });
-
-  it("should render working note / npc section switching buttons", () => {});
-
-  it("should render note / npc section", () => {});
 });

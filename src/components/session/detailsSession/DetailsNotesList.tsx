@@ -1,26 +1,30 @@
-import { ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
+import { List } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { ACCENT_COLOR } from "../../../utils/constants";
+import { DetailsNotesListElement } from "./DetailsNotesListElement";
+import { Note, Npc } from "../../../types/types";
 
 type Props = {
-  id: number;
   dataId: number;
-  name: string;
+  dataCollection: Note[] | Npc[];
   setDataId: Dispatch<SetStateAction<number>>;
 };
 
-export const DetailsNotesList = ({ id, dataId, name, setDataId }: Props) => {
+export const DetailsNotesList = ({
+  dataId,
+  dataCollection,
+  setDataId,
+}: Props) => {
   return (
-    <ListItem key={id} className="notes-list-item" disablePadding>
-      <Paper
-        elevation={4}
-        className={"notes-list-item_wrapper"}
-        sx={id === dataId ? { backgroundColor: `${ACCENT_COLOR}` } : null}
-      >
-        <ListItemButton onClick={() => setDataId(id)}>
-          <ListItemText primary={name} />
-        </ListItemButton>
-      </Paper>
-    </ListItem>
+    <List className="session-body-notes-list">
+      {dataCollection.map((data) => (
+        <DetailsNotesListElement
+          key={data.id}
+          id={data.id}
+          dataId={dataId}
+          name={data.name}
+          setDataId={setDataId}
+        />
+      ))}
+    </List>
   );
 };

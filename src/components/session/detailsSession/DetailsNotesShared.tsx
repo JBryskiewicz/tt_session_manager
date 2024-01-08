@@ -1,4 +1,3 @@
-import List from "@mui/material/List";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
 import { Note, Npc } from "../../../types/types";
@@ -28,16 +27,11 @@ export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
 
   return (
     <Box className="session-body-notes">
-      <List className="session-body-notes-list">
-        {dataCollection.map((data) => (
-          <DetailsNotesList
-            id={data.id}
-            dataId={dataId}
-            name={data.name}
-            setDataId={setDataId}
-          />
-        ))}
-      </List>
+      <DetailsNotesList
+        dataId={dataId}
+        dataCollection={dataCollection}
+        setDataId={setDataId}
+      />
       {!isEditable[0] ? (
         <DetailsNotesSharedInformation
           note={note}

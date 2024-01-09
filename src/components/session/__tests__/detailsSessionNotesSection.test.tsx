@@ -51,7 +51,7 @@ describe("renders session details notes & npcs elements", () => {
     );
 
     const switchButton = screen.getByText(label);
-    expect(switchButton);
+    expect(switchButton).toBeInTheDocument();
     switchButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });

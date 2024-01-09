@@ -8,11 +8,9 @@ import {
   checkCategoryToUpdateSession,
 } from "../../../utils/supportFunctions";
 import { Session } from "../../../types/types";
-import { useDispatch } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { fetchSession } from "../../../redux/sessionSlice";
-import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useParams } from "react-router-dom";
+import { useAppDispatch } from "../../../redux/hooks";
 
 type Props = {
   category: string;
@@ -33,7 +31,7 @@ export const DetailsHeaderInfoEdit = ({
 }: Props) => {
   const { id } = useParams<RouteParams>();
   const [formValue, setFormValue] = useState<string>(data);
-  const dispatch: ThunkDispatch<RootState, undefined, any> = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

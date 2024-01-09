@@ -1,4 +1,4 @@
-import { Paper, TextField } from "@mui/material";
+import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -8,11 +8,10 @@ import {
   checkCategoryToUpdateSession,
 } from "../../../utils/supportFunctions";
 import { Session } from "../../../types/types";
-import { useDispatch } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { fetchSession } from "../../../redux/sessionSlice";
-import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useParams } from "react-router-dom";
+import { useAppDispatch } from "../../../redux/hooks";
+import { HeaderInputField } from "./HeaderInputField";
 
 type Props = {
   category: string;
@@ -33,7 +32,7 @@ export const DetailsHeaderInfoEdit = ({
 }: Props) => {
   const { id } = useParams<RouteParams>();
   const [formValue, setFormValue] = useState<string>(data);
-  const dispatch: ThunkDispatch<RootState, undefined, any> = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,12 +48,11 @@ export const DetailsHeaderInfoEdit = ({
       </Paper>
       <Paper elevation={4} className="session-description-text">
         <form onSubmit={handleSubmit} className="title-name-form">
-          <TextField
-            required
-            id="outlined-required"
-            label="Required"
-            value={formValue}
-            onChange={(event) => setFormValue(event.target.value)}
+          <HeaderInputField
+            required={true}
+            label={category}
+            fieldValue={formValue}
+            onChangeFunction={setFormValue}
           />
           <Box sx={{ display: "flex", columnGap: "8px" }}>
             <Button variant="contained" className="edit-button" type="submit">

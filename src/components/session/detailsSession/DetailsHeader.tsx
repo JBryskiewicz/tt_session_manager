@@ -15,7 +15,11 @@ export const DetailsHeader = () => {
 
   return (
     <Container maxWidth="xl">
-      <DetailsHeaderDates />
+      <DetailsHeaderDates
+        creationDate={session.creationDate}
+        plannedDate={session.plannedDate}
+        editedDate={session.editedDate}
+      />
       {!isEditable[0] ? (
         <DetailsHeaderInformation
           category={title}

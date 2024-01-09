@@ -42,14 +42,17 @@ export const DetailsNotesSharedInfoEdit = ({
       <Paper elevation={4} className="note-box-text">
         <form onSubmit={handleSubmit}>
           <HeaderInputField
+            required={true}
             label="name"
             fieldValue={nameValue}
             onChangeFunction={setNameValue}
           />
           <HeaderInputField
-            label="inforamtion"
+            required={false}
+            label="information"
             fieldValue={infoValue}
             onChangeFunction={setInfoValue}
+            textarea={true}
           />
           <div style={{ display: "flex", gap: ".5rem", marginTop: ".5rem" }}>
             <Button variant="contained" type="submit">

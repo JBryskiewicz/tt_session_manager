@@ -1,43 +1,24 @@
-import { it, vi, expect, describe } from "vitest";
-import { screen } from "@testing-library/react";
+import { it, vi, expect, describe, afterEach } from "vitest";
+import { cleanup, screen } from "@testing-library/react";
 import { renderWithRouter } from "../../../utils/test-utils";
 import { DetailsNotesButton } from "../detailsSession/DetailsNotesButton";
 import { DetailsNotesList } from "../detailsSession/DetailsNotesList";
 import { DetailsNotesListElement } from "../detailsSession/DetailsNotesListElement";
 import { DetailsNotesSharedInformation } from "../detailsSession/DetailsNotesSharedInformation";
-import { Npc, Note } from "../../../types/types";
+import {
+  MOCK_DATA_COLLECTION,
+  MOCK_FUNCTIONS,
+} from "../../../utils/test-mock-data";
 
-const mocks = {
-  buttonFunction: vi.fn(),
-};
+const mockNote = MOCK_DATA_COLLECTION[0];
 
-const mockNote: Npc | Note = {
-  id: 0,
-  name: "mocked name",
-  information: "mocked information",
-};
-
-const mockDataCollection: Npc[] | Note[] = [
-  {
-    id: 0,
-    name: "mocked name 0",
-    information: "mocked information 0",
-  },
-  {
-    id: 1,
-    name: "mocked name 1",
-    information: "mocked information 1",
-  },
-  {
-    id: 2,
-    name: "mocked name 2",
-    information: "mocked information 2",
-  },
-];
+afterEach(() => {
+  cleanup();
+});
 
 describe("renders session details notes & npcs elements", () => {
   it("should render working note / npc section switching buttons", () => {
-    const buttonSpy = vi.spyOn(mocks, "buttonFunction");
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
     const label = "Notes";
 
     renderWithRouter(
@@ -46,7 +27,7 @@ describe("renders session details notes & npcs elements", () => {
         changeDisplayTo={1}
         selectedWhen={1}
         display={1}
-        setDisplay={mocks.buttonFunction}
+        setDisplay={MOCK_FUNCTIONS.buttonFunction}
       />
     );
 
@@ -60,13 +41,13 @@ describe("renders session details notes & npcs elements", () => {
     renderWithRouter(
       <DetailsNotesList
         dataId={mockNote.id}
-        dataCollection={mockDataCollection}
-        setDataId={mocks.buttonFunction}
+        dataCollection={MOCK_DATA_COLLECTION}
+        setDataId={MOCK_FUNCTIONS.buttonFunction}
       />
     );
 
     const listElements = screen.getAllByTestId("session-notes-list-element");
-    expect(listElements.length).toBe(mockDataCollection.length);
+    expect(listElements.length).toBe(MOCK_DATA_COLLECTION.length);
   });
 
   it("should render note / npc section's list element", () => {
@@ -75,7 +56,7 @@ describe("renders session details notes & npcs elements", () => {
         id={mockNote.id}
         dataId={mockNote.id}
         name={mockNote.name}
-        setDataId={mocks.buttonFunction}
+        setDataId={MOCK_FUNCTIONS.buttonFunction}
       />
     );
 
@@ -84,12 +65,12 @@ describe("renders session details notes & npcs elements", () => {
   });
 
   it("should render note / npc information with working clickable edit button", () => {
-    const buttonSpy = vi.spyOn(mocks, "buttonFunction");
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
 
     renderWithRouter(
       <DetailsNotesSharedInformation
         note={mockNote.information}
-        setIsEditable={mocks.buttonFunction}
+        setIsEditable={MOCK_FUNCTIONS.buttonFunction}
       />
     );
     const information = screen.getByText(mockNote.information);

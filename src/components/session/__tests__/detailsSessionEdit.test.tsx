@@ -3,45 +3,47 @@ import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import { renderWithRouter } from "../../../utils/test-utils";
 import { SESSION_FIELDS } from "../../../utils/constants";
-import { Session } from "../../../types/types";
 import { HeaderInputField } from "../editSession/HeaderInputField";
-import { SetStateAction } from "react";
-
-const mocks = {
-  buttonFunction: vi.fn(),
-  mockOnChange: vi.fn(),
-};
+import { DetailsNotesSharedInfoEdit } from "../editSession/DetailsNotesSharedInfoEdit";
+import {
+  MOCK_FUNCTIONS,
+  MOCK_SESSION,
+  MOCK_STRING,
+} from "../../../utils/test-mock-data";
 
 const { title } = SESSION_FIELDS;
-
-const mockDataField = "mock description for data field";
-
-const mockSession: Session = {
-  id: 0,
-  name: "",
-  description: "",
-  creationDate: new Date().toISOString(),
-  plannedDate: null,
-  editedDate: null,
-  edited: false,
-  notes: [{ id: 0, name: "", information: "" }],
-  npcs: [{ id: 0, name: "", information: "", avatar: "" }],
-};
 
 afterEach(() => {
   cleanup();
 });
 
 describe("Edit mode for for session details", () => {
+  it("Should render working shared text field", () => {
+    const textFieldSpy = vi.spyOn(MOCK_FUNCTIONS, "mockOnChange");
+
+    renderWithRouter(
+      <HeaderInputField
+        required={false}
+        label={"label"}
+        fieldValue={"value"}
+        onChangeFunction={MOCK_FUNCTIONS.mockOnChange}
+      />
+    );
+
+    const textField = screen.getByLabelText("label");
+    fireEvent.change(textField, { target: { value: "new value" } });
+    expect(textFieldSpy).toHaveBeenCalledWith("new value");
+  });
+
   it("Should render clickable save button for header information edit", () => {
-    const buttonSpy = vi.spyOn(mocks, "buttonFunction");
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
 
     renderWithRouter(
       <DetailsHeaderInfoEdit
         category={title}
-        data={mockDataField}
-        session={mockSession}
-        setIsEditable={mocks.buttonFunction()}
+        data={MOCK_STRING}
+        session={MOCK_SESSION}
+        setIsEditable={MOCK_FUNCTIONS.buttonFunction()}
       />
     );
 
@@ -52,14 +54,14 @@ describe("Edit mode for for session details", () => {
   });
 
   it("Should render clickable cancel button for header information edit", () => {
-    const buttonSpy = vi.spyOn(mocks, "buttonFunction");
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
 
     renderWithRouter(
       <DetailsHeaderInfoEdit
         category={title}
-        data={mockDataField}
-        session={mockSession}
-        setIsEditable={mocks.buttonFunction}
+        data={MOCK_STRING}
+        session={MOCK_SESSION}
+        setIsEditable={MOCK_FUNCTIONS.buttonFunction}
       />
     );
 
@@ -69,19 +71,37 @@ describe("Edit mode for for session details", () => {
     expect(buttonSpy).toHaveBeenCalled();
   });
 
-  it("Should render working text field", () => {
-    const textFieldSpy = vi.spyOn(mocks, "mockOnChange");
+  it("Should render clickable save button for notes / npc section edit", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
 
     renderWithRouter(
-      <HeaderInputField
-        label={"name"}
-        fieldValue={"value"}
-        onChangeFunction={mocks.mockOnChange}
+      <DetailsNotesSharedInfoEdit
+        data={MOCK_SESSION.notes[0]}
+        setIsEditable={MOCK_FUNCTIONS.buttonFunction()}
+        category={title}
       />
     );
 
-    const textField = screen.getByLabelText("name");
-    fireEvent.change(textField, { target: { value: "new value" } });
-    expect(textFieldSpy).toHaveBeenCalledWith("new value");
+    const saveButton = screen.getByText("Save");
+    expect(saveButton).toBeInTheDocument();
+    saveButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
+  });
+
+  it("Should render clickable cancel button for header information edit", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+
+    renderWithRouter(
+      <DetailsNotesSharedInfoEdit
+        data={MOCK_SESSION.notes[0]}
+        setIsEditable={MOCK_FUNCTIONS.buttonFunction}
+        category={title}
+      />
+    );
+
+    const cancelButton = screen.getByText("Cancel");
+    expect(cancelButton).toBeInTheDocument();
+    cancelButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
   });
 });

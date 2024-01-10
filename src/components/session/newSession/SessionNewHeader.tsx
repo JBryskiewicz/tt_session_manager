@@ -1,9 +1,12 @@
+import { SESSION_ACTION_CATEGORIES } from "../../../utils/constants";
+import { HeaderDatesSection } from "../../HeaderDatesSection";
+
 function SessionNewHeader() {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <HeaderDatesSection
+      sessionCategory={SESSION_ACTION_CATEGORIES.newSession}
+    />
+  );
 }
 
 export default SessionNewHeader;

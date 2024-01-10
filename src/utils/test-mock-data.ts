@@ -22,14 +22,16 @@ export const MOCK_DATA_COLLECTION: Npc[] | Note[] = [
   },
 ];
 
-export const MOCK_DATE = new Date().toISOString();
+export const MOCK_CREATION_DATE = "2023-12-12";
+export const MOCK_PLANNED_DATE = "2024-01-01";
+export const MOCK_EDITED_DATE = "2023-12-18";
 
 export const MOCK_SESSION: Session = {
   id: 999,
   name: "test1",
   description: "test1",
-  creationDate: MOCK_DATE,
-  plannedDate: MOCK_DATE,
+  creationDate: MOCK_CREATION_DATE,
+  plannedDate: MOCK_CREATION_DATE,
   editedDate: null,
   edited: false,
   notes: [{ id: 0, name: "", information: "" }],

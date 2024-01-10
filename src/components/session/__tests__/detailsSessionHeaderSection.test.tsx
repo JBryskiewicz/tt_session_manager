@@ -1,32 +1,59 @@
-import { describe, expect, it, vi } from "vitest";
-import { screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { cleanup, screen } from "@testing-library/react";
 import { renderWithRouter } from "../../../utils/test-utils";
-import { DetailsActions } from "../detailsSession/DetailsActions";
 import { DetailsHeaderInformation } from "../detailsSession/DetailsHeaderInformation";
 import {
   MOCK_CATEGORY,
   MOCK_FUNCTIONS,
   MOCK_STRING,
-  MOCK_DATE,
+  MOCK_CREATION_DATE,
+  MOCK_PLANNED_DATE,
 } from "../../../utils/test-mock-data";
-import { DetailsHeaderDates } from "../detailsSession/DetailsHeaderDates";
+import { HeaderDatesSection } from "../../HeaderDatesSection";
+import { SESSION_ACTION_CATEGORIES } from "../../../utils/constants";
+import { ActionButtonSection } from "../../ActionButtonSection";
+
+afterEach(() => {
+  cleanup();
+});
 
 describe("renders session details action & header elements", () => {
+  const { details, newSession } = SESSION_ACTION_CATEGORIES;
+
   it("should render action buttons", () => {
-    renderWithRouter(<DetailsActions />);
+    const details = SESSION_ACTION_CATEGORIES.details;
+
+    renderWithRouter(<ActionButtonSection sessionCategory={details} />);
+
     const [exitButton, deleteButton] = screen.getAllByTestId("action-btn");
     expect(exitButton.getAttribute("href")).toBe("/");
     expect(deleteButton.getAttribute("href")).toBe("/delete");
   });
 
-  it("should render dates section", () => {
+  it("should render dates section for session details", async () => {
     renderWithRouter(
-      <DetailsHeaderDates
-        creationDate={MOCK_DATE}
-        plannedDate={MOCK_DATE}
-        editedDate={MOCK_DATE}
+      <HeaderDatesSection
+        sessionCategory={details}
+        creationDate={MOCK_CREATION_DATE}
+        plannedDate={MOCK_PLANNED_DATE}
       />
     );
+
+    const creationDate = (await screen.findByTestId("creation-date"))
+      .lastElementChild?.innerHTML;
+    expect(creationDate).toBe(`created: ${MOCK_CREATION_DATE}`);
+
+    const plannedDate = (await screen.findByTestId("planned-date"))
+      .lastElementChild?.innerHTML;
+    expect(plannedDate).toBe(`planned: ${MOCK_PLANNED_DATE}`);
+  });
+
+  it("should render dates section for session details", async () => {
+    renderWithRouter(<HeaderDatesSection sessionCategory={newSession} />);
+
+    const plannedDate = (await screen.findByTestId("planned-date"))
+      .lastElementChild?.innerHTML;
+    expect(plannedDate).toBe("planned: pick date");
   });
 
   it("should render information in header section", () => {

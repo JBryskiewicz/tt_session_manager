@@ -8,7 +8,7 @@ import {
 import { Note, Npc } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
-import { HeaderInputField } from "./HeaderInputField";
+import { TextInputField } from "../../TextInputField";
 
 type Props = {
   data: Note | Npc;
@@ -41,13 +41,13 @@ export const DetailsNotesSharedInfoEdit = ({
     <Box className="note-box">
       <Paper elevation={4} className="note-box-text">
         <form onSubmit={handleSubmit}>
-          <HeaderInputField
+          <TextInputField
             required={true}
             label="name"
             fieldValue={nameValue}
             onChangeFunction={setNameValue}
           />
-          <HeaderInputField
+          <TextInputField
             required={false}
             label="information"
             fieldValue={infoValue}

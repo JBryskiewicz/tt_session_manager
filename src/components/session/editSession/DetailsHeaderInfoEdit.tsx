@@ -11,7 +11,7 @@ import { Session } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
-import { HeaderInputField } from "./HeaderInputField";
+import { TextInputField } from "../../TextInputField";
 
 type Props = {
   category: string;
@@ -48,7 +48,7 @@ export const DetailsHeaderInfoEdit = ({
       </Paper>
       <Paper elevation={4} className="session-description-text">
         <form onSubmit={handleSubmit} className="title-name-form">
-          <HeaderInputField
+          <TextInputField
             required={true}
             label={category}
             fieldValue={formValue}

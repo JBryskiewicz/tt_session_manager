@@ -9,7 +9,7 @@ type Props = {
   textarea?: boolean;
 };
 
-export const HeaderInputField = ({
+export const TextInputField = ({
   required,
   label,
   fieldValue,

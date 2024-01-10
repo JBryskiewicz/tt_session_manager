@@ -3,7 +3,7 @@ import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import { renderWithRouter } from "../../../utils/test-utils";
 import { SESSION_FIELDS } from "../../../utils/constants";
-import { HeaderInputField } from "../editSession/HeaderInputField";
+import { TextInputField } from "../../TextInputField";
 import { DetailsNotesSharedInfoEdit } from "../editSession/DetailsNotesSharedInfoEdit";
 import {
   MOCK_FUNCTIONS,
@@ -22,7 +22,7 @@ describe("Edit mode for for session details", () => {
     const textFieldSpy = vi.spyOn(MOCK_FUNCTIONS, "mockOnChange");
 
     renderWithRouter(
-      <HeaderInputField
+      <TextInputField
         required={false}
         label={"label"}
         fieldValue={"value"}

@@ -1,10 +1,13 @@
 import Container from "@mui/material/Container";
-import { DetailsHeaderDates } from "./DetailsHeaderDates";
+import { HeaderDatesSection } from "../../HeaderDatesSection";
 import { useSelector } from "react-redux";
 import { DetailsHeaderInformation } from "./DetailsHeaderInformation";
 import { useState } from "react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
-import { SESSION_FIELDS } from "../../../utils/constants";
+import {
+  SESSION_ACTION_CATEGORIES,
+  SESSION_FIELDS,
+} from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export const DetailsHeader = () => {
@@ -15,7 +18,8 @@ export const DetailsHeader = () => {
 
   return (
     <Container maxWidth="xl">
-      <DetailsHeaderDates
+      <HeaderDatesSection
+        sessionCategory={SESSION_ACTION_CATEGORIES.details}
         creationDate={session.creationDate}
         plannedDate={session.plannedDate}
         editedDate={session.editedDate}

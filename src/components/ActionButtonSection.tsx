@@ -4,9 +4,10 @@ import { SESSION_ACTION_CATEGORIES } from "../utils/constants";
 
 type Props = {
   sessionCategory: string;
+  toDelete?: number;
 };
 
-export const ActionButtonSection = ({ sessionCategory }: Props) => {
+export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
   return (
     <Box
       sx={{
@@ -22,9 +23,10 @@ export const ActionButtonSection = ({ sessionCategory }: Props) => {
       />
       {sessionCategory === SESSION_ACTION_CATEGORIES.details ? (
         <ActionButton
-          addressPath="/delete"
+          addressPath="/"
           label="Delete"
           testId="action-btn"
+          toDelete={toDelete}
         />
       ) : null}
     </Box>

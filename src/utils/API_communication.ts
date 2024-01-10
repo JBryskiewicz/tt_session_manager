@@ -1,9 +1,16 @@
-import { Note, Npc, Session } from "../types/types";
+import { NewSession, Note, Npc, Session } from "../types/types";
 import axios from "axios";
 
 const SESSIONS_URL = "http://localhost:8081/api/sessions";
 const NOTES_URL = "http://localhost:8081/api/notes";
 const NPCS_URL = "http://localhost:8081/api/npcs";
+
+export async function createNewSession(
+  newSession: NewSession
+): Promise<NewSession> {
+  const response = await axios.post<NewSession>(SESSIONS_URL, newSession);
+  return response.data;
+}
 
 export async function getSessions(): Promise<Session[]> {
   const response = await axios.get<Session[]>(SESSIONS_URL);
@@ -24,8 +31,20 @@ export async function getOneSession(id: string | undefined): Promise<Session> {
   return response.data;
 }
 
-export async function updateSession(id: number, session: Session) {
+export async function updateSession(
+  id: number,
+  session: Session
+): Promise<void> {
   await axios.put<Session>(`${SESSIONS_URL}/${id}`, session);
+}
+
+export async function deleteSession(id: number): Promise<void> {
+  await axios
+    .delete(`${SESSIONS_URL}/${id}`)
+    .then((response) =>
+      console.log(`Deleted session with ID: ${id}, response: ${response}`)
+    )
+    .catch((error) => console.error(error));
 }
 
 export async function updateNote(id: number, note: Note) {

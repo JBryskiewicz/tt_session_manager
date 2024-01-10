@@ -37,7 +37,7 @@ export const TextInputField = ({
       id="outlined-textarea"
       label={label}
       value={fieldValue}
-      sx={{ width: "100%", marginBottom: "1rem" }}
+      sx={{ width: "100%" }}
       onChange={(event) => onChangeFunction(event.target.value)}
     />
   );

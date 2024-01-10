@@ -6,7 +6,7 @@ import { useState } from "react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import {
   SESSION_ACTION_CATEGORIES,
-  SESSION_FIELDS,
+  SESSION_FIELDS_CATEGORIES,
 } from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
@@ -14,7 +14,7 @@ export const DetailsHeader = () => {
   const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
   const session = useSelector(selectOneSession);
   const { name, description } = session;
-  const { title, desc } = SESSION_FIELDS;
+  const { title, desc } = SESSION_FIELDS_CATEGORIES;
 
   return (
     <Container maxWidth="xl">

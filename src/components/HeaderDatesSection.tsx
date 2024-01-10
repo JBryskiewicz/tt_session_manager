@@ -24,7 +24,9 @@ export const HeaderDatesSection = ({
     sessionCategory === SESSION_ACTION_CATEGORIES.newSession;
   const isEdited = !session.edited;
 
-  const plannedDateToApply = isCategoryNew ? "pick date" : plannedDate;
+  const plannedDateToApply = isCategoryNew
+    ? new Date().toISOString()
+    : plannedDate;
 
   return (
     <Box className="session-dates">

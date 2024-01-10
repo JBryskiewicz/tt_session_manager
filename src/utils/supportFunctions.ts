@@ -1,9 +1,14 @@
-import { Note, Npc, Session } from "../types/types";
+import { NewSession, Note, Npc, Session } from "../types/types";
 import { Dispatch, SetStateAction } from "react";
-import { updateNote, updateNpc, updateSession } from "./API_communication";
-import { SESSION_FIELDS } from "./constants";
+import {
+  createNewSession,
+  updateNote,
+  updateNpc,
+  updateSession,
+} from "./API_communication";
+import { SESSION_FIELDS_CATEGORIES } from "./constants";
 
-const { title, desc, note, npc } = SESSION_FIELDS;
+const { title, desc, note, npc } = SESSION_FIELDS_CATEGORIES;
 
 /**
  * This function takes Date data type argument and returns it in form of
@@ -73,4 +78,28 @@ export const checkCategoryToUpdateNotes = async (
   category === note
     ? await updateNote(notes.id, updatedNotes)
     : await updateNpc(notes.id, updatedNotes);
+};
+
+/**
+ * Initialize new session object and assign user input, then send
+ * to backend to create new entry in database and return as Session with
+ * generated id.
+ */
+export const initializeNewSession = async (
+  title: string,
+  description: string
+): Promise<Session> => {
+  const newSession: NewSession = {
+    name: title,
+    description: description,
+    creationDate: new Date().toISOString(),
+    plannedDate: null,
+    editedDate: null,
+    edited: false,
+    notes: [],
+    npcs: [],
+  };
+
+  const returnedSession = await createNewSession(newSession);
+  return returnedSession as Session;
 };

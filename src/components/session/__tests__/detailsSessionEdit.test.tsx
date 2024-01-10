@@ -2,7 +2,7 @@ import { it, vi, expect, describe, afterEach } from "vitest";
 import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import { renderWithRouter } from "../../../utils/test-utils";
-import { SESSION_FIELDS } from "../../../utils/constants";
+import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
 import { TextInputField } from "../../TextInputField";
 import { DetailsNotesSharedInfoEdit } from "../editSession/DetailsNotesSharedInfoEdit";
 import {
@@ -11,7 +11,7 @@ import {
   MOCK_STRING,
 } from "../../../utils/test-mock-data";
 
-const { title } = SESSION_FIELDS;
+const { title } = SESSION_FIELDS_CATEGORIES;
 
 afterEach(() => {
   cleanup();

@@ -3,13 +3,13 @@ import { useState } from "react";
 import { DetailsNotesButtonGroup } from "./DetailsNotesButtonGroup";
 import { useSelector } from "react-redux";
 import { DetailsNotesShared } from "./DetailsNotesShared";
-import { SESSION_FIELDS } from "../../../utils/constants";
+import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export function DetailsNotesBody() {
   const [display, setDisplay] = useState<number>(0);
   const { notes, npcs } = useSelector(selectOneSession);
-  const { note, npc } = SESSION_FIELDS;
+  const { note, npc } = SESSION_FIELDS_CATEGORIES;
 
   return (
     <Container maxWidth="xl" className="session-body">

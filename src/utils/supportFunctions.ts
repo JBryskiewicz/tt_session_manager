@@ -1,12 +1,23 @@
-import { NewSession, Note, Npc, Session } from "../types/types";
+import {
+  NewNote,
+  NewNpc,
+  NewSession,
+  Note,
+  Npc,
+  Session,
+} from "../types/types";
 import { Dispatch, SetStateAction } from "react";
 import {
+  createNewNote,
+  createNewNpc,
   createNewSession,
+  getOneSession,
   updateNote,
   updateNpc,
   updateSession,
 } from "./API_communication";
 import { SESSION_FIELDS_CATEGORIES } from "./constants";
+import { fetchSession } from "../redux/sessionSlice";
 
 const { title, desc, note, npc } = SESSION_FIELDS_CATEGORIES;
 
@@ -102,4 +113,40 @@ export const initializeNewSession = async (
 
   const returnedSession = await createNewSession(newSession);
   return returnedSession as Session;
+};
+
+/**
+ *  Creates new note or npcs entry, saves it to database. Then returns
+ *  proper object with ID and updates session to include new entry into
+ *  it's notes & npcs collection. Updates session state for proper render.
+ */
+export const handleAddNotesButton = async (
+  sessionID: string | undefined,
+  changeTo: number,
+  setDisplay: Dispatch<SetStateAction<number>>,
+  dispatch: any
+) => {
+  const noteObject: NewNote | NewNpc = {
+    name: "New Entry",
+    information: "",
+  };
+
+  const responseObject: Note | Npc =
+    changeTo === 1
+      ? ((await createNewNote(noteObject)) as Note)
+      : ((await createNewNpc(noteObject)) as Npc);
+
+  const session: Session = await getOneSession(sessionID);
+
+  changeTo === 1
+    ? session.notes.push(responseObject)
+    : session.npcs.push(responseObject);
+
+  await updateSession(parseInt(sessionID as string), session);
+
+  const id = sessionID;
+  dispatch(fetchSession({ id }));
+  setTimeout(() => {
+    setDisplay(changeTo);
+  }, 500);
 };

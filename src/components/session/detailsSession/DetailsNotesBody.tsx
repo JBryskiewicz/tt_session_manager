@@ -10,14 +10,15 @@ export function DetailsNotesBody() {
   const [display, setDisplay] = useState<number>(0);
   const { notes, npcs } = useSelector(selectOneSession);
   const { note, npc } = SESSION_FIELDS_CATEGORIES;
+  const isCollectionEmpty = notes.length || npcs.length ? true : false;
 
   return (
     <Container maxWidth="xl" className="session-body">
       <DetailsNotesButtonGroup display={display} setDisplay={setDisplay} />
-      {display === 1 ? (
+      {display === 1 && isCollectionEmpty ? (
         <DetailsNotesShared dataCollection={notes} category={note} />
       ) : null}
-      {display === 2 ? (
+      {display === 2 && isCollectionEmpty ? (
         <DetailsNotesShared dataCollection={npcs} category={npc} />
       ) : null}
     </Container>

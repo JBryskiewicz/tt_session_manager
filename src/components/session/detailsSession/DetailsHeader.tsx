@@ -36,6 +36,7 @@ export const DetailsHeader = () => {
           data={name}
           session={session}
           setIsEditable={setIsEditable}
+          isRequired={true}
         />
       )}
       {!isEditable[1] ? (
@@ -50,6 +51,7 @@ export const DetailsHeader = () => {
           data={description}
           session={session}
           setIsEditable={setIsEditable}
+          isRequired={false}
         />
       )}
     </Container>

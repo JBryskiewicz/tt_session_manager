@@ -18,6 +18,7 @@ type Props = {
   data: string;
   session: Session;
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;
+  isRequired: boolean;
 };
 
 type RouteParams = {
@@ -29,6 +30,7 @@ export const DetailsHeaderInfoEdit = ({
   data,
   session,
   setIsEditable,
+  isRequired,
 }: Props) => {
   const { id } = useParams<RouteParams>();
   const [formValue, setFormValue] = useState<string>(data);
@@ -49,7 +51,7 @@ export const DetailsHeaderInfoEdit = ({
       <Paper elevation={4} className="session-description-text">
         <form onSubmit={handleSubmit} className="title-name-form">
           <TextInputField
-            required={true}
+            required={isRequired}
             label={category}
             fieldValue={formValue}
             onChangeFunction={setFormValue}

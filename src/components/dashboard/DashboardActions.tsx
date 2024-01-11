@@ -1,4 +1,4 @@
-import { ActionButton } from "../ActionButton";
+import { ActionButton } from "../buttons/ActionButton";
 
 export const DashboardActions = () => {
   return (

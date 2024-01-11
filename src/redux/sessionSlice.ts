@@ -10,7 +10,7 @@ type FetchSessionPayload = {
 export const fetchSession = createAsyncThunk(
   "session/fetchSession",
   async ({ id }: FetchSessionPayload): Promise<Session> => {
-    const session = await getOneSession(id);
+    const session = await getOneSession(parseInt(id as string));
     return session;
   }
 );

@@ -14,12 +14,10 @@ export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
   const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
   const [dataId, setDataId] = useState<number>(dataCollection[0].id);
   const [data, setData] = useState<Note | Npc>(dataCollection[0]);
-  const [note, setNote] = useState<string>(dataCollection[0].information);
 
   useEffect(() => {
     dataCollection.forEach((data) => {
       if (data.id === dataId) {
-        setNote(data.information);
         setData(data);
       }
     });
@@ -34,8 +32,9 @@ export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
       />
       {!isEditable[0] ? (
         <DetailsNotesSharedInformation
-          note={note}
+          data={data}
           setIsEditable={setIsEditable}
+          category={category}
         />
       ) : (
         <DetailsNotesSharedInfoEdit

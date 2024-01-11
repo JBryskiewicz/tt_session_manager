@@ -1,27 +1,42 @@
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
+import { Note, Npc } from "../../../types/types";
+import { DeleteButton } from "../../buttons/DeleteButton";
+import { useParams } from "react-router-dom";
+import { EditButton } from "../../buttons/EditButton";
 
 type Props = {
-  note: string;
+  data: Note | Npc;
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;
+  category: string;
+};
+
+type RouteParams = {
+  id: string;
 };
 
 export const DetailsNotesSharedInformation = ({
-  note,
+  data,
   setIsEditable,
+  category,
 }: Props) => {
-  const handleButton = () => {
+  const { id } = useParams<RouteParams>();
+
+  const handleEditButton = (): void => {
     setIsEditable((prevState) => [true, ...prevState.slice(1)]);
   };
 
   return (
     <Box className="note-box">
       <Paper elevation={4} className="note-box-text">
-        <div>{note}</div>
+        <div>{data.information}</div>
         <div style={{ marginTop: ".5rem" }}>
-          <Button variant="contained" onClick={handleButton}>
-            Edit
-          </Button>
+          <EditButton onClick={handleEditButton} />
+          <DeleteButton
+            category={category}
+            toDelete={data.id}
+            sessionID={parseInt(id as string)}
+          />
         </div>
       </Paper>
     </Box>

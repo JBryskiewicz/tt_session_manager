@@ -15,7 +15,7 @@ export function SessionDetails() {
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
   const details = SESSION_ACTION_CATEGORIES.details;
-  const toDelete = parseInt(id as string);
+  const sessionID = parseInt(id as string);
 
   useEffect(() => {
     dispatch(fetchSession({ id }));
@@ -23,7 +23,7 @@ export function SessionDetails() {
 
   return (
     <>
-      <ActionButtonSection sessionCategory={details} toDelete={toDelete} />
+      <ActionButtonSection sessionCategory={details} toDelete={sessionID} />
       <DetailsHeader />
       <DetailsNotesBody />
     </>

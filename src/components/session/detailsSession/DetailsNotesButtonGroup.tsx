@@ -59,7 +59,12 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           className="display-btn"
           sx={{ marginLeft: "20px" }}
           onClick={() =>
-            handleAddNotesButton(id, notes.tab, setDisplay, dispatch)
+            handleAddNotesButton(
+              parseInt(id as string),
+              notes.tab,
+              setDisplay,
+              dispatch
+            )
           }
         >
           Add {notes.label}
@@ -69,7 +74,12 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           className="display-btn"
           sx={{ marginLeft: "20px" }}
           onClick={() =>
-            handleAddNotesButton(id, npcs.tab, setDisplay, dispatch)
+            handleAddNotesButton(
+              parseInt(id as string),
+              npcs.tab,
+              setDisplay,
+              dispatch
+            )
           }
         >
           Add {npcs.label}

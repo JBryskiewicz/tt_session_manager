@@ -9,6 +9,7 @@ export const SESSION_FIELDS_CATEGORIES = {
   desc: "description",
   note: "note",
   npc: "npc",
+  session: "session",
 };
 
 export const SESSION_ACTION_CATEGORIES = {

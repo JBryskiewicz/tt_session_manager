@@ -121,7 +121,7 @@ export const initializeNewSession = async (
  *  it's notes & npcs collection. Updates session state for proper render.
  */
 export const handleAddNotesButton = async (
-  sessionID: string | undefined,
+  sessionID: number,
   changeTo: number,
   setDisplay: Dispatch<SetStateAction<number>>,
   dispatch: any
@@ -142,9 +142,9 @@ export const handleAddNotesButton = async (
     ? session.notes.push(responseObject)
     : session.npcs.push(responseObject);
 
-  await updateSession(parseInt(sessionID as string), session);
+  await updateSession(sessionID, session);
 
-  const id = sessionID;
+  const id = sessionID.toString();
   dispatch(fetchSession({ id }));
   setTimeout(() => {
     setDisplay(changeTo);

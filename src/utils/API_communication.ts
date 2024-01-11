@@ -35,7 +35,7 @@ export async function getSortedSessions(): Promise<Session[]> {
   return sortedSessions;
 }
 
-export async function getOneSession(id: string | undefined): Promise<Session> {
+export async function getOneSession(id: number): Promise<Session> {
   const response = await axios.get<Session>(`${SESSIONS_URL}/${id}`);
   return response.data;
 }
@@ -69,7 +69,15 @@ export async function updateNote(id: number, note: Note): Promise<void> {
   await axios.put<Note>(`${NOTES_URL}/${id}`, note);
 }
 
-export async function deleteNote(id: number): Promise<void> {
+export async function deleteNote(id: number, sessionID: number): Promise<void> {
+  const session = await getOneSession(sessionID);
+
+  const newNoteList = session.notes.filter((note) => note.id !== id);
+  const modifiedSession = session;
+  modifiedSession.notes = newNoteList;
+
+  await updateSession(sessionID, modifiedSession);
+
   await axios
     .delete(`${NOTES_URL}/${id}`)
     .then((response) =>
@@ -89,7 +97,15 @@ export async function updateNpc(id: number, npc: Npc): Promise<void> {
   await axios.put<Npc>(`${NPCS_URL}/${id}`, npc);
 }
 
-export async function deleteNpc(id: number): Promise<void> {
+export async function deleteNpc(id: number, sessionID: number): Promise<void> {
+  const session = await getOneSession(sessionID);
+
+  const newNpcList = session.npcs.filter((npc) => npc.id !== id);
+  const modifiedSession = session;
+  modifiedSession.npcs = newNpcList;
+
+  await updateSession(sessionID, modifiedSession);
+
   await axios
     .delete(`${NPCS_URL}/${id}`)
     .then((response) =>

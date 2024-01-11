@@ -1,8 +1,8 @@
 import { Box, Button, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { Note, Npc } from "../../../types/types";
-import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
-import { deleteNote, deleteNpc } from "../../../utils/API_communication";
+import { DeleteButton } from "../../buttons/DeleteButton";
+import { useParams } from "react-router-dom";
 
 type Props = {
   data: Note | Npc;
@@ -10,18 +10,19 @@ type Props = {
   category: string;
 };
 
+type RouteParams = {
+  id: string;
+};
+
 export const DetailsNotesSharedInformation = ({
   data,
   setIsEditable,
   category,
 }: Props) => {
-  const { note } = SESSION_FIELDS_CATEGORIES;
+  const { id } = useParams<RouteParams>();
 
   const handleEditButton = (): void => {
     setIsEditable((prevState) => [true, ...prevState.slice(1)]);
-  };
-  const handleDeleteButton = (category: string, id: number): void => {
-    category === note ? deleteNote(id) : deleteNpc(id);
   };
 
   return (
@@ -36,13 +37,11 @@ export const DetailsNotesSharedInformation = ({
           >
             Edit
           </Button>
-          <Button
-            variant="contained"
-            onClick={() => handleDeleteButton(category, data.id)}
-            sx={{ marginRight: "20px" }}
-          >
-            Delete
-          </Button>
+          <DeleteButton
+            category={category}
+            toDelete={data.id}
+            sessionID={parseInt(id as string)}
+          />
         </div>
       </Paper>
     </Box>

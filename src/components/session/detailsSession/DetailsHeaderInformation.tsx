@@ -1,6 +1,7 @@
-import { Box, Button, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { checkCategoryToSetEditable } from "../../../utils/supportFunctions";
+import { EditButton } from "../../buttons/EditButton";
 
 type Props = {
   category: string;
@@ -13,7 +14,7 @@ export const DetailsHeaderInformation = ({
   data,
   setIsEditable,
 }: Props) => {
-  const handleButton = () => {
+  const handleEditButton = (): void => {
     checkCategoryToSetEditable(category, setIsEditable, true);
   };
 
@@ -24,9 +25,7 @@ export const DetailsHeaderInformation = ({
       </Paper>
       <Paper elevation={4} className="session-description-text">
         <Typography>{data}</Typography>
-        <Button variant="contained" onClick={handleButton}>
-          Edit
-        </Button>
+        <EditButton onClick={handleEditButton} />
       </Paper>
     </Box>
   );

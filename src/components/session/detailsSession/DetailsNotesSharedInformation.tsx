@@ -1,8 +1,9 @@
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { Note, Npc } from "../../../types/types";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
+import { EditButton } from "../../buttons/EditButton";
 
 type Props = {
   data: Note | Npc;
@@ -30,13 +31,7 @@ export const DetailsNotesSharedInformation = ({
       <Paper elevation={4} className="note-box-text">
         <div>{data.information}</div>
         <div style={{ marginTop: ".5rem" }}>
-          <Button
-            variant="contained"
-            onClick={handleEditButton}
-            sx={{ marginRight: "20px" }}
-          >
-            Edit
-          </Button>
+          <EditButton onClick={handleEditButton} />
           <DeleteButton
             category={category}
             toDelete={data.id}

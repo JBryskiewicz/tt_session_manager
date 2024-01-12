@@ -37,7 +37,7 @@ export const DetailsHeaderInfoEdit = ({
   const { id } = useParams<RouteParams>();
   const [formValue, setFormValue] = useState<string>(data);
   const dispatch = useAppDispatch();
-  const { cancel } = EDIT_STATE_BUTTON_LABELS;
+  const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,7 +64,7 @@ export const DetailsHeaderInfoEdit = ({
             onChangeFunction={setFormValue}
           />
           <Box sx={{ display: "flex", columnGap: "8px" }}>
-            <SaveButton />
+            <SaveButton label={save} />
             <EditStateButton onClick={handleCancelButton} label={cancel} />
           </Box>
         </form>

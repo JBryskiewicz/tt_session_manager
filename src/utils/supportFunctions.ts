@@ -11,6 +11,9 @@ import {
   createNewNote,
   createNewNpc,
   createNewSession,
+  deleteNote,
+  deleteNpc,
+  deleteSession,
   getOneSession,
   updateNote,
   updateNpc,
@@ -140,4 +143,22 @@ export const handleAddNotesButton = async (
     : session.npcs.push(responseObject);
 
   await updateSession(sessionID, session);
+};
+
+/** Send request to API to delete existing session with it's children */
+export const handleSessionDelete = async (toDelete: number): Promise<void> => {
+  await deleteSession(toDelete);
+};
+
+/** Check if function operates on note or npc,
+ * then send request to API to delete from session and DB by ID
+ */
+export const handleNoteDelete = async (
+  noteID: number,
+  sessionID: number,
+  category: string
+): Promise<void> => {
+  category === note
+    ? await deleteNote(noteID, sessionID)
+    : await deleteNpc(noteID, sessionID);
 };

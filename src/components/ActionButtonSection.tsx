@@ -8,7 +8,7 @@ import { DeleteButton } from "./buttons/DeleteButton";
 
 type Props = {
   sessionCategory: string;
-  toDelete: number;
+  toDelete?: number;
 };
 
 const buttonSectionStyles = {
@@ -27,7 +27,7 @@ export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
         testId="action-btn"
       />
       {sessionCategory === SESSION_ACTION_CATEGORIES.details ? (
-        <DeleteButton category={session} toDelete={toDelete} />
+        <DeleteButton category={session} toDelete={toDelete as number} />
       ) : null}
     </Box>
   );

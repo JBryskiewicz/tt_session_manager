@@ -1,4 +1,4 @@
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -9,6 +9,9 @@ import { Note, Npc } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import { TextInputField } from "../../TextInputField";
+import { EditStateButton } from "../../buttons/EditStateButton";
+import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
+import { SaveButton } from "../../buttons/SaveButton";
 
 type Props = {
   data: Note | Npc;
@@ -29,11 +32,16 @@ export const DetailsNotesSharedInfoEdit = ({
   const [nameValue, setNameValue] = useState<string>(data.name);
   const [infoValue, setInfoValue] = useState<string>(data.information);
   const dispatch = useAppDispatch();
+  const { cancel } = EDIT_STATE_BUTTON_LABELS;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await checkCategoryToUpdateNotes(category, data, infoValue, nameValue);
     dispatch(fetchSession({ id }));
+    checkCategoryToSetEditable(category, setIsEditable, false);
+  };
+
+  const handleCancelButton = () => {
     checkCategoryToSetEditable(category, setIsEditable, false);
   };
 
@@ -55,17 +63,8 @@ export const DetailsNotesSharedInfoEdit = ({
             textarea={true}
           />
           <div style={{ display: "flex", gap: ".5rem", marginTop: ".5rem" }}>
-            <Button variant="contained" type="submit">
-              Save
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() =>
-                checkCategoryToSetEditable(category, setIsEditable, false)
-              }
-            >
-              Cancel
-            </Button>
+            <SaveButton />
+            <EditStateButton onClick={handleCancelButton} label={cancel} />
           </div>
         </form>
       </Paper>

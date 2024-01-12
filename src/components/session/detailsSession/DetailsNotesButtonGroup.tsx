@@ -1,9 +1,12 @@
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { DetailsNotesButton } from "./DetailsNotesButton";
 import { useParams } from "react-router-dom";
 import { handleAddNotesButton } from "../../../utils/supportFunctions";
 import { useAppDispatch } from "../../../redux/hooks";
+import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
+import { fetchSession } from "../../../redux/sessionSlice";
+import { AddEntryButton } from "../../buttons/AddEntryButton";
 
 type Props = {
   display: number;
@@ -21,9 +24,21 @@ const displayTabs = {
 };
 
 export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
-  const { none, notes, npcs } = displayTabs;
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
+
+  const { addNote, addNpc } = EDIT_STATE_BUTTON_LABELS;
+  const { none, notes, npcs } = displayTabs;
+
+  const handleAddEntry = async (category: string): Promise<void> => {
+    const tab = category === notes.label ? notes.tab : npcs.tab;
+
+    await handleAddNotesButton(parseInt(id as string), tab);
+
+    await dispatch(fetchSession({ id }));
+
+    setDisplay(tab);
+  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -54,36 +69,14 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
         />
       </Box>
       <Box sx={{ marginTop: "20px" }}>
-        <Button
-          variant="contained"
-          className="display-btn"
-          sx={{ marginLeft: "20px" }}
-          onClick={() =>
-            handleAddNotesButton(
-              parseInt(id as string),
-              notes.tab,
-              setDisplay,
-              dispatch
-            )
-          }
-        >
-          Add {notes.label}
-        </Button>
-        <Button
-          variant="contained"
-          className="display-btn"
-          sx={{ marginLeft: "20px" }}
-          onClick={() =>
-            handleAddNotesButton(
-              parseInt(id as string),
-              npcs.tab,
-              setDisplay,
-              dispatch
-            )
-          }
-        >
-          Add {npcs.label}
-        </Button>
+        <AddEntryButton
+          onClick={() => handleAddEntry(notes.label)}
+          label={addNote}
+        />
+        <AddEntryButton
+          onClick={() => handleAddEntry(npcs.label)}
+          label={addNpc}
+        />
       </Box>
     </Box>
   );

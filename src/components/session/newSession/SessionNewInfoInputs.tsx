@@ -1,10 +1,11 @@
-import { Button, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { Box } from "@mui/system";
 import { TextInputField } from "../../TextInputField";
 import { useState } from "react";
 import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
 import { initializeNewSession } from "../../../utils/supportFunctions";
 import { useNavigate } from "react-router-dom";
+import { SaveButton } from "../../buttons/SaveButton";
 
 export const SessionNewInfoInputs = () => {
   const [titleValue, setTitleValue] = useState<string>("");
@@ -39,9 +40,7 @@ export const SessionNewInfoInputs = () => {
             onChangeFunction={setDescValue}
           />
           <Box sx={{ display: "flex", columnGap: "8px" }}>
-            <Button variant="contained" className="edit-button" type="submit">
-              Save
-            </Button>
+            <SaveButton />
           </Box>
         </form>
       </Paper>

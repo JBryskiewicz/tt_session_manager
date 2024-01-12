@@ -16,3 +16,10 @@ export const SESSION_ACTION_CATEGORIES = {
   details: "details",
   newSession: "new",
 };
+
+export const EDIT_STATE_BUTTON_LABELS = {
+  edit: "edit",
+  cancel: "cancel",
+  addNote: "add notes",
+  addNpc: "add npc",
+};

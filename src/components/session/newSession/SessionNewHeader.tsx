@@ -3,7 +3,7 @@ import { SESSION_ACTION_CATEGORIES } from "../../../utils/constants";
 import { HeaderDatesSection } from "../../HeaderDatesSection";
 import { SessionNewInfoInputs } from "./SessionNewInfoInputs";
 
-function SessionNewHeader() {
+export const SessionNewHeader = () => {
   return (
     <Container maxWidth="xl">
       <HeaderDatesSection
@@ -12,6 +12,4 @@ function SessionNewHeader() {
       <SessionNewInfoInputs />
     </Container>
   );
-}
-
-export default SessionNewHeader;
+};

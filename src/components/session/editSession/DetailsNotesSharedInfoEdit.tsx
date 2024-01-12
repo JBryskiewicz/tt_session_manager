@@ -32,7 +32,7 @@ export const DetailsNotesSharedInfoEdit = ({
   const [nameValue, setNameValue] = useState<string>(data.name);
   const [infoValue, setInfoValue] = useState<string>(data.information);
   const dispatch = useAppDispatch();
-  const { cancel } = EDIT_STATE_BUTTON_LABELS;
+  const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,7 +63,7 @@ export const DetailsNotesSharedInfoEdit = ({
             textarea={true}
           />
           <div style={{ display: "flex", gap: ".5rem", marginTop: ".5rem" }}>
-            <SaveButton />
+            <SaveButton label={save} />
             <EditStateButton onClick={handleCancelButton} label={cancel} />
           </div>
         </form>

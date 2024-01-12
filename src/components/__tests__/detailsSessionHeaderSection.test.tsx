@@ -1,17 +1,17 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, screen } from "@testing-library/react";
-import { renderWithRouter } from "../../../utils/test-utils";
-import { DetailsHeaderInformation } from "../detailsSession/DetailsHeaderInformation";
+import { SESSION_ACTION_CATEGORIES } from "../../utils/constants";
 import {
-  MOCK_CATEGORY,
-  MOCK_FUNCTIONS,
-  MOCK_STRING,
   MOCK_CREATION_DATE,
   MOCK_PLANNED_DATE,
-} from "../../../utils/test-mock-data";
-import { HeaderDatesSection } from "../../HeaderDatesSection";
-import { SESSION_ACTION_CATEGORIES } from "../../../utils/constants";
-import { ActionButtonSection } from "../../ActionButtonSection";
+  MOCK_FUNCTIONS,
+  MOCK_CATEGORY,
+  MOCK_STRING,
+} from "../../utils/test-mock-data";
+import { renderWithRouter } from "../../utils/test-utils";
+import { ActionButtonSection } from "../ActionButtonSection";
+import { HeaderDatesSection } from "../HeaderDatesSection";
+import { DetailsHeaderInformation } from "../session/detailsSession/DetailsHeaderInformation";
 
 afterEach(() => {
   cleanup();

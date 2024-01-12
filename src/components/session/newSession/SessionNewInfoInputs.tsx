@@ -2,7 +2,10 @@ import { Paper } from "@mui/material";
 import { Box } from "@mui/system";
 import { TextInputField } from "../../TextInputField";
 import { useState } from "react";
-import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
+import {
+  EDIT_STATE_BUTTON_LABELS,
+  SESSION_FIELDS_CATEGORIES,
+} from "../../../utils/constants";
 import { initializeNewSession } from "../../../utils/supportFunctions";
 import { useNavigate } from "react-router-dom";
 import { SaveButton } from "../../buttons/SaveButton";
@@ -12,6 +15,8 @@ export const SessionNewInfoInputs = () => {
   const [descValue, setDescValue] = useState<string>("");
   const { title, desc } = SESSION_FIELDS_CATEGORIES;
   const navigate = useNavigate();
+
+  const { save } = EDIT_STATE_BUTTON_LABELS;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,7 +45,7 @@ export const SessionNewInfoInputs = () => {
             onChangeFunction={setDescValue}
           />
           <Box sx={{ display: "flex", columnGap: "8px" }}>
-            <SaveButton />
+            <SaveButton label={save} />
           </Box>
         </form>
       </Paper>

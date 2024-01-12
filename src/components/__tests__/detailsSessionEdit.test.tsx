@@ -1,15 +1,15 @@
 import { it, vi, expect, describe, afterEach } from "vitest";
 import { cleanup, fireEvent, screen } from "@testing-library/react";
-import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
-import { renderWithRouter } from "../../../utils/test-utils";
-import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
-import { TextInputField } from "../../TextInputField";
-import { DetailsNotesSharedInfoEdit } from "../editSession/DetailsNotesSharedInfoEdit";
+import { SESSION_FIELDS_CATEGORIES } from "../../utils/constants";
 import {
   MOCK_FUNCTIONS,
-  MOCK_SESSION,
   MOCK_STRING,
-} from "../../../utils/test-mock-data";
+  MOCK_SESSION,
+} from "../../utils/test-mock-data";
+import { renderWithRouter } from "../../utils/test-utils";
+import { TextInputField } from "../TextInputField";
+import { DetailsHeaderInfoEdit } from "../session/editSession/DetailsHeaderInfoEdit";
+import { DetailsNotesSharedInfoEdit } from "../session/editSession/DetailsNotesSharedInfoEdit";
 
 const { title } = SESSION_FIELDS_CATEGORIES;
 
@@ -44,6 +44,7 @@ describe("Edit mode for for session details", () => {
         data={MOCK_STRING}
         session={MOCK_SESSION}
         setIsEditable={MOCK_FUNCTIONS.buttonFunction()}
+        isRequired={false}
       />
     );
 

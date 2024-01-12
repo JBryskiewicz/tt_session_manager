@@ -4,7 +4,13 @@ import { Note, Npc } from "../../../types/types";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
+import {
+  EDIT_STATE_BUTTON_LABELS,
+  SESSION_ACTION_CATEGORIES,
+} from "../../../utils/constants";
+import { fetchSession } from "../../../redux/sessionSlice";
+import { useAppDispatch } from "../../../redux/hooks";
+import { handleNoteDelete } from "../../../utils/supportFunctions";
 
 type Props = {
   data: Note | Npc;
@@ -22,10 +28,20 @@ export const DetailsNotesSharedInformation = ({
   category,
 }: Props) => {
   const { id } = useParams<RouteParams>();
+  const dispatch = useAppDispatch();
   const { edit } = EDIT_STATE_BUTTON_LABELS;
+  const { remove } = SESSION_ACTION_CATEGORIES;
 
   const handleEditButton = (): void => {
     setIsEditable((prevState) => [true, ...prevState.slice(1)]);
+  };
+
+  const noteID = data.id;
+  const sessionID = parseInt(id as string);
+
+  const handleDeleteButton = async (): Promise<void> => {
+    await handleNoteDelete(noteID, sessionID, category);
+    dispatch(fetchSession({ id }));
   };
 
   return (
@@ -34,11 +50,7 @@ export const DetailsNotesSharedInformation = ({
         <div>{data.information}</div>
         <div style={{ marginTop: ".5rem" }}>
           <EditStateButton onClick={handleEditButton} label={edit} />
-          <DeleteButton
-            category={category}
-            toDelete={data.id}
-            sessionID={parseInt(id as string)}
-          />
+          <DeleteButton onClick={handleDeleteButton} label={remove} />
         </div>
       </Paper>
     </Box>

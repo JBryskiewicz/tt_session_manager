@@ -17,7 +17,6 @@ import {
   updateSession,
 } from "./API_communication";
 import { SESSION_FIELDS_CATEGORIES } from "./constants";
-import { fetchSession } from "../redux/sessionSlice";
 
 const { title, desc, note, npc } = SESSION_FIELDS_CATEGORIES;
 
@@ -118,13 +117,11 @@ export const initializeNewSession = async (
 /**
  *  Creates new note or npcs entry, saves it to database. Then returns
  *  proper object with ID and updates session to include new entry into
- *  it's notes & npcs collection. Updates session state for proper render.
+ *  it's notes & npcs collection.
  */
 export const handleAddNotesButton = async (
   sessionID: number,
-  changeTo: number,
-  setDisplay: Dispatch<SetStateAction<number>>,
-  dispatch: any
+  changeTo: number
 ) => {
   const noteObject: NewNote | NewNpc = {
     name: "New Entry",
@@ -143,10 +140,4 @@ export const handleAddNotesButton = async (
     : session.npcs.push(responseObject);
 
   await updateSession(sessionID, session);
-
-  const id = sessionID.toString();
-  dispatch(fetchSession({ id }));
-  setTimeout(() => {
-    setDisplay(changeTo);
-  }, 500);
 };

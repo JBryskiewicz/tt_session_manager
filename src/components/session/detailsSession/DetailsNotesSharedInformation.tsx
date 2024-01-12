@@ -3,7 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 import { Note, Npc } from "../../../types/types";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
-import { EditButton } from "../../buttons/EditButton";
+import { EditStateButton } from "../../buttons/EditStateButton";
+import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
 
 type Props = {
   data: Note | Npc;
@@ -21,6 +22,7 @@ export const DetailsNotesSharedInformation = ({
   category,
 }: Props) => {
   const { id } = useParams<RouteParams>();
+  const { edit } = EDIT_STATE_BUTTON_LABELS;
 
   const handleEditButton = (): void => {
     setIsEditable((prevState) => [true, ...prevState.slice(1)]);
@@ -31,7 +33,7 @@ export const DetailsNotesSharedInformation = ({
       <Paper elevation={4} className="note-box-text">
         <div>{data.information}</div>
         <div style={{ marginTop: ".5rem" }}>
-          <EditButton onClick={handleEditButton} />
+          <EditStateButton onClick={handleEditButton} label={edit} />
           <DeleteButton
             category={category}
             toDelete={data.id}

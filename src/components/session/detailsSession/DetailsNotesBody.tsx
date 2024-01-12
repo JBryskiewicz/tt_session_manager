@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DetailsNotesButtonGroup } from "./DetailsNotesButtonGroup";
 import { useSelector } from "react-redux";
 import { DetailsNotesShared } from "./DetailsNotesShared";
@@ -8,17 +8,23 @@ import { selectOneSession } from "../../../redux/sessionSlice";
 
 export function DetailsNotesBody() {
   const [display, setDisplay] = useState<number>(0);
+  const [isNotesEmpty, setIsNotesEmpty] = useState<boolean>(true);
+  const [isNpcsEmpty, setIsNpcsEmpty] = useState<boolean>(true);
   const { notes, npcs } = useSelector(selectOneSession);
   const { note, npc } = SESSION_FIELDS_CATEGORIES;
-  const isCollectionEmpty = notes.length || npcs.length ? true : false;
+
+  useEffect(() => {
+    setIsNotesEmpty(notes.length === 0);
+    setIsNpcsEmpty(npcs.length === 0);
+  }, [notes, npcs]);
 
   return (
     <Container maxWidth="xl" className="session-body">
       <DetailsNotesButtonGroup display={display} setDisplay={setDisplay} />
-      {display === 1 && isCollectionEmpty ? (
+      {display === 1 && !isNotesEmpty ? (
         <DetailsNotesShared dataCollection={notes} category={note} />
       ) : null}
-      {display === 2 && isCollectionEmpty ? (
+      {display === 2 && !isNpcsEmpty ? (
         <DetailsNotesShared dataCollection={npcs} category={npc} />
       ) : null}
     </Container>

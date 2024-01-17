@@ -3,7 +3,7 @@ import { Chip, Stack } from "@mui/material";
 import { applyDate } from "../utils/supportFunctions";
 import Box from "@mui/material/Box";
 import { selectOneSession } from "../redux/sessionSlice";
-import { SESSION_ACTION_CATEGORIES } from "../utils/constants";
+import { DATE_TEST_IDS, SESSION_ACTION_CATEGORIES } from "../utils/constants";
 
 type Props = {
   sessionCategory: string;
@@ -19,6 +19,7 @@ export const HeaderDatesSection = ({
   editedDate,
 }: Props) => {
   const session = useSelector(selectOneSession);
+  const { creationDateID, plannedDateID, editDateID } = DATE_TEST_IDS;
 
   const isCategoryNew =
     sessionCategory === SESSION_ACTION_CATEGORIES.newSession;
@@ -33,20 +34,20 @@ export const HeaderDatesSection = ({
       <Stack direction="row" spacing={1}>
         <Chip
           className="date-display"
-          data-testid="planned-date"
+          data-testid={plannedDateID}
           label={`planned: ${applyDate(plannedDateToApply)}`}
         />
         {isCategoryNew ? null : (
           <Chip
             className="date-display"
-            data-testid="creation-date"
+            data-testid={creationDateID}
             label={`created: ${applyDate(creationDate)}`}
           />
         )}
         {isEdited || isCategoryNew ? null : (
           <Chip
             className="date-display"
-            data-testid="edit-date"
+            data-testid={editDateID}
             label={`last edited: ${applyDate(editedDate)}`}
           />
         )}

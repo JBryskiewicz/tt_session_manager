@@ -1,18 +1,25 @@
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Card, CardActions, Grid } from "@mui/material";
 import { Session } from "../../types/types";
-import { Link } from "react-router-dom";
 import { applyDate } from "../../utils/supportFunctions";
+import { ActionButton } from "../buttons/ActionButton";
+import {
+  ACTION_BUTTON_TEST_ID,
+  SESSION_ACTION_CATEGORIES,
+} from "../../utils/constants";
+import { addressLibrary } from "../../utils/addressLibrary";
 
 type Props = {
   session: Session;
 };
 
 export function DashboardSessionCard({ session }: Props) {
-  const datePlanned = session.plannedDate;
-  const { id, name, description } = session;
+  const { id, name, description, plannedDate } = session;
+  const { view } = SESSION_ACTION_CATEGORIES;
+  const { sessionDetails } = addressLibrary;
+
+  const addressPath: string = sessionDetails + id;
 
   return (
     <Grid item xs={4}>
@@ -23,7 +30,7 @@ export function DashboardSessionCard({ session }: Props) {
               {name}
             </Typography>
             <Typography gutterBottom>
-              planned: {applyDate(datePlanned)}
+              {`planned: ${applyDate(plannedDate)}`}
             </Typography>
           </div>
           <Typography variant="body2" color="text.secondary">
@@ -31,15 +38,11 @@ export function DashboardSessionCard({ session }: Props) {
           </Typography>
         </CardContent>
         <CardActions className="session-card-actions">
-          <Link to={`/session-details/${id}`} data-testid="details-btn">
-            <Button
-              className="card-action-btn"
-              variant="contained"
-              size="small"
-            >
-              View
-            </Button>
-          </Link>
+          <ActionButton
+            label={view}
+            addressPath={addressPath}
+            testId={ACTION_BUTTON_TEST_ID}
+          />
         </CardActions>
       </Card>
     </Grid>

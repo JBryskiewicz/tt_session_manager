@@ -1,14 +1,18 @@
 import { it, vi, expect, describe, afterEach } from "vitest";
 import { cleanup, screen } from "@testing-library/react";
-import { renderWithRouter } from "../../../utils/test-utils";
-import { DetailsNotesButton } from "../detailsSession/DetailsNotesButton";
-import { DetailsNotesList } from "../detailsSession/DetailsNotesList";
-import { DetailsNotesListElement } from "../detailsSession/DetailsNotesListElement";
-import { DetailsNotesSharedInformation } from "../detailsSession/DetailsNotesSharedInformation";
 import {
   MOCK_DATA_COLLECTION,
   MOCK_FUNCTIONS,
-} from "../../../utils/test-mock-data";
+} from "../../utils/test-mock-data";
+import { renderWithRouter } from "../../utils/test-utils";
+import { DetailsNotesButton } from "../session/detailsSession/DetailsNotesButton";
+import { DetailsNotesList } from "../session/detailsSession/DetailsNotesList";
+import { DetailsNotesListElement } from "../session/detailsSession/DetailsNotesListElement";
+import { DetailsNotesSharedInformation } from "../session/detailsSession/DetailsNotesSharedInformation";
+import {
+  NOTES_LIST_TEST_ID,
+  SESSION_FIELDS_CATEGORIES,
+} from "../../utils/constants";
 
 const mockNote = MOCK_DATA_COLLECTION[0];
 
@@ -16,7 +20,7 @@ afterEach(() => {
   cleanup();
 });
 
-describe("renders session details notes & npcs elements", () => {
+describe("renders session details notes & npcs components", () => {
   it("should render working note / npc section switching buttons", () => {
     const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
     const label = "Notes";
@@ -46,7 +50,7 @@ describe("renders session details notes & npcs elements", () => {
       />
     );
 
-    const listElements = screen.getAllByTestId("session-notes-list-element");
+    const listElements = screen.getAllByTestId(NOTES_LIST_TEST_ID);
     expect(listElements.length).toBe(MOCK_DATA_COLLECTION.length);
   });
 
@@ -64,20 +68,18 @@ describe("renders session details notes & npcs elements", () => {
     expect(listElement).toBeInTheDocument();
   });
 
-  it("should render note / npc information with working clickable edit button", () => {
-    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+  it("should render note / npc information", () => {
+    const data = MOCK_DATA_COLLECTION[0];
+    const { note } = SESSION_FIELDS_CATEGORIES;
 
     renderWithRouter(
       <DetailsNotesSharedInformation
-        note={mockNote.information}
+        data={data}
         setIsEditable={MOCK_FUNCTIONS.buttonFunction}
+        category={note}
       />
     );
     const information = screen.getByText(mockNote.information);
     expect(information).toBeInTheDocument();
-
-    const editButton = screen.getByText("Edit");
-    editButton.click();
-    expect(buttonSpy).toHaveBeenCalled();
   });
 });

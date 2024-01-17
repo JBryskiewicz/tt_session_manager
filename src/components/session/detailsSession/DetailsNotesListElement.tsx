@@ -1,6 +1,6 @@
 import { ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { ACCENT_COLOR } from "../../../utils/constants";
+import { ACCENT_COLOR, NOTES_LIST_TEST_ID } from "../../../utils/constants";
 
 type Props = {
   id: number;
@@ -19,7 +19,7 @@ export const DetailsNotesListElement = ({
     <ListItem
       key={id}
       className="notes-list-item"
-      data-testid="session-notes-list-element"
+      data-testid={NOTES_LIST_TEST_ID}
       disablePadding
     >
       <Paper

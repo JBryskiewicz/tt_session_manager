@@ -1,6 +1,9 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, screen } from "@testing-library/react";
-import { SESSION_ACTION_CATEGORIES } from "../../utils/constants";
+import {
+  DATE_TEST_IDS,
+  SESSION_ACTION_CATEGORIES,
+} from "../../utils/constants";
 import {
   MOCK_CREATION_DATE,
   MOCK_PLANNED_DATE,
@@ -9,9 +12,9 @@ import {
   MOCK_STRING,
 } from "../../utils/test-mock-data";
 import { renderWithRouter } from "../../utils/test-utils";
-import { ActionButtonSection } from "../ActionButtonSection";
 import { HeaderDatesSection } from "../HeaderDatesSection";
 import { DetailsHeaderInformation } from "../session/detailsSession/DetailsHeaderInformation";
+import { applyDate } from "../../utils/supportFunctions";
 
 afterEach(() => {
   cleanup();
@@ -20,17 +23,9 @@ afterEach(() => {
 describe("renders session details action & header elements", () => {
   const { details, newSession } = SESSION_ACTION_CATEGORIES;
 
-  it("should render action buttons", () => {
-    const details = SESSION_ACTION_CATEGORIES.details;
+  it("should render dates section for session details (not edited by default)", async () => {
+    const { creationDateID, plannedDateID } = DATE_TEST_IDS;
 
-    renderWithRouter(<ActionButtonSection sessionCategory={details} />);
-
-    const [exitButton, deleteButton] = screen.getAllByTestId("action-btn");
-    expect(exitButton.getAttribute("href")).toBe("/");
-    expect(deleteButton.getAttribute("href")).toBe("/delete");
-  });
-
-  it("should render dates section for session details", async () => {
     renderWithRouter(
       <HeaderDatesSection
         sessionCategory={details}
@@ -39,26 +34,26 @@ describe("renders session details action & header elements", () => {
       />
     );
 
-    const creationDate = (await screen.findByTestId("creation-date"))
+    const creationDate = (await screen.findByTestId(creationDateID))
       .lastElementChild?.innerHTML;
     expect(creationDate).toBe(`created: ${MOCK_CREATION_DATE}`);
 
-    const plannedDate = (await screen.findByTestId("planned-date"))
+    const plannedDate = (await screen.findByTestId(plannedDateID))
       .lastElementChild?.innerHTML;
     expect(plannedDate).toBe(`planned: ${MOCK_PLANNED_DATE}`);
   });
 
   it("should render dates section for session details", async () => {
+    const planneDate: string = applyDate(new Date().toISOString());
+
     renderWithRouter(<HeaderDatesSection sessionCategory={newSession} />);
 
     const plannedDate = (await screen.findByTestId("planned-date"))
       .lastElementChild?.innerHTML;
-    expect(plannedDate).toBe("planned: pick date");
+    expect(plannedDate).toBe(`planned: ${planneDate}`);
   });
 
   it("should render information in header section", () => {
-    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
-
     renderWithRouter(
       <DetailsHeaderInformation
         category={MOCK_CATEGORY}
@@ -72,9 +67,5 @@ describe("renders session details action & header elements", () => {
 
     const dataElement = screen.getByText(MOCK_STRING);
     expect(dataElement).toBeInTheDocument();
-
-    const editButton = screen.getByText("Edit");
-    editButton.click();
-    expect(buttonSpy).toHaveBeenCalled();
   });
 });

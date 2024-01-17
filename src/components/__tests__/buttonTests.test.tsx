@@ -12,6 +12,7 @@ import { MOCK_FUNCTIONS } from "../../utils/test-mock-data";
 import { DeleteButton } from "../buttons/DeleteButton";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
+import { addressLibrary } from "../../utils/addressLibrary";
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -20,8 +21,13 @@ describe("Testing button components", () => {
 
   it("Renders ACTION BUTTON component with desired navigation", () => {
     const { exit } = SESSION_ACTION_CATEGORIES;
+    const { dashboard } = addressLibrary;
     renderWithRouter(
-      <ActionButton testId={ACTION_BUTTON_TEST_ID} label={exit} />
+      <ActionButton
+        addressPath={dashboard}
+        testId={ACTION_BUTTON_TEST_ID}
+        label={exit}
+      />
     );
 
     const navLink = screen.getByTestId(ACTION_BUTTON_TEST_ID);

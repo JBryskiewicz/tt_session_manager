@@ -28,10 +28,10 @@ export const MOCK_EDITED_DATE = "2023-12-18";
 
 export const MOCK_SESSION: Session = {
   id: 999,
-  name: "test1",
-  description: "test1",
+  name: "test name",
+  description: "test desc",
   creationDate: MOCK_CREATION_DATE,
-  plannedDate: MOCK_CREATION_DATE,
+  plannedDate: MOCK_PLANNED_DATE,
   editedDate: null,
   edited: false,
   notes: [{ id: 0, name: "", information: "" }],

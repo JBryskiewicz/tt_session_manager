@@ -7,6 +7,7 @@ import {
 import { DeleteButton } from "./buttons/DeleteButton";
 import { useNavigate } from "react-router-dom";
 import { handleSessionDelete } from "../utils/supportFunctions";
+import { addressLibrary } from "../utils/addressLibrary";
 
 type Props = {
   sessionCategory: string;
@@ -19,21 +20,20 @@ const buttonSectionStyles = {
   alignItems: "center",
 };
 
-const ADDRESS_PATH = "/";
-
 export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
   const navigate = useNavigate();
   const { exit, remove } = SESSION_ACTION_CATEGORIES;
+  const { dashboard } = addressLibrary;
 
   const handleDeleteButton = async (): Promise<void> => {
     await handleSessionDelete(toDelete as number);
-    navigate(ADDRESS_PATH);
+    navigate(dashboard);
   };
 
   return (
     <Box sx={buttonSectionStyles}>
       <ActionButton
-        addressPath={ADDRESS_PATH}
+        addressPath={dashboard}
         label={exit}
         testId={ACTION_BUTTON_TEST_ID}
       />

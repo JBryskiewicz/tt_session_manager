@@ -13,6 +13,7 @@ import { DeleteButton } from "../buttons/DeleteButton";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
 import { addressLibrary } from "../../utils/addressLibrary";
+import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -57,6 +58,26 @@ describe("Testing button components", () => {
 
     const deleteButton = screen.getByText(remove);
     deleteButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
+  });
+
+  //Tutaj switch button
+  it("Renders working note / npc section switching buttons", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+    const label = "Notes";
+
+    renderWithRouter(
+      <DetailsNotesButton
+        label={label}
+        changeDisplayTo={1}
+        selectedWhen={1}
+        display={1}
+        setDisplay={MOCK_FUNCTIONS.buttonFunction}
+      />
+    );
+
+    const switchButton = screen.getByText(label);
+    switchButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });
 

@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { SECONDARY_COLOR } from "../../utils/constants";
+import { BUTTON_COLORS } from "../../sx/buttonsStyle";
 
 type Props = {
   onClick: () => void;
@@ -8,11 +8,7 @@ type Props = {
 
 export const AddEntryButton = ({ onClick, label }: Props) => {
   return (
-    <Button
-      variant="contained"
-      onClick={onClick}
-      sx={{ marginRight: "20px", backgroundColor: SECONDARY_COLOR }}
-    >
+    <Button variant="contained" onClick={onClick} sx={BUTTON_COLORS}>
       {label}
     </Button>
   );

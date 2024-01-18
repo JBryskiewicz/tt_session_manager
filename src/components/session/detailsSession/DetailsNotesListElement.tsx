@@ -1,6 +1,7 @@
 import { ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { ACCENT_COLOR, NOTES_LIST_TEST_ID } from "../../../utils/constants";
+import { NOTES_LIST_TEST_ID } from "../../../utils/constants";
+import { ACCENT_COLOR } from "../../../sx/colors";
 
 type Props = {
   id: number;

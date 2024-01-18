@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { addressLibrary } from "../../utils/addressLibrary";
 import {
   ACTION_BUTTON_TEST_ID,
@@ -10,10 +11,12 @@ export const DashboardActions = () => {
   const { newSession } = SESSION_ACTION_CATEGORIES;
 
   return (
-    <ActionButton
-      addressPath={sessionNew}
-      label={newSession}
-      testId={ACTION_BUTTON_TEST_ID}
-    />
+    <Box className="actions">
+      <ActionButton
+        addressPath={sessionNew}
+        label={newSession}
+        testId={ACTION_BUTTON_TEST_ID}
+      />
+    </Box>
   );
 };

@@ -22,7 +22,7 @@ export function DashboardSessionCard({ session }: Props) {
   const addressPath: string = sessionDetails + id;
 
   return (
-    <Grid item xs={4}>
+    <Grid item>
       <Card className="session-card" data-testid="session-card">
         <CardContent className="session-card-content">
           <div>

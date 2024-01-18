@@ -14,12 +14,6 @@ type Props = {
   toDelete?: number;
 };
 
-const buttonSectionStyles = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
-
 export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
   const navigate = useNavigate();
   const { exit, remove } = SESSION_ACTION_CATEGORIES;
@@ -31,7 +25,7 @@ export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
   };
 
   return (
-    <Box sx={buttonSectionStyles}>
+    <Box className="actions">
       <ActionButton
         addressPath={dashboard}
         label={exit}

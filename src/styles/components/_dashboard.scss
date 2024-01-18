@@ -2,47 +2,22 @@
   width: 100vw;
   height: 100vh;
   background-color: $primary_color;
-  padding: 4rem 200px 0;
+  padding: 3.875rem 0;
   overflow: auto;
 
-  &-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 0;
-
-    .actions-button {
-      background-color: $secondary_color;
-      margin: 0 24px;
-
-      &:hover {
-        background-color: $accent_color;
-      }
-    }
-  }
-
   .session-card {
-    max-width: 475px;
-    height: 360px;
+    max-width: 29rem;
+    min-width: 29rem;
+    height: 22.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    padding: .625rem;
 
     &-content {
 
       div {
         justify-content: space-between;
-      }
-    }
-
-    &-actions {
-
-      .card-action-btn {
-        background-color: $secondary_color;
-
-        &:hover {
-          background-color: $accent_color;
-        }
       }
     }
   }

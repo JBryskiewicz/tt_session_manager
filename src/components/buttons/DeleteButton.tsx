@@ -1,4 +1,5 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
+import { BUTTON_COLORS } from "../../sx/buttonsStyle";
 
 type Props = {
   onClick: () => void;
@@ -7,10 +8,8 @@ type Props = {
 
 export const DeleteButton = ({ onClick, label }: Props) => {
   return (
-    <Box className="dashboard-actions">
-      <Button variant="contained" className="actions-button" onClick={onClick}>
-        {label}
-      </Button>
-    </Box>
+    <Button variant="contained" onClick={onClick} sx={BUTTON_COLORS}>
+      {label}
+    </Button>
   );
 };

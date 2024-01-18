@@ -1,4 +1,3 @@
-import Container from "@mui/material/Container";
 import { HeaderDatesSection } from "../../HeaderDatesSection";
 import { useSelector } from "react-redux";
 import { DetailsHeaderInformation } from "./DetailsHeaderInformation";
@@ -17,7 +16,7 @@ export const DetailsHeader = () => {
   const { title, desc } = SESSION_FIELDS_CATEGORIES;
 
   return (
-    <Container maxWidth="xl">
+    <>
       <HeaderDatesSection
         sessionCategory={SESSION_ACTION_CATEGORIES.details}
         creationDate={session.creationDate}
@@ -54,6 +53,6 @@ export const DetailsHeader = () => {
           isRequired={false}
         />
       )}
-    </Container>
+    </>
   );
 };

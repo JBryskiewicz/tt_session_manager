@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
+import { BUTTON_COLORS } from "../../sx/buttonsStyle";
 
 type Props = {
   label: string;
@@ -21,7 +22,8 @@ export const DetailsNotesButton = ({
     <Button
       disabled={disabled}
       variant="contained"
-      className={`display-btn ${display === selectedWhen ? "selected" : ""}`}
+      className={`${display === selectedWhen ? "selected" : ""}`}
+      sx={{ marginRight: "20px", ...BUTTON_COLORS }}
       onClick={() => setDisplay(changeDisplayTo)}
     >
       {label}

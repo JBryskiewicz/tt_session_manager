@@ -68,7 +68,7 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           setDisplay={setDisplay}
         />
       </Box>
-      <Box sx={{ marginTop: "20px" }}>
+      <Box sx={{ marginTop: "20px", display: "flex", gap: "1.5rem" }}>
         <AddEntryButton
           onClick={() => handleAddEntry(notes.label)}
           label={addNote}

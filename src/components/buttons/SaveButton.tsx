@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { SECONDARY_COLOR } from "../../utils/constants";
+import { BUTTON_COLORS } from "../../sx/buttonsStyle";
 
 type Props = {
   label: string;
@@ -7,12 +7,7 @@ type Props = {
 
 export const SaveButton = ({ label }: Props) => {
   return (
-    <Button
-      variant="contained"
-      sx={{ backgroundColor: SECONDARY_COLOR }}
-      className="edit-button"
-      type="submit"
-    >
+    <Button variant="contained" sx={BUTTON_COLORS} type="submit">
       {label}
     </Button>
   );

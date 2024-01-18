@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import { DashboardSessionCard } from "./DashboardSessionCard";
-import Container from "@mui/material/Container";
 import { Session } from "../../types/types";
 
 type Props = {
@@ -9,12 +8,19 @@ type Props = {
 
 export function DashboardSessionList({ sessionList }: Props) {
   return (
-    <Container maxWidth="xl">
-      <Grid container spacing={4} rowSpacing={4}>
-        {sessionList.map((session) => (
-          <DashboardSessionCard key={session.id} session={session} />
-        ))}
-      </Grid>
-    </Container>
+    <Grid
+      container
+      spacing={4}
+      rowSpacing={4}
+      xs={12}
+      sm={12}
+      md={12}
+      lg={12}
+      justifyContent="center"
+    >
+      {sessionList.map((session) => (
+        <DashboardSessionCard key={session.id} session={session} />
+      ))}
+    </Grid>
   );
 }

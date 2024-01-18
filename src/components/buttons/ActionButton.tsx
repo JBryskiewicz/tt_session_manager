@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+import { BUTTON_COLORS } from "../../sx/buttonsStyle";
 
 type Props = {
   addressPath: string;
@@ -10,12 +10,10 @@ type Props = {
 
 export const ActionButton = ({ addressPath, testId, label }: Props) => {
   return (
-    <Box className="dashboard-actions">
-      <Link to={addressPath} data-testid={testId}>
-        <Button variant="contained" className="actions-button">
-          {label}
-        </Button>
-      </Link>
-    </Box>
+    <Link to={addressPath} data-testid={testId}>
+      <Button variant="contained" sx={BUTTON_COLORS}>
+        {label}
+      </Button>
+    </Link>
   );
 };

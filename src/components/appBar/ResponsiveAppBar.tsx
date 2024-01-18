@@ -5,7 +5,7 @@ import UserProfileMenu from "./UserProfileMenu";
 import { LogoDesktop, LogoMobile } from "./LogoComponents";
 import { NavMenuDesktop, NavMenuMobile } from "./NavMenuComponents";
 import { useState } from "react";
-import { SECONDARY_COLOR } from "../../utils/constants";
+import { SECONDARY_COLOR } from "../../sx/colors";
 
 const APP_BAR_STYLE = {
   backgroundColor: SECONDARY_COLOR,

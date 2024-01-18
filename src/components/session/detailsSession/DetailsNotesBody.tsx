@@ -1,4 +1,3 @@
-import Container from "@mui/material/Container";
 import { useEffect, useState } from "react";
 import { DetailsNotesButtonGroup } from "./DetailsNotesButtonGroup";
 import { useSelector } from "react-redux";
@@ -19,7 +18,7 @@ export function DetailsNotesBody() {
   }, [notes, npcs]);
 
   return (
-    <Container maxWidth="xl" className="session-body">
+    <>
       <DetailsNotesButtonGroup display={display} setDisplay={setDisplay} />
       {display === 1 && !isNotesEmpty ? (
         <DetailsNotesShared dataCollection={notes} category={note} />
@@ -27,6 +26,6 @@ export function DetailsNotesBody() {
       {display === 2 && !isNpcsEmpty ? (
         <DetailsNotesShared dataCollection={npcs} category={npc} />
       ) : null}
-    </Container>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { DetailsNotesButton } from "./DetailsNotesButton";
+import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
 import { handleAddNotesButton } from "../../../utils/supportFunctions";
 import { useAppDispatch } from "../../../redux/hooks";

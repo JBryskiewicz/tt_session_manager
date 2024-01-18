@@ -12,7 +12,9 @@ type Props = {
 
 export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
   const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
-  const [dataId, setDataId] = useState<number>(dataCollection[0].id);
+  const [dataId, setDataId] = useState<number>(
+    dataCollection.length ? dataCollection[0].id : -1
+  );
   const [data, setData] = useState<Note | Npc>(dataCollection[0]);
 
   useEffect(() => {
@@ -22,6 +24,10 @@ export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
       }
     });
   }, [dataId, dataCollection]);
+
+  if (dataId === -1) {
+    return null;
+  }
 
   return (
     <Box className="session-body-notes">

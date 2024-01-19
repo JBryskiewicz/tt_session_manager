@@ -16,12 +16,15 @@ export const TextInputField = ({
   onChangeFunction,
   textarea,
 }: Props) => {
+  const processedLabel: string =
+    label.charAt(0).toUpperCase() + label.substring(1, label.length);
+
   if (textarea) {
     return (
       <TextField
         required={required}
         id="outlined-textarea"
-        label={label}
+        label={processedLabel}
         value={fieldValue}
         rows={14}
         sx={{ width: "100%" }}
@@ -35,7 +38,7 @@ export const TextInputField = ({
     <TextField
       required={required}
       id="outlined-textarea"
-      label={label}
+      label={processedLabel}
       value={fieldValue}
       sx={{ width: "100%" }}
       onChange={(event) => onChangeFunction(event.target.value)}

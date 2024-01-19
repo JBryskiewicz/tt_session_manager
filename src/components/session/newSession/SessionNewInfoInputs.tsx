@@ -29,23 +29,25 @@ export const SessionNewInfoInputs = () => {
       <Paper
         elevation={4}
         className="session-description-text"
-        style={{ display: "flex", flexDirection: "column" }}
+        sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
       >
-        <form onSubmit={handleSubmit} className="title-name-form">
-          <TextInputField
-            required={true}
-            label={title}
-            fieldValue={titleValue}
-            onChangeFunction={setTitleValue}
-          />
-          <TextInputField
-            required={false}
-            label={desc}
-            fieldValue={descValue}
-            onChangeFunction={setDescValue}
-          />
-          <Box sx={{ display: "flex", columnGap: "8px" }}>
-            <SaveButton label={save} />
+        <Box>
+          <SaveButton label={save} />
+        </Box>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <TextInputField
+              required={true}
+              label={title}
+              fieldValue={titleValue}
+              onChangeFunction={setTitleValue}
+            />
+            <TextInputField
+              required={false}
+              label={desc}
+              fieldValue={descValue}
+              onChangeFunction={setDescValue}
+            />
           </Box>
         </form>
       </Paper>

@@ -6,13 +6,18 @@
   overflow: auto;
 
   .session-card {
-    max-width: 29rem;
+    width: 29rem;
     min-width: 29rem;
     height: 22.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: .625rem;
+
+    @media only screen and (max-width: $md) {
+      width: 28rem;
+      min-width: 28rem;
+    }
 
     &-content {
 

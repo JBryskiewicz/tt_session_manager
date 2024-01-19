@@ -27,23 +27,20 @@ export const HeaderDatesSection = ({
     : plannedDate;
 
   return (
-    <Box className="session-dates">
+    <Box sx={{ marginBottom: "1.25rem" }}>
       <Stack direction="row" spacing={1}>
         <Chip
-          className="date-display"
           data-testid={plannedDateID}
           label={`planned: ${applyDate(plannedDateToApply)}`}
         />
         {isCreatedNull ? null : (
           <Chip
-            className="date-display"
             data-testid={creationDateID}
             label={`created: ${applyDate(creationDate)}`}
           />
         )}
         {!isEdited || isCreatedNull ? null : (
           <Chip
-            className="date-display"
             data-testid={editDateID}
             label={`last edited: ${applyDate(editedDate)}`}
           />

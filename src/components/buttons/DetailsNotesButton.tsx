@@ -23,7 +23,7 @@ export const DetailsNotesButton = ({
       disabled={disabled}
       variant="contained"
       className={`${display === selectedWhen ? "selected" : ""}`}
-      sx={{ marginLeft: "20px", ...BUTTON_SETTINGS }}
+      sx={BUTTON_SETTINGS}
       onClick={() => setDisplay(changeDisplayTo)}
     >
       {label}

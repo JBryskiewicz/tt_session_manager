@@ -51,15 +51,8 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
       sx={{ display: "flex", justifyContent: "space-between" }}
     >
       <Box className="session-body-actions">
-        <Paper
-          sx={{
-            width: "5rem",
-            minWidth: "5rem",
-            textAlign: "center",
-            padding: ".375rem",
-          }}
-        >
-          <span>Display:</span>
+        <Paper className="actions-label">
+          <span>Display</span>
         </Paper>
         <DetailsNotesButton
           label={none.label}
@@ -83,16 +76,9 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           setDisplay={setDisplay}
         />
       </Box>
-      <Box sx={{ marginTop: "20px", display: "flex", gap: "1.5rem" }}>
-        <Paper
-          sx={{
-            width: "5rem",
-            minWidth: "5rem",
-            textAlign: "center",
-            padding: ".375rem",
-          }}
-        >
-          <span>Create:</span>
+      <Box className="session-body-actions">
+        <Paper className="actions-label">
+          <span>Create</span>
         </Paper>
         <AddEntryButton
           onClick={() => handleAddEntry(notes.label)}

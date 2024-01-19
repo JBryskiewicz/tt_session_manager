@@ -51,29 +51,16 @@ export const DetailsHeaderInfoEdit = ({
 
   return (
     <Box className="session-header">
-      <Paper elevation={4} className="session-description-text">
+      <Paper elevation={4} className="header-information">
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
+          <Box className="header-information-form">
             <TextInputField
               required={isRequired}
               label={category}
               fieldValue={formValue}
               onChangeFunction={setFormValue}
             />
-            <Box
-              sx={{
-                display: "flex",
-                columnGap: ".5rem",
-                marginLeft: "1rem",
-                alignItems: "center",
-              }}
-            >
+            <Box className="header-information-form-btn-box">
               <SaveButton label={save} />
               <EditStateButton onClick={handleCancelButton} label={cancel} />
             </Box>

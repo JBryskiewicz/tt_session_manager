@@ -45,16 +45,12 @@ export const DetailsNotesSharedInformation = ({
   };
 
   return (
-    <Box className="note-box">
-      <Paper elevation={4} className="note-box-text">
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          <Box sx={{ display: "flex", columnGap: "1rem" }}>
-            <EditStateButton onClick={handleEditButton} label={edit} />
-            <DeleteButton onClick={handleDeleteButton} label={remove} />
-          </Box>
-          <Box>{data.information}</Box>
-        </Box>
-      </Paper>
-    </Box>
+    <Paper elevation={4} className="note-box">
+      <Box className="note-box-btn-box">
+        <EditStateButton onClick={handleEditButton} label={edit} />
+        <DeleteButton onClick={handleDeleteButton} label={remove} />
+      </Box>
+      <Box>{data.information}</Box>
+    </Paper>
   );
 };

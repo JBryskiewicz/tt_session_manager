@@ -1,6 +1,6 @@
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Card, CardActions, Grid } from "@mui/material";
+import { Box, Card, CardActions, Grid } from "@mui/material";
 import { Session } from "../../types/types";
 import { applyDate } from "../../utils/supportFunctions";
 import { ActionButton } from "../buttons/ActionButton";
@@ -25,14 +25,14 @@ export function DashboardSessionCard({ session }: Props) {
     <Grid item>
       <Card className="session-card" data-testid="session-card">
         <CardContent className="session-card-content">
-          <div>
+          <Box>
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
             <Typography gutterBottom>
               {`planned: ${applyDate(plannedDate)}`}
             </Typography>
-          </div>
+          </Box>
           <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>

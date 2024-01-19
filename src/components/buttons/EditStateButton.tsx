@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { BUTTON_COLORS } from "../../sx/buttonsStyle";
+import { BUTTON_SETTINGS } from "../../sx/buttonsStyle";
 
 type Props = {
   onClick: () => void;
@@ -8,11 +8,7 @@ type Props = {
 
 export const EditStateButton = ({ label, onClick }: Props) => {
   return (
-    <Button
-      variant="contained"
-      onClick={onClick}
-      sx={{ marginRight: "20px", ...BUTTON_COLORS }}
-    >
+    <Button variant="contained" onClick={onClick} sx={BUTTON_SETTINGS}>
       {label}
     </Button>
   );

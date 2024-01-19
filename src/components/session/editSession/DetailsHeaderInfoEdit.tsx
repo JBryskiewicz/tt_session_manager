@@ -1,5 +1,4 @@
 import { Paper } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import React, { Dispatch, useState, SetStateAction } from "react";
 import {
@@ -52,20 +51,19 @@ export const DetailsHeaderInfoEdit = ({
 
   return (
     <Box className="session-header">
-      <Paper elevation={4} className="session-description">
-        <Typography>{category}:</Typography>
-      </Paper>
-      <Paper elevation={4} className="session-description-text">
-        <form onSubmit={handleSubmit} className="title-name-form">
-          <TextInputField
-            required={isRequired}
-            label={category}
-            fieldValue={formValue}
-            onChangeFunction={setFormValue}
-          />
-          <Box sx={{ display: "flex", columnGap: "8px" }}>
-            <SaveButton label={save} />
-            <EditStateButton onClick={handleCancelButton} label={cancel} />
+      <Paper elevation={4} className="header-information">
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <Box className="header-information-form">
+            <TextInputField
+              required={isRequired}
+              label={category}
+              fieldValue={formValue}
+              onChangeFunction={setFormValue}
+            />
+            <Box className="header-information-form-btn-box">
+              <SaveButton label={save} />
+              <EditStateButton onClick={handleCancelButton} label={cancel} />
+            </Box>
           </Box>
         </form>
       </Paper>

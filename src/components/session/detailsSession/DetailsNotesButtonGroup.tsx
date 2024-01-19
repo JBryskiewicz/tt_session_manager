@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
@@ -41,10 +41,18 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Grid
+      container
+      item
+      xs={4}
+      sm={4}
+      md={12}
+      lg={12}
+      sx={{ display: "flex", justifyContent: "space-between" }}
+    >
       <Box className="session-body-actions">
         <Paper className="actions-label">
-          <span>Display:</span>
+          <span>Display</span>
         </Paper>
         <DetailsNotesButton
           label={none.label}
@@ -68,7 +76,10 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           setDisplay={setDisplay}
         />
       </Box>
-      <Box sx={{ marginTop: "20px", display: "flex", gap: "1.5rem" }}>
+      <Box className="session-body-actions">
+        <Paper className="actions-label">
+          <span>Create</span>
+        </Paper>
         <AddEntryButton
           onClick={() => handleAddEntry(notes.label)}
           label={addNote}
@@ -78,6 +89,6 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           label={addNpc}
         />
       </Box>
-    </Box>
+    </Grid>
   );
 };

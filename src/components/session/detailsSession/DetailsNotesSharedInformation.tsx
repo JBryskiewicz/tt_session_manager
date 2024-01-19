@@ -45,14 +45,12 @@ export const DetailsNotesSharedInformation = ({
   };
 
   return (
-    <Box className="note-box">
-      <Paper elevation={4} className="note-box-text">
-        <div>{data.information}</div>
-        <div style={{ marginTop: ".5rem" }}>
-          <EditStateButton onClick={handleEditButton} label={edit} />
-          <DeleteButton onClick={handleDeleteButton} label={remove} />
-        </div>
-      </Paper>
-    </Box>
+    <Paper elevation={4} className="note-box">
+      <Box className="note-box-btn-box">
+        <EditStateButton onClick={handleEditButton} label={edit} />
+        <DeleteButton onClick={handleDeleteButton} label={remove} />
+      </Box>
+      <Box>{data.information}</Box>
+    </Paper>
   );
 };

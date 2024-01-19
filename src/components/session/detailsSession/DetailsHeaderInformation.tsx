@@ -23,12 +23,16 @@ export const DetailsHeaderInformation = ({
 
   return (
     <Box className="session-header">
-      <Paper elevation={4} className="session-description">
-        <Typography>{category}:</Typography>
-      </Paper>
-      <Paper elevation={4} className="session-description-text">
-        <Typography>{data}</Typography>
-        <EditStateButton onClick={handleEditButton} label={edit} />
+      <Paper elevation={4} className="header-information">
+        <Box>
+          <Typography className="header-information-label">
+            {category}
+          </Typography>
+          <Typography>{data}</Typography>
+        </Box>
+        <Box sx={{ marginLeft: "1rem" }}>
+          <EditStateButton onClick={handleEditButton} label={edit} />
+        </Box>
       </Paper>
     </Box>
   );

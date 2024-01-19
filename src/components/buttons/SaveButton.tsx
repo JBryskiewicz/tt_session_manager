@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { BUTTON_COLORS } from "../../sx/buttonsStyle";
+import { BUTTON_SETTINGS } from "../../sx/buttonsStyle";
 
 type Props = {
   label: string;
@@ -7,7 +7,7 @@ type Props = {
 
 export const SaveButton = ({ label }: Props) => {
   return (
-    <Button variant="contained" sx={BUTTON_COLORS} type="submit">
+    <Button variant="contained" sx={BUTTON_SETTINGS} type="submit">
       {label}
     </Button>
   );

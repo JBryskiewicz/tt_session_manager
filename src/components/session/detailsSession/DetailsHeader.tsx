@@ -3,10 +3,7 @@ import { useSelector } from "react-redux";
 import { DetailsHeaderInformation } from "./DetailsHeaderInformation";
 import { useState } from "react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
-import {
-  SESSION_ACTION_CATEGORIES,
-  SESSION_FIELDS_CATEGORIES,
-} from "../../../utils/constants";
+import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export const DetailsHeader = () => {
@@ -18,7 +15,6 @@ export const DetailsHeader = () => {
   return (
     <>
       <HeaderDatesSection
-        sessionCategory={SESSION_ACTION_CATEGORIES.details}
         creationDate={session.creationDate}
         plannedDate={session.plannedDate}
         editedDate={session.editedDate}

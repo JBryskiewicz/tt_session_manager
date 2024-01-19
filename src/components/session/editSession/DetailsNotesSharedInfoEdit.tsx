@@ -49,23 +49,25 @@ export const DetailsNotesSharedInfoEdit = ({
     <Box className="note-box">
       <Paper elevation={4} className="note-box-text">
         <form onSubmit={handleSubmit}>
-          <TextInputField
-            required={true}
-            label="name"
-            fieldValue={nameValue}
-            onChangeFunction={setNameValue}
-          />
-          <TextInputField
-            required={false}
-            label="information"
-            fieldValue={infoValue}
-            onChangeFunction={setInfoValue}
-            textarea={true}
-          />
-          <div style={{ display: "flex", gap: ".5rem", marginTop: ".5rem" }}>
-            <SaveButton label={save} />
-            <EditStateButton onClick={handleCancelButton} label={cancel} />
-          </div>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <Box sx={{ display: "flex", columnGap: "1rem" }}>
+              <SaveButton label={save} />
+              <EditStateButton onClick={handleCancelButton} label={cancel} />
+            </Box>
+            <TextInputField
+              required={true}
+              label="name"
+              fieldValue={nameValue}
+              onChangeFunction={setNameValue}
+            />
+            <TextInputField
+              required={false}
+              label="information"
+              fieldValue={infoValue}
+              onChangeFunction={setInfoValue}
+              textarea={true}
+            />
+          </Box>
         </form>
       </Paper>
     </Box>

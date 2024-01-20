@@ -60,6 +60,20 @@
       margin-left: 1rem;
     }
   }
+
+/** ---Session New => Info inputs component--- */
+  .new-session-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+    .text-field-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
 }
 
 /** ---Session Details => Body component--- */
@@ -148,3 +162,5 @@
     }
   }
 }
+
+

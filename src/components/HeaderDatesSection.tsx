@@ -22,23 +22,19 @@ export const HeaderDatesSection = ({
   const isCreatedNull = creationDate === null;
   const isEdited = session.edited;
 
-  const plannedDateToApply = isCreatedNull
-    ? new Date().toISOString()
-    : plannedDate;
-
   return (
     <Box sx={{ marginBottom: "1.25rem" }}>
       <Stack direction="row" spacing={1}>
         <Chip
           data-testid={plannedDateID}
-          label={`planned: ${applyDate(plannedDateToApply)}`}
+          label={`planned: ${applyDate(plannedDate)}`}
         />
-        {isCreatedNull ? null : (
-          <Chip
-            data-testid={creationDateID}
-            label={`created: ${applyDate(creationDate)}`}
-          />
-        )}
+        <Chip
+          data-testid={creationDateID}
+          label={`created: ${applyDate(
+            isCreatedNull ? new Date().toISOString() : creationDate
+          )}`}
+        />
         {!isEdited || isCreatedNull ? null : (
           <Chip
             data-testid={editDateID}

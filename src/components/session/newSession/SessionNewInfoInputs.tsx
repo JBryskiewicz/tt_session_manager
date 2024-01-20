@@ -26,16 +26,12 @@ export const SessionNewInfoInputs = () => {
 
   return (
     <Box className="session-header">
-      <Paper
-        elevation={4}
-        className="session-description-text"
-        sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-      >
-        <Box>
-          <SaveButton label={save} />
-        </Box>
-        <form onSubmit={handleSubmit}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <form onSubmit={handleSubmit}>
+        <Paper elevation={4} className="new-session-form">
+          <Box>
+            <SaveButton label={save} />
+          </Box>
+          <Box className="text-field-box">
             <TextInputField
               required={true}
               label={title}
@@ -49,8 +45,8 @@ export const SessionNewInfoInputs = () => {
               onChangeFunction={setDescValue}
             />
           </Box>
-        </form>
-      </Paper>
+        </Paper>
+      </form>
     </Box>
   );
 };

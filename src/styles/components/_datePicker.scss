@@ -1,18 +1,18 @@
 /** --- Header Dates Section => date chips --- */
-.date-chip-box{
+.date-chip-box {
     @media only screen and (min-width: calc($md + 1px)){
         margin-bottom: 1rem;
     }
 
-    .date-chip-element{
+    .date-chip-element {
         min-width: 13.75rem;
         margin-right: 1rem;
 
-        &:first-of-type{
+        &:first-of-type {
             background-color: rgba($secondary_color, 0.66);
             color: $reversed_font_color;
 
-            &:hover{
+            &:hover {
                 background-color: rgba($accent_color, 0.7);
                 transition: .3s;
             }

@@ -6,6 +6,7 @@ import { selectOneSession } from "../../redux/sessionSlice";
 import { DATE_TEST_IDS } from "../../utils/constants";
 import { useState } from "react";
 import { DateChip } from "./DateChip";
+import { CustomDatePicker } from "./CustomDatePicker";
 
 type Props = {
   creationDate: string | null;
@@ -19,6 +20,9 @@ export const HeaderDatesSection = ({
   editedDate,
 }: Props) => {
   const [clicked, setClicked] = useState<boolean>(false);
+  const [newPlannedDate, setNewPlannedDate] = useState<string>(
+    new Date().toISOString()
+  );
   const session = useSelector(selectOneSession);
   const { creationDateID, plannedDateID, editDateID } = DATE_TEST_IDS;
 
@@ -34,6 +38,7 @@ export const HeaderDatesSection = ({
           isButton={true}
           setClicked={setClicked}
         />
+        {clicked ? <CustomDatePicker setNewDate={setNewPlannedDate} /> : null}
         <DateChip
           testID={creationDateID}
           label={`created: ${applyDate(
@@ -46,7 +51,6 @@ export const HeaderDatesSection = ({
             label={`last edited: ${applyDate(editedDate)}`}
           />
         )}
-        {clicked ? <div>xddd</div> : null}
       </Grid>
     </Box>
   );

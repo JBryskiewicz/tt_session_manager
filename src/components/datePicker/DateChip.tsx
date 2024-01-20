@@ -19,7 +19,7 @@ export const DateChip = ({ testID, label, isButton, setClicked }: Props) => {
     <Chip
       data-testid={testID}
       label={label}
-      onClick={() => setClicked!(true)}
+      onClick={() => setClicked!((prevState) => !prevState)}
       className="date-chip-element"
     />
   );

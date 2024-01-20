@@ -1,4 +1,4 @@
-import { HeaderDatesSection } from "../../HeaderDatesSection";
+import { HeaderDatesSection } from "../../datePicker/HeaderDatesSection";
 import { useSelector } from "react-redux";
 import { DetailsHeaderInformation } from "./DetailsHeaderInformation";
 import { useState } from "react";

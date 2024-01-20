@@ -7,6 +7,16 @@
     .date-chip-element{
         min-width: 13.75rem;
         margin-right: 1rem;
+
+        &:first-of-type{
+            background-color: rgba($secondary_color, 0.66);
+            color: $reversed_font_color;
+
+            &:hover{
+                background-color: rgba($accent_color, 0.7);
+                transition: .3s;
+            }
+        }
         
         span {
             text-transform: capitalize;

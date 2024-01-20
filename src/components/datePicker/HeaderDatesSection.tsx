@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
-import { Chip, Grid } from "@mui/material";
-import { applyDate } from "../utils/supportFunctions";
+import { Grid } from "@mui/material";
+import { applyDate } from "../../utils/supportFunctions";
 import Box from "@mui/material/Box";
-import { selectOneSession } from "../redux/sessionSlice";
-import { DATE_TEST_IDS } from "../utils/constants";
+import { selectOneSession } from "../../redux/sessionSlice";
+import { DATE_TEST_IDS } from "../../utils/constants";
+import { useState } from "react";
+import { DateChip } from "./DateChip";
 
 type Props = {
   creationDate: string | null;
@@ -16,6 +18,7 @@ export const HeaderDatesSection = ({
   plannedDate,
   editedDate,
 }: Props) => {
+  const [clicked, setClicked] = useState<boolean>(false);
   const session = useSelector(selectOneSession);
   const { creationDateID, plannedDateID, editDateID } = DATE_TEST_IDS;
 
@@ -25,25 +28,25 @@ export const HeaderDatesSection = ({
   return (
     <Box className="date-chip-box">
       <Grid container item direction="row" xs={1} sm={1} md={12} lg={12}>
-        <Chip
-          data-testid={plannedDateID}
+        <DateChip
+          testID={plannedDateID}
           label={`planned: ${applyDate(plannedDate)}`}
-          className="date-chip-element"
+          isButton={true}
+          setClicked={setClicked}
         />
-        <Chip
-          data-testid={creationDateID}
+        <DateChip
+          testID={creationDateID}
           label={`created: ${applyDate(
             isCreatedNull ? new Date().toISOString() : creationDate
           )}`}
-          className="date-chip-element"
         />
         {!isEdited || isCreatedNull ? null : (
-          <Chip
-            data-testid={editDateID}
+          <DateChip
+            testID={editDateID}
             label={`last edited: ${applyDate(editedDate)}`}
-            className="date-chip-element"
           />
         )}
+        {clicked ? <div>xddd</div> : null}
       </Grid>
     </Box>
   );

@@ -1,4 +1,4 @@
-import { HeaderDatesSection } from "../../HeaderDatesSection";
+import { HeaderDatesSection } from "../../datePicker/HeaderDatesSection";
 import { SessionNewInfoInputs } from "./SessionNewInfoInputs";
 
 export const SessionNewHeader = () => {

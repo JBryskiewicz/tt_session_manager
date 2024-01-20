@@ -22,7 +22,7 @@ describe("Edit mode for for session details", () => {
       />
     );
 
-    const textField = screen.getByLabelText("label");
+    const textField = screen.getByLabelText("Label");
     fireEvent.change(textField, { target: { value: "new value" } });
     expect(textFieldSpy).toHaveBeenCalledWith("new value");
   });

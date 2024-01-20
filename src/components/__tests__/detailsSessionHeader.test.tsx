@@ -1,9 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, screen } from "@testing-library/react";
-import {
-  DATE_TEST_IDS,
-  SESSION_ACTION_CATEGORIES,
-} from "../../utils/constants";
+import { DATE_TEST_IDS } from "../../utils/constants";
 import {
   MOCK_CREATION_DATE,
   MOCK_PLANNED_DATE,
@@ -21,16 +18,14 @@ afterEach(() => {
 });
 
 describe("renders session details action & header elements", () => {
-  const { details, newSession } = SESSION_ACTION_CATEGORIES;
-
   it("should render dates section for session details (not edited by default)", async () => {
     const { creationDateID, plannedDateID } = DATE_TEST_IDS;
 
     renderWithRouter(
       <HeaderDatesSection
-        sessionCategory={details}
         creationDate={MOCK_CREATION_DATE}
         plannedDate={MOCK_PLANNED_DATE}
+        editedDate={null}
       />
     );
 
@@ -44,13 +39,19 @@ describe("renders session details action & header elements", () => {
   });
 
   it("should render dates section for session details", async () => {
-    const planneDate: string = applyDate(new Date().toISOString());
+    const plannedDate: string = applyDate(new Date().toISOString());
 
-    renderWithRouter(<HeaderDatesSection sessionCategory={newSession} />);
+    renderWithRouter(
+      <HeaderDatesSection
+        creationDate={null}
+        plannedDate={plannedDate}
+        editedDate={null}
+      />
+    );
 
-    const plannedDate = (await screen.findByTestId("planned-date"))
+    const plannedDateElement = (await screen.findByTestId("planned-date"))
       .lastElementChild?.innerHTML;
-    expect(plannedDate).toBe(`planned: ${planneDate}`);
+    expect(plannedDateElement).toBe(`planned: ${plannedDate}`);
   });
 
   it("should render information in header section", () => {
@@ -62,7 +63,7 @@ describe("renders session details action & header elements", () => {
       />
     );
 
-    const categoryElement = screen.getByText(`${MOCK_CATEGORY}:`);
+    const categoryElement = screen.getByText(MOCK_CATEGORY);
     expect(categoryElement).toBeInTheDocument();
 
     const dataElement = screen.getByText(MOCK_STRING);

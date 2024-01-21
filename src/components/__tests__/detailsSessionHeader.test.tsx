@@ -9,7 +9,7 @@ import {
   MOCK_STRING,
 } from "../../utils/test-mock-data";
 import { renderWithRouter } from "../../utils/test-utils";
-import { HeaderDatesSection } from "../HeaderDatesSection";
+import { HeaderDatesSection } from "../datePicker/HeaderDatesSection";
 import { DetailsHeaderInformation } from "../session/detailsSession/DetailsHeaderInformation";
 import { applyDate } from "../../utils/supportFunctions";
 

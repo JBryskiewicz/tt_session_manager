@@ -1,12 +1,23 @@
 /** --- Header Dates Section => date chips --- */
-.date-chip-box{
+.date-chip-box {
+    position: relative;
     @media only screen and (min-width: calc($md + 1px)){
         margin-bottom: 1rem;
     }
 
-    .date-chip-element{
+    .date-chip-element {
         min-width: 13.75rem;
         margin-right: 1rem;
+
+        &:nth-of-type(2) {
+            background-color: rgba($secondary_color, 0.66);
+            color: $reversed_font_color;
+
+            &:hover {
+                background-color: rgba($accent_color, 0.7);
+                transition: .3s;
+            }
+        }
         
         span {
             text-transform: capitalize;
@@ -14,6 +25,17 @@
         
         @media only screen and (max-width: $md){
             margin-bottom: 1rem;
+        }
+    }
+
+    .date-picker-box {
+        position: absolute; 
+        left: calc(13.75rem + 1rem + 2.1875rem);
+        bottom: calc(100% + .5rem);
+
+        @media only screen and (max-width: $md){
+            left: calc(13.75rem + 1rem);
+            bottom: calc(4rem);
         }
     }
 }

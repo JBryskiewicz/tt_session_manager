@@ -1,9 +1,12 @@
-import { HeaderDatesSection } from "../../HeaderDatesSection";
+import { HeaderDatesSection } from "../../datePicker/HeaderDatesSection";
 import { useSelector } from "react-redux";
 import { DetailsHeaderInformation } from "./DetailsHeaderInformation";
 import { useState } from "react";
 import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
-import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
+import {
+  SESSION_CATEGORY,
+  SESSION_FIELDS_CATEGORIES,
+} from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export const DetailsHeader = () => {
@@ -11,10 +14,12 @@ export const DetailsHeader = () => {
   const session = useSelector(selectOneSession);
   const { name, description } = session;
   const { title, desc } = SESSION_FIELDS_CATEGORIES;
+  const { editSession } = SESSION_CATEGORY;
 
   return (
     <>
       <HeaderDatesSection
+        category={editSession}
         creationDate={session.creationDate}
         plannedDate={session.plannedDate}
         editedDate={session.editedDate}

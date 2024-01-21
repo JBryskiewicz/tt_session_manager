@@ -24,6 +24,11 @@ export const SESSION_ACTION_CATEGORIES = {
   remove: "delete",
 };
 
+export const SESSION_CATEGORY = {
+  newSession: "new",
+  editSession: "edit",
+};
+
 export const EDIT_STATE_BUTTON_LABELS = {
   save: "save",
   edit: "edit",

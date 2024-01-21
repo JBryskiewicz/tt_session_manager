@@ -9,20 +9,19 @@ import { DateChip } from "./DateChip";
 import { CustomDatePicker } from "./CustomDatePicker";
 
 type Props = {
+  category: string;
   creationDate: string | null;
   plannedDate: string | null;
   editedDate: string | null;
 };
 
 export const HeaderDatesSection = ({
+  category,
   creationDate,
   plannedDate,
   editedDate,
 }: Props) => {
   const [clicked, setClicked] = useState<boolean>(false);
-  const [newPlannedDate, setNewPlannedDate] = useState<string>(
-    new Date().toISOString()
-  );
   const session = useSelector(selectOneSession);
   const { creationDateID, plannedDateID, editDateID } = DATE_TEST_IDS;
 
@@ -33,18 +32,20 @@ export const HeaderDatesSection = ({
     <Box className="date-chip-box">
       <Grid container item direction="row" xs={1} sm={1} md={12} lg={12}>
         <DateChip
-          testID={plannedDateID}
-          label={`planned: ${applyDate(plannedDate)}`}
-          isButton={true}
-          setClicked={setClicked}
-        />
-        {clicked ? <CustomDatePicker setNewDate={setNewPlannedDate} /> : null}
-        <DateChip
           testID={creationDateID}
           label={`created: ${applyDate(
             isCreatedNull ? new Date().toISOString() : creationDate
           )}`}
         />
+        {category !== "edit" ? null : (
+          <DateChip
+            testID={plannedDateID}
+            label={`planned: ${applyDate(plannedDate)}`}
+            isButton={true}
+            setClicked={setClicked}
+          />
+        )}
+        {clicked ? <CustomDatePicker setClicked={setClicked} /> : null}
         {!isEdited || isCreatedNull ? null : (
           <DateChip
             testID={editDateID}

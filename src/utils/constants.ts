@@ -36,3 +36,10 @@ export const EDIT_STATE_BUTTON_LABELS = {
   addNote: "add notes",
   addNpc: "add npc",
 };
+
+export const CHAR_INPUT_LIMIT: { [key: string]: number } = {
+  title: 100,
+  description: 500,
+  note: 5000,
+  npc: 5000,
+};

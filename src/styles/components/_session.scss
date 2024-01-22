@@ -163,4 +163,23 @@
   }
 }
 
+/** --- Character counter component --- */
+
+.text-input-box {
+  width: 100%;
+  position: relative;
+
+  .input-counter {
+    position: absolute;
+    right: .25rem;
+    bottom: 0;
+  
+    &-limit {
+      position: absolute;
+      right: .25rem;
+      bottom: 0;
+      color: red;
+    }
+  }
+}
 

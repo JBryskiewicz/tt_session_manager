@@ -1,6 +1,6 @@
 import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
-import React, { Dispatch, useState, SetStateAction } from "react";
+import React, { Dispatch, useState, SetStateAction, useEffect } from "react";
 import {
   checkCategoryToSetEditable,
   checkCategoryToUpdateSession,
@@ -11,7 +11,10 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { TextInputField } from "../../TextInputField";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
+import {
+  CHAR_INPUT_LIMIT,
+  EDIT_STATE_BUTTON_LABELS,
+} from "../../../utils/constants";
 import { SaveButton } from "../../buttons/SaveButton";
 
 type Props = {
@@ -35,8 +38,18 @@ export const DetailsHeaderInfoEdit = ({
 }: Props) => {
   const { id } = useParams<RouteParams>();
   const [formValue, setFormValue] = useState<string>(data);
+  const [chars, setChars] = useState<number>(formValue.length);
   const dispatch = useAppDispatch();
   const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
+
+  const limit = CHAR_INPUT_LIMIT[category];
+
+  useEffect(() => {
+    setChars(formValue.length);
+    if (formValue.length >= limit) {
+      setFormValue(formValue.substring(0, limit));
+    }
+  }, [formValue, limit]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -59,6 +72,8 @@ export const DetailsHeaderInfoEdit = ({
               label={category}
               fieldValue={formValue}
               onChangeFunction={setFormValue}
+              limit={limit}
+              chars={chars}
             />
             <Box className="header-information-form-btn-box">
               <SaveButton label={save} />

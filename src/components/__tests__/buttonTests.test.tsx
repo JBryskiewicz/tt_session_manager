@@ -61,7 +61,6 @@ describe("Testing button components", () => {
     expect(buttonSpy).toHaveBeenCalled();
   });
 
-  //Tutaj switch button
   it("Renders working note / npc section switching buttons", () => {
     const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
     const label = "Notes";

@@ -32,7 +32,7 @@ describe("Testing button components", () => {
     );
 
     const navLink = screen.getByTestId(ACTION_BUTTON_TEST_ID);
-    expect(navLink.getAttribute("href")).toBe("/");
+    expect(navLink.getAttribute("href")).toBe("/dashboard");
   });
 
   it("Renders clickable ADD ENTRY BUTTON with working onClick", () => {

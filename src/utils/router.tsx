@@ -3,6 +3,8 @@ import { App } from "../App.tsx";
 import { Dashboard } from "../components/dashboard/Dashboard";
 import { SessionDetails } from "../components/session/detailsSession/SessionDetails";
 import { SessionNew } from "../components/session/newSession/SessionNew.tsx";
+import { Login } from "../components/loginPage/Login.tsx";
+import { Register } from "../components/loginPage/Register.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +13,14 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "dashboard",
         element: <Dashboard />,
       },
       {

@@ -37,6 +37,13 @@ export const EDIT_STATE_BUTTON_LABELS = {
   addNpc: "add npc",
 };
 
+export const LOGIN_LABELS: { [key: string]: string } = {
+  login: "login",
+  email: "email",
+  password: "password",
+  confirmPass: "confirm password",
+};
+
 export const CHAR_INPUT_LIMIT: { [key: string]: number } = {
   title: 100,
   description: 500,

@@ -8,21 +8,29 @@ const LoginLabels: { [key: string]: string } = {
   login: "login",
   email: "email",
   password: "password",
+  confirmPass: "confirm password",
 };
 
-export const Login = () => {
+export const Register = () => {
+  const [loginValue, setLoginValue] = useState<string>("");
   const [emailValue, setEmailValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
+  const [repeatPassValue, setRepeatPassValue] = useState<string>("");
 
-  const { email, password } = LoginLabels;
+  const { login, email, password, confirmPass } = LoginLabels;
 
   return (
     <form>
       <Box className="login">
         <Paper className="login-box">
           <Typography variant="h3" className="login-header">
-            Login
+            Register
           </Typography>
+          <LoginInputField
+            label={login}
+            value={loginValue}
+            setValue={setLoginValue}
+          />
           <LoginInputField
             label={email}
             value={emailValue}
@@ -33,12 +41,17 @@ export const Login = () => {
             value={passwordValue}
             setValue={setPasswordValue}
           />
+          <LoginInputField
+            label={confirmPass}
+            value={repeatPassValue}
+            setValue={setRepeatPassValue}
+          />
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Button variant="contained" type="submit">
-              Log-in
+              Confirm
             </Button>
-            <Link to="/register">
-              <Button variant="contained">Register</Button>
+            <Link to="/">
+              <Button variant="contained">Back to Login</Button>
             </Link>
           </Box>
         </Paper>

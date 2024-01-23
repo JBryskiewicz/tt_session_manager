@@ -3,18 +3,13 @@ import { Box } from "@mui/system";
 import { Button, Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
 import { Link } from "react-router-dom";
-
-const LoginLabels: { [key: string]: string } = {
-  login: "login",
-  email: "email",
-  password: "password",
-};
+import { LOGIN_LABELS } from "../../utils/constants";
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
 
-  const { email, password } = LoginLabels;
+  const { email, password } = LOGIN_LABELS;
 
   return (
     <form>

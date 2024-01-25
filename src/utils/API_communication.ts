@@ -5,12 +5,15 @@ import {
   Note,
   Npc,
   Session,
+  NewUser,
+  User,
 } from "../types/types";
 import axios from "axios";
 
 const SESSIONS_URL = "http://localhost:8081/api/sessions";
 const NOTES_URL = "http://localhost:8081/api/notes";
 const NPCS_URL = "http://localhost:8081/api/npcs";
+const USER_URL = "http://localhost:8081/api/users";
 
 /** ----- Functions resposinble for Session CRUD ----- */
 
@@ -112,4 +115,15 @@ export async function deleteNpc(id: number, sessionID: number): Promise<void> {
       console.log(`Deleted NPC with ID: ${id}, response: ${response.status}`)
     )
     .catch((error) => console.error(error));
+}
+
+/** ----- Functions resposinble for Users CRUD ----- */
+
+export async function createUser(user: NewUser): Promise<void> {
+  await axios.post<NewUser>(USER_URL, user);
+}
+
+export async function findUserByEmail(email: string): Promise<User> {
+  const response = await axios.get<User>(`${USER_URL}/${email}`);
+  return response.data;
 }

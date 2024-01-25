@@ -31,3 +31,18 @@ export type NewSession = {
 export interface Session extends NewSession {
   id: number;
 }
+
+export type Role = {
+  id: number;
+  name: string;
+};
+
+export type NewUser = {
+  email: string;
+  sessions: Session[];
+};
+
+export interface User extends NewUser {
+  id: number;
+  roles: Role[];
+}

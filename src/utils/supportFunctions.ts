@@ -155,8 +155,11 @@ export const handleAddNotesButton = async (
 };
 
 /** Send request to API to delete existing session with it's children */
-export const handleSessionDelete = async (toDelete: number): Promise<void> => {
-  await deleteSession(toDelete);
+export const handleSessionDelete = async (
+  userID: number,
+  toDelete: number
+): Promise<void> => {
+  await deleteSession(userID, toDelete);
 };
 
 /** Check if function operates on note or npc,

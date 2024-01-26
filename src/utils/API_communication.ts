@@ -50,12 +50,15 @@ export async function updateSession(
   await axios.put<Session>(`${SESSIONS_URL}/${id}`, session);
 }
 
-export async function deleteSession(id: number): Promise<void> {
+export async function deleteSession(
+  userID: number,
+  sessionID: number
+): Promise<void> {
   await axios
-    .delete(`${SESSIONS_URL}/${id}`)
+    .delete(`${SESSIONS_URL}/${userID}/delete/${sessionID}`)
     .then((response) =>
       console.log(
-        `Deleted session with ID: ${id}, response: ${response.status}`
+        `Deleted session with ID: ${sessionID}, response: ${response.status}`
       )
     )
     .catch((error) => console.error(error));
@@ -117,7 +120,7 @@ export async function deleteNpc(id: number, sessionID: number): Promise<void> {
     .catch((error) => console.error(error));
 }
 
-/** ----- Functions resposinble for Users CRUD ----- */
+/** ----- Functions resposinble for creating & finding users ----- */
 
 export async function createUser(user: NewUser): Promise<void> {
   await axios.post<NewUser>(USER_URL, user);
@@ -125,5 +128,15 @@ export async function createUser(user: NewUser): Promise<void> {
 
 export async function findUserByEmail(email: string): Promise<User> {
   const response = await axios.get<User>(`${USER_URL}/${email}`);
-  return response.data;
+  const userData = response.data;
+  const sortedSessions = userData.sessions.sort(
+    (a, b) =>
+      new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()
+  );
+  userData.sessions = sortedSessions;
+  return userData;
+}
+
+export async function updateUser(id: number, user: User): Promise<void> {
+  await axios.put<User>(`${USER_URL}/${id}`, user);
 }

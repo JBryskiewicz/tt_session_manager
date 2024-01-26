@@ -6,6 +6,8 @@ import { LogoDesktop, LogoMobile } from "./LogoComponents";
 import { NavMenuDesktop, NavMenuMobile } from "./NavMenuComponents";
 import { useState } from "react";
 import { SECONDARY_COLOR } from "../../sx/colors";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
 
 const APP_BAR_STYLE = {
   backgroundColor: SECONDARY_COLOR,
@@ -15,22 +17,27 @@ const APP_BAR_STYLE = {
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [user] = useAuthState(auth);
 
   return (
     <AppBar position="fixed" sx={APP_BAR_STYLE}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LogoDesktop />
-          <NavMenuMobile
-            anchorElNav={anchorElNav}
-            setAnchorElNav={setAnchorElNav}
-          />
+          {user !== null ? (
+            <NavMenuMobile
+              anchorElNav={anchorElNav}
+              setAnchorElNav={setAnchorElNav}
+            />
+          ) : null}
           <LogoMobile />
-          <NavMenuDesktop
-            anchorElNav={anchorElNav}
-            setAnchorElNav={setAnchorElNav}
-          />
-          <UserProfileMenu />
+          {user !== null ? (
+            <NavMenuDesktop
+              anchorElNav={anchorElNav}
+              setAnchorElNav={setAnchorElNav}
+            />
+          ) : null}
+          {user !== null ? <UserProfileMenu /> : null}
         </Toolbar>
       </Container>
     </AppBar>

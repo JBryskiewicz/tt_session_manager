@@ -5,6 +5,7 @@ import {
   Note,
   Npc,
   Session,
+  User,
 } from "../types/types";
 import { Dispatch, SetStateAction } from "react";
 import {
@@ -18,6 +19,7 @@ import {
   updateNote,
   updateNpc,
   updateSession,
+  updateUser,
 } from "./API_communication";
 import { SESSION_FIELDS_CATEGORIES } from "./constants";
 
@@ -100,7 +102,8 @@ export const checkCategoryToUpdateNotes = async (
  */
 export const initializeNewSession = async (
   title: string,
-  description: string
+  description: string,
+  user: User
 ): Promise<Session> => {
   const newSession: NewSession = {
     name: title,
@@ -112,9 +115,15 @@ export const initializeNewSession = async (
     notes: [],
     npcs: [],
   };
+  const updatedUser: User = { ...user };
 
-  const returnedSession = await createNewSession(newSession);
-  return returnedSession as Session;
+  const returnedSession: Session = (await createNewSession(
+    newSession
+  )) as Session;
+  updatedUser.sessions = [...updatedUser.sessions, returnedSession];
+  await updateUser(user.id, updatedUser);
+
+  return returnedSession;
 };
 
 /**
@@ -146,8 +155,11 @@ export const handleAddNotesButton = async (
 };
 
 /** Send request to API to delete existing session with it's children */
-export const handleSessionDelete = async (toDelete: number): Promise<void> => {
-  await deleteSession(toDelete);
+export const handleSessionDelete = async (
+  userID: number,
+  toDelete: number
+): Promise<void> => {
+  await deleteSession(userID, toDelete);
 };
 
 /** Check if function operates on note or npc,
@@ -161,4 +173,19 @@ export const handleNoteDelete = async (
   category === note
     ? await deleteNote(noteID, sessionID)
     : await deleteNpc(noteID, sessionID);
+};
+
+/** Set value of a text field in an input form and limit amount of characters
+ * user can write withing given limit of characters
+ */
+export const setCharCounter = (
+  value: string,
+  setValue: Dispatch<SetStateAction<string>>,
+  setChars: Dispatch<SetStateAction<number>>,
+  limit: number
+): void => {
+  if (value.length >= limit) {
+    setValue(value.substring(0, limit));
+  }
+  setChars(value.length);
 };

@@ -8,6 +8,8 @@ import { DeleteButton } from "./buttons/DeleteButton";
 import { useNavigate } from "react-router-dom";
 import { handleSessionDelete } from "../utils/supportFunctions";
 import { addressLibrary } from "../utils/addressLibrary";
+import { useSelector } from "react-redux";
+import { findUser } from "../redux/userSlice";
 
 type Props = {
   sessionCategory: string;
@@ -15,12 +17,13 @@ type Props = {
 };
 
 export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
+  const user = useSelector(findUser);
   const navigate = useNavigate();
   const { exit, remove } = SESSION_ACTION_CATEGORIES;
   const { dashboard } = addressLibrary;
 
   const handleDeleteButton = async (): Promise<void> => {
-    await handleSessionDelete(toDelete as number);
+    await handleSessionDelete(user.id, toDelete as number);
     navigate(dashboard);
   };
 

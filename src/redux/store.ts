@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sessionReducer from "./sessionSlice";
 import sessionListReducer from "./sessionListSlice";
+import userSlice from "./userSlice";
 
 export const store = configureStore({
   reducer: {
     session: sessionReducer,
     sessionList: sessionListReducer,
+    user: userSlice,
   },
 });
 

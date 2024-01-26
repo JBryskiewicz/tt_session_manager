@@ -4,6 +4,7 @@ import React, { Dispatch, useState, SetStateAction, useEffect } from "react";
 import {
   checkCategoryToSetEditable,
   checkCategoryToUpdateSession,
+  setCharCounter,
 } from "../../../utils/supportFunctions";
 import { Session } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
@@ -45,10 +46,7 @@ export const DetailsHeaderInfoEdit = ({
   const limit = CHAR_INPUT_LIMIT[category];
 
   useEffect(() => {
-    setChars(formValue.length);
-    if (formValue.length >= limit) {
-      setFormValue(formValue.substring(0, limit));
-    }
+    setCharCounter(formValue, setFormValue, setChars, limit);
   }, [formValue, limit]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

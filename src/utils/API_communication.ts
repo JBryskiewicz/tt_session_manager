@@ -133,3 +133,7 @@ export async function findUserByEmail(email: string): Promise<User> {
   userData.sessions = sortedSessions;
   return userData;
 }
+
+export async function updateUser(id: number, user: User): Promise<void> {
+  await axios.put<User>(`${USER_URL}/${id}`, user);
+}

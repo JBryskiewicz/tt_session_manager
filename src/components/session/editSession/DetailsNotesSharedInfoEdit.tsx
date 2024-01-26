@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   checkCategoryToSetEditable,
   checkCategoryToUpdateNotes,
+  setCharCounter,
 } from "../../../utils/supportFunctions";
 import { Note, Npc } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
@@ -43,15 +44,8 @@ export const DetailsNotesSharedInfoEdit = ({
   const infoLimit = CHAR_INPUT_LIMIT[category];
 
   useEffect(() => {
-    setNameChars(nameValue.length);
-    if (nameValue.length >= nameLimit) {
-      setNameValue(nameValue.substring(0, nameLimit));
-    }
-
-    setInfoChars(infoValue.length);
-    if (infoValue.length >= infoLimit) {
-      setInfoValue(infoValue.substring(0, infoLimit));
-    }
+    setCharCounter(nameValue, setNameValue, setNameChars, nameLimit);
+    setCharCounter(infoValue, setInfoValue, setInfoChars, infoLimit);
   }, [nameValue, infoValue, nameLimit, infoLimit]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

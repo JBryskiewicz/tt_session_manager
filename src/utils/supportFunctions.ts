@@ -26,8 +26,8 @@ import { SESSION_FIELDS_CATEGORIES } from "./constants";
 const { title, desc, note, npc } = SESSION_FIELDS_CATEGORIES;
 
 /**
- * This function takes Date data type argument and returns it in form of
- * string formatted to YYYY-mm-dd standard
+ * Takes string argument from Data to ISO string and returns it
+ * formatted to YYYY-mm-dd standard
  */
 export function applyDate(date: string | null): string {
   if (date === null) {
@@ -127,14 +127,13 @@ export const initializeNewSession = async (
 };
 
 /**
- *  Creates new note or npcs entry, saves it to database. Then returns
- *  proper object with ID and updates session to include new entry into
- *  it's notes & npcs collection.
+ *  Creates new note or npcs entry, saves it to database. Returned DB object
+ *  is added to proper collection and session itself is updated.
  */
 export const handleAddNotesButton = async (
   sessionID: number,
   changeTo: number
-) => {
+): Promise<void> => {
   const noteObject: NewNote | NewNpc = {
     name: "New Entry",
     information: "",

@@ -24,20 +24,6 @@ export async function createNewSession(
   return response.data;
 }
 
-export async function getSessions(): Promise<Session[]> {
-  const response = await axios.get<Session[]>(SESSIONS_URL);
-  return response.data;
-}
-
-export async function getSortedSessions(): Promise<Session[]> {
-  const response = await axios.get<Session[]>(SESSIONS_URL);
-  const sortedSessions = response.data.sort(
-    (a, b) =>
-      new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()
-  );
-  return sortedSessions;
-}
-
 export async function getOneSession(id: number): Promise<Session> {
   const response = await axios.get<Session>(`${SESSIONS_URL}/${id}`);
   return response.data;

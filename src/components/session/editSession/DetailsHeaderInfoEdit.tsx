@@ -1,11 +1,7 @@
 import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import React, { Dispatch, useState, SetStateAction, useEffect } from "react";
-import {
-  checkCategoryToSetEditable,
-  checkCategoryToUpdateSession,
-  setCharCounter,
-} from "../../../utils/supportFunctions";
+import { checkCategoryToUpdateSession } from "../../../utils/supportFunctions/API_requestHandlers";
 import { Session } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useParams } from "react-router-dom";
@@ -17,6 +13,10 @@ import {
   EDIT_STATE_BUTTON_LABELS,
 } from "../../../utils/constants";
 import { SaveButton } from "../../buttons/SaveButton";
+import {
+  checkCategoryToSetEditable,
+  setCharCounter,
+} from "../../../utils/supportFunctions/formHandlers";
 
 type Props = {
   category: string;

@@ -4,27 +4,31 @@ import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
-import { addressLibrary } from "../../utils/addressLibrary";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "../../firebase";
 import { LoginButtons } from "../buttons/LoginButtons";
+import { AuthValidationMessage } from "./AuthValidationMessage";
+import { onLoginSubmit } from "../../utils/supportFunctions/loginHandlers";
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [validated, setValidated] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const { email, password } = LOGIN_LABELS;
   const { login, register, toRegister } = LOGIN_BUTTONS;
-  const { dashboard } = addressLibrary;
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await signInWithEmailAndPassword(auth, emailValue, passwordValue)
-      .then(() => {
-        navigate(dashboard);
-      })
-      .catch(() => console.log("Login failed"));
+    onLoginSubmit(
+      emailValue,
+      passwordValue,
+      signInWithEmailAndPassword,
+      navigate,
+      setErrorMessage,
+      setValidated,
+      event
+    );
   };
 
   return (
@@ -46,6 +50,7 @@ export const Login = () => {
             type={password}
             setValue={setPasswordValue}
           />
+          {validated ? null : <AuthValidationMessage msg={errorMessage} />}
           <LoginButtons
             submitButton={login}
             redirectButton={toRegister}

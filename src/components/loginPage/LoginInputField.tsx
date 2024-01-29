@@ -12,7 +12,7 @@ export const LoginInputField = ({ label, value, setValue, type }: Props) => {
   return (
     <TextField
       required
-      id="outlined-textarea"
+      id={label}
       label={label}
       value={value}
       type={type}

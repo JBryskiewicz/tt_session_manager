@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, screen } from "@testing-library/react";
-import { renderWithRouter } from "../../utils/test-utils";
-import { MOCK_SESSION_LIST } from "../../utils/test-mock-data";
+import { renderWithRouter } from "../../test-utils/test-utils";
+import { MOCK_SESSION_LIST } from "../../test-utils/test-mock-data";
 import { DashboardSessionList } from "../dashboard/DashboardSessionList";
 import { DashboardSessionCard } from "../dashboard/DashboardSessionCard";
 

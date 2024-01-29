@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";
-import { applyDate } from "../../utils/supportFunctions";
+import { applyDate } from "../../utils/supportFunctions/dateHandlers";
 import Box from "@mui/material/Box";
 import { selectOneSession } from "../../redux/sessionSlice";
 import { DATE_TEST_IDS } from "../../utils/constants";

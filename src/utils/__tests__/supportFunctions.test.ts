@@ -1,5 +1,5 @@
 import { it, expect, describe } from "vitest";
-import { applyDate } from "../supportFunctions";
+import { applyDate } from "../supportFunctions/dateHandlers";
 
 describe("Tests for support funtions", () => {
   it("Function returns correctly formated date", () => {

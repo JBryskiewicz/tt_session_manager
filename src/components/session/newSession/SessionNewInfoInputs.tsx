@@ -7,14 +7,12 @@ import {
   EDIT_STATE_BUTTON_LABELS,
   SESSION_FIELDS_CATEGORIES,
 } from "../../../utils/constants";
-import {
-  initializeNewSession,
-  setCharCounter,
-} from "../../../utils/supportFunctions";
+import { initializeNewSession } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useNavigate } from "react-router-dom";
 import { SaveButton } from "../../buttons/SaveButton";
 import { findUser } from "../../../redux/userSlice";
 import { useSelector } from "react-redux";
+import { setCharCounter } from "../../../utils/supportFunctions/formHandlers";
 
 export const SessionNewInfoInputs = () => {
   const [titleValue, setTitleValue] = useState<string>("");

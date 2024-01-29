@@ -3,8 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { fetchSession, selectOneSession } from "../../redux/sessionSlice";
 import { Session } from "../../types/types";
-import { updateSession } from "../../utils/API_communication";
 import { Box } from "@mui/system";
+import { updateSession } from "../../utils/API/sessionCRUD";
 
 type Props = {
   setClicked: Dispatch<SetStateAction<boolean>>;

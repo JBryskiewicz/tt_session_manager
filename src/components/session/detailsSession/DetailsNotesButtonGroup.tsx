@@ -2,7 +2,7 @@ import { Box, Grid, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
-import { handleAddNotesButton } from "../../../utils/supportFunctions";
+import { handleAddNotesButton } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useAppDispatch } from "../../../redux/hooks";
 import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";

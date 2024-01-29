@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "../types/types";
-import { findUserByEmail } from "../utils/API_communication";
+import { findUserByEmail } from "../utils/API/userCRUD";
 import { RootState } from "./store";
 
 type FetchUserPayload = {

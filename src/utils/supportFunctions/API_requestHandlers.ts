@@ -6,58 +6,19 @@ import {
   Npc,
   Session,
   User,
-} from "../types/types";
-import { Dispatch, SetStateAction } from "react";
+} from "../../types/types";
+import { updateUser } from "../API/userCRUD";
+import { createNewNote, deleteNote, updateNote } from "../API/noteCRUD";
+import { createNewNpc, deleteNpc, updateNpc } from "../API/npcCRUD";
 import {
-  createNewNote,
-  createNewNpc,
   createNewSession,
-  deleteNote,
-  deleteNpc,
   deleteSession,
   getOneSession,
-  updateNote,
-  updateNpc,
   updateSession,
-  updateUser,
-} from "./API_communication";
-import { SESSION_FIELDS_CATEGORIES } from "./constants";
+} from "../API/sessionCRUD";
+import { SESSION_FIELDS_CATEGORIES } from "../constants";
 
-const { title, desc, note, npc } = SESSION_FIELDS_CATEGORIES;
-
-/**
- * Takes string argument from Data to ISO string and returns it
- * formatted to YYYY-mm-dd standard
- */
-export function applyDate(date: string | null): string {
-  if (date === null) {
-    return "Session is not planned";
-  }
-  const result = date.substring(0, 10);
-  return result;
-}
-
-/**
- * Check Category To Set Editable function checks category for
- * shared component in session details, then proceeds to set
- * proper editable state in the DetailsHeader.tsx component.
- */
-export const checkCategoryToSetEditable = (
-  category: string,
-  setIsEditable: Dispatch<SetStateAction<boolean[]>>,
-  changeStateTo: boolean
-): void => {
-  if (category === title || category === note || category == npc) {
-    setIsEditable((prevState) => [changeStateTo, ...prevState.slice(1)]);
-  }
-  if (category === desc) {
-    setIsEditable((prevState) => [
-      prevState[0],
-      changeStateTo,
-      ...prevState.slice(2),
-    ]);
-  }
-};
+const { title, note } = SESSION_FIELDS_CATEGORIES;
 
 /**
  * Check Category of editable data and overwrite session's matching attribute.
@@ -172,30 +133,4 @@ export const handleNoteDelete = async (
   category === note
     ? await deleteNote(noteID, sessionID)
     : await deleteNpc(noteID, sessionID);
-};
-
-/** Set value of a text field in an input form and limit amount of characters
- * user can write withing given limit of characters
- */
-export const setCharCounter = (
-  value: string,
-  setValue: Dispatch<SetStateAction<string>>,
-  setChars: Dispatch<SetStateAction<number>>,
-  limit: number
-): void => {
-  if (value.length >= limit) {
-    setValue(value.substring(0, limit));
-  }
-  setChars(value.length);
-};
-
-/** Check if user's session list contains session with ID user is attempting
- *  to access and return boolean value accordingly
- */
-export const checkUserSessionOwnership = (user: User, id: number): boolean => {
-  const result = user.sessions.find((session) => session.id === id);
-  if (result !== undefined) {
-    return true;
-  }
-  return false;
 };

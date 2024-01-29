@@ -10,7 +10,7 @@ import {
 } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
-import { handleNoteDelete } from "../../../utils/supportFunctions";
+import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
 
 type Props = {
   data: Note | Npc;

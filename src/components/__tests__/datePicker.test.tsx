@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, screen } from "@testing-library/react";
 import { DateChip } from "../datePicker/DateChip";
-import { renderWithRouter } from "../../utils/test-utils";
-import { applyDate } from "../../utils/supportFunctions";
+import { renderWithRouter } from "../../test-utils/test-utils";
+import { applyDate } from "../../utils/supportFunctions/dateHandlers";
 import { DATE_TEST_IDS } from "../../utils/constants";
-import { MOCK_FUNCTIONS } from "../../utils/test-mock-data";
+import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
 
 afterEach(() => {
   cleanup();

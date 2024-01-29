@@ -6,23 +6,32 @@ import { useEffect } from "react";
 import { fetchUser, findUser } from "../../redux/userSlice";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { CustomLoading } from "../loaders/CustomLoading";
 
 export function Dashboard() {
   const dispatch = useAppDispatch();
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const email = user?.email as string;
   const userData = useSelector(findUser);
 
   const sessionList = userData.sessions;
 
   useEffect(() => {
-    dispatch(fetchUser({ email }));
-  }, [dispatch, email]);
+    if (!loading) {
+      dispatch(fetchUser({ email }));
+    }
+  }, [dispatch, email, loading]);
 
   return (
     <>
-      <DashboardActions />
-      <DashboardSessionList sessionList={sessionList} />
+      {loading ? (
+        <CustomLoading />
+      ) : (
+        <>
+          <DashboardActions />
+          <DashboardSessionList sessionList={sessionList} />
+        </>
+      )}
     </>
   );
 }

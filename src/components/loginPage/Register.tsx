@@ -1,14 +1,15 @@
 import { FormEvent, useState } from "react";
 import { Box } from "@mui/system";
-import { Button, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
-import { Link, useNavigate } from "react-router-dom";
-import { LOGIN_LABELS } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { createUser } from "../../utils/API_communication";
 import { NewUser } from "../../types/types";
 import { addressLibrary } from "../../utils/addressLibrary";
+import { LoginButtons } from "../buttons/LoginButtons";
 
 export const Register = () => {
   const [emailValue, setEmailValue] = useState<string>("");
@@ -19,6 +20,7 @@ export const Register = () => {
     useCreateUserWithEmailAndPassword(auth);
 
   const { email, password, confirmPass } = LOGIN_LABELS;
+  const { register, toLogin } = LOGIN_BUTTONS;
   const { login } = addressLibrary;
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -46,26 +48,26 @@ export const Register = () => {
           <LoginInputField
             label={email}
             value={emailValue}
+            type={email}
             setValue={setEmailValue}
           />
           <LoginInputField
             label={password}
             value={passwordValue}
+            type={password}
             setValue={setPasswordValue}
           />
           <LoginInputField
             label={confirmPass}
             value={repeatPassValue}
+            type={password}
             setValue={setRepeatPassValue}
           />
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="contained" type="submit">
-              Confirm
-            </Button>
-            <Link to="/">
-              <Button variant="contained">Back to Login</Button>
-            </Link>
-          </Box>
+          <LoginButtons
+            submitButton={register}
+            redirectButton={toLogin}
+            address={""}
+          />
         </Paper>
       </Box>
     </form>

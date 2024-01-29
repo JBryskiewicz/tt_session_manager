@@ -11,6 +11,9 @@ import { auth } from "../../firebase";
 import { addressLibrary } from "../../utils/addressLibrary";
 
 const APP_BAR_STYLE = {
+  minHeight: "68.5px",
+  display: "flex",
+  justifyContent: "center",
   backgroundColor: SECONDARY_COLOR,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   zIndex: (theme: any) => theme.zIndex.drawer + 1,

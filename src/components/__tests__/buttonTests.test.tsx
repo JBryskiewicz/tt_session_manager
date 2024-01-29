@@ -5,6 +5,7 @@ import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
   EDIT_STATE_BUTTON_LABELS,
+  LOGIN_BUTTONS,
   SESSION_ACTION_CATEGORIES,
 } from "../../utils/constants";
 import { AddEntryButton } from "../buttons/AddEntryButton";
@@ -14,6 +15,7 @@ import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
 import { addressLibrary } from "../../utils/addressLibrary";
 import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
+import { LoginButtons } from "../buttons/LoginButtons";
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -98,5 +100,23 @@ describe("Testing button components", () => {
 
     const saveButton = screen.getByText(save);
     expect(saveButton).toBeInTheDocument();
+  });
+
+  it("Renders LOGIN BUTTONS component", () => {
+    const { login, register, toRegister } = LOGIN_BUTTONS;
+    renderWithRouter(
+      <LoginButtons
+        submitButton={login}
+        redirectButton={toRegister}
+        address={register}
+      />
+    );
+
+    const loginButton = screen.getByText(login);
+    expect(loginButton).toBeInTheDocument();
+
+    const redirectButton = screen.getByText(toRegister);
+    const linkElement = redirectButton.closest("a");
+    expect(linkElement.getAttribute("href")).toBe("/register");
   });
 });

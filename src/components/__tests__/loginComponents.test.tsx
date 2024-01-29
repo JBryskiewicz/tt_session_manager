@@ -17,11 +17,12 @@ describe("Login / Register components", () => {
       <LoginInputField
         label={"login"}
         value={"test"}
+        type="text"
         setValue={MOCK_FUNCTIONS.mockOnChange}
       />
     );
 
-    //loing * - since component renders label as required
+    //login * - since component renders label as required
     const textField = screen.getByLabelText("login *");
     fireEvent.change(textField, { target: target });
     expect(textFieldSpy).toHaveBeenCalledWith("new value");

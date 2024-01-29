@@ -1,12 +1,13 @@
 import { FormEvent, useState } from "react";
 import { Box } from "@mui/system";
-import { Button, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
-import { Link, useNavigate } from "react-router-dom";
-import { LOGIN_LABELS } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
 import { addressLibrary } from "../../utils/addressLibrary";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../../firebase";
+import { LoginButtons } from "../buttons/LoginButtons";
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState<string>("");
@@ -14,6 +15,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const { email, password } = LOGIN_LABELS;
+  const { login, register, toRegister } = LOGIN_BUTTONS;
   const { dashboard } = addressLibrary;
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -35,21 +37,20 @@ export const Login = () => {
           <LoginInputField
             label={email}
             value={emailValue}
+            type={email}
             setValue={setEmailValue}
           />
           <LoginInputField
             label={password}
             value={passwordValue}
+            type={password}
             setValue={setPasswordValue}
           />
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="contained" type="submit">
-              Log in
-            </Button>
-            <Link to="/register">
-              <Button variant="contained">Sign up</Button>
-            </Link>
-          </Box>
+          <LoginButtons
+            submitButton={login}
+            redirectButton={toRegister}
+            address={register}
+          />
         </Paper>
       </Box>
     </form>

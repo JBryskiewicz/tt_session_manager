@@ -44,6 +44,13 @@ export const LOGIN_LABELS: { [key: string]: string } = {
   confirmPass: "confirm password",
 };
 
+export const LOGIN_BUTTONS: { [key: string]: string } = {
+  login: "sign in",
+  register: "register",
+  toRegister: "sign up",
+  toLogin: "back to login",
+};
+
 export const CHAR_INPUT_LIMIT: { [key: string]: number } = {
   title: 100,
   description: 500,

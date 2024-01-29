@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { fetchUser, findUser } from "../../redux/userSlice";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Box, CircularProgress } from "@mui/material";
+import { CustomLoading } from "../loaders/CustomLoading";
 
 export function Dashboard() {
   const dispatch = useAppDispatch();
@@ -25,9 +25,7 @@ export function Dashboard() {
   return (
     <>
       {loading ? (
-        <Box className="centered-loading-box">
-          <CircularProgress />
-        </Box>
+        <CustomLoading />
       ) : (
         <>
           <DashboardActions />

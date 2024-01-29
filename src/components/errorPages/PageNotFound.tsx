@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
-export const SessionNotFound = () => {
+export const PageNotFound = () => {
   return (
     <Box
       sx={{
@@ -12,7 +12,7 @@ export const SessionNotFound = () => {
       }}
     >
       <Typography variant="h2" sx={{ textAlign: "center" }}>
-        Session with this ID not found!
+        Seems like this page does not exist
       </Typography>
     </Box>
   );

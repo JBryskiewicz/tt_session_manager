@@ -2,7 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import UserProfileMenu from "./UserProfileMenu";
-import { LogoDesktop } from "./LogoComponents";
+import { LogoDesktop, LogoMobile } from "./LogoComponents";
 import { NavMenuDesktop, NavMenuMobile } from "./NavMenuComponents";
 import { useState } from "react";
 import { SECONDARY_COLOR } from "../../sx/colors";
@@ -32,6 +32,7 @@ export function UsersAppBar() {
             anchorElNav={anchorElNav}
             setAnchorElNav={setAnchorElNav}
           />
+          <LogoMobile address={dashboard} />
           <NavMenuDesktop
             anchorElNav={anchorElNav}
             setAnchorElNav={setAnchorElNav}

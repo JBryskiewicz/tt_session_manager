@@ -3,8 +3,8 @@ import { cleanup, screen } from "@testing-library/react";
 import {
   MOCK_DATA_COLLECTION,
   MOCK_FUNCTIONS,
-} from "../../utils/test-mock-data";
-import { renderWithRouter } from "../../utils/test-utils";
+} from "../../test-utils/test-mock-data";
+import { renderWithRouter } from "../../test-utils/test-utils";
 import { DetailsNotesList } from "../session/detailsSession/DetailsNotesList";
 import { DetailsNotesListElement } from "../session/detailsSession/DetailsNotesListElement";
 import { DetailsNotesSharedInformation } from "../session/detailsSession/DetailsNotesSharedInformation";

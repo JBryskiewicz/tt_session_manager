@@ -7,7 +7,7 @@ import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { AuthValidationMessage } from "./AuthValidationMessage";
-import { onLoginSubmit } from "../../utils/supportFunctions/LoginHandlers";
+import { onLoginSubmit } from "../../utils/supportFunctions/loginHandlers";
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState<string>("");

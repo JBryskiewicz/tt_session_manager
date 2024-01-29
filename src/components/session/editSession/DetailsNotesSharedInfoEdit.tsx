@@ -1,11 +1,7 @@
 import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  checkCategoryToSetEditable,
-  checkCategoryToUpdateNotes,
-  setCharCounter,
-} from "../../../utils/supportFunctions";
+import { checkCategoryToUpdateNotes } from "../../../utils/supportFunctions/API_requestHandlers";
 import { Note, Npc } from "../../../types/types";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
@@ -16,6 +12,10 @@ import {
   EDIT_STATE_BUTTON_LABELS,
 } from "../../../utils/constants";
 import { SaveButton } from "../../buttons/SaveButton";
+import {
+  checkCategoryToSetEditable,
+  setCharCounter,
+} from "../../../utils/supportFunctions/formHandlers";
 
 type Props = {
   data: Note | Npc;

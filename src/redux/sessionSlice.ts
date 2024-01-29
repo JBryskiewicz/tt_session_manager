@@ -1,6 +1,6 @@
 import { Session } from "../types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getOneSession } from "../utils/API_communication";
+import { getOneSession } from "../utils/API/sessionCRUD";
 import { RootState } from "./store";
 
 type FetchSessionPayload = {

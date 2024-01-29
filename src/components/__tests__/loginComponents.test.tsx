@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { MOCK_FUNCTIONS } from "../../utils/test-mock-data";
-import { renderWithRouter } from "../../utils/test-utils";
+import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
+import { renderWithRouter } from "../../test-utils/test-utils";
 import { LoginInputField } from "../loginPage/LoginInputField";
 
 describe("Login / Register components", () => {

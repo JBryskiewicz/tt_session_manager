@@ -1,6 +1,6 @@
 import { cleanup, screen } from "@testing-library/react";
 import { it, vi, expect, describe, afterEach } from "vitest";
-import { renderWithRouter } from "../../utils/test-utils";
+import { renderWithRouter } from "../../test-utils/test-utils";
 import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
@@ -9,7 +9,7 @@ import {
   SESSION_ACTION_CATEGORIES,
 } from "../../utils/constants";
 import { AddEntryButton } from "../buttons/AddEntryButton";
-import { MOCK_FUNCTIONS } from "../../utils/test-mock-data";
+import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
 import { DeleteButton } from "../buttons/DeleteButton";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";

@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { fetchUser, findUser } from "../../../redux/userSlice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase";
-import { checkUserSessionOwnership } from "../../../utils/supportFunctions";
+import { checkUserSessionOwnership } from "../../../utils/supportFunctions/userHandlers";
 import { CustomLoading } from "../../loaders/CustomLoading";
 import { SessionNotFound } from "../../errorPages/SessionNotFound";
 

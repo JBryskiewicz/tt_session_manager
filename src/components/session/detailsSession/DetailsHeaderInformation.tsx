@@ -1,6 +1,6 @@
 import { Box, Paper, Typography } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { checkCategoryToSetEditable } from "../../../utils/supportFunctions";
+import { checkCategoryToSetEditable } from "../../../utils/supportFunctions/formHandlers";
 import { EditStateButton } from "../../buttons/EditStateButton";
 import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
 

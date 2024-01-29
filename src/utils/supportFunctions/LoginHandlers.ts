@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { NewUser } from "../../types/types";
-import { createUser } from "../API_communication";
+import { createUser } from "../API/userCRUD";
 import { loginSchema, registerSchema } from "../validation/schema";
 import { NavigateFunction } from "react-router-dom";
 import { addressLibrary } from "../addressLibrary";

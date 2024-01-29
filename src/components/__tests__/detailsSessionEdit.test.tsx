@@ -1,7 +1,7 @@
 import { it, vi, expect, describe, afterEach } from "vitest";
 import { cleanup, fireEvent, screen } from "@testing-library/react";
-import { MOCK_FUNCTIONS, MOCK_SESSION } from "../../utils/test-mock-data";
-import { renderWithRouter } from "../../utils/test-utils";
+import { MOCK_FUNCTIONS, MOCK_SESSION } from "../../test-utils/test-mock-data";
+import { renderWithRouter } from "../../test-utils/test-utils";
 import { TextInputField } from "../TextInputField";
 import { DetailsHeaderInfoEdit } from "../session/editSession/DetailsHeaderInfoEdit";
 import { SESSION_FIELDS_CATEGORIES } from "../../utils/constants";

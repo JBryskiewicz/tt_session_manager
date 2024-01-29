@@ -6,7 +6,7 @@ import {
 } from "../utils/constants";
 import { DeleteButton } from "./buttons/DeleteButton";
 import { useNavigate } from "react-router-dom";
-import { handleSessionDelete } from "../utils/supportFunctions";
+import { handleSessionDelete } from "../utils/supportFunctions/API_requestHandlers";
 import { addressLibrary } from "../utils/addressLibrary";
 import { useSelector } from "react-redux";
 import { findUser } from "../redux/userSlice";

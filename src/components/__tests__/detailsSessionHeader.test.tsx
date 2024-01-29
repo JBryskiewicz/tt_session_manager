@@ -4,8 +4,8 @@ import {
   MOCK_FUNCTIONS,
   MOCK_CATEGORY,
   MOCK_STRING,
-} from "../../utils/test-mock-data";
-import { renderWithRouter } from "../../utils/test-utils";
+} from "../../test-utils/test-mock-data";
+import { renderWithRouter } from "../../test-utils/test-utils";
 import { DetailsHeaderInformation } from "../session/detailsSession/DetailsHeaderInformation";
 
 afterEach(() => {

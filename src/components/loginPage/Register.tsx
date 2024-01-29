@@ -7,7 +7,7 @@ import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { LoginButtons } from "../buttons/LoginButtons";
-import { onRegisterSubmit } from "../../utils/supportFunctions/LoginHandlers";
+import { onRegisterSubmit } from "../../utils/supportFunctions/loginHandlers";
 import { AuthValidationMessage } from "./AuthValidationMessage";
 
 export const Register = () => {

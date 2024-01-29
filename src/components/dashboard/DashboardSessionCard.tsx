@@ -2,7 +2,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Box, Card, CardActions, Grid } from "@mui/material";
 import { Session } from "../../types/types";
-import { applyDate } from "../../utils/supportFunctions";
+import { applyDate } from "../../utils/supportFunctions/dateHandlers";
 import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,

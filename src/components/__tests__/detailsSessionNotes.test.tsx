@@ -23,9 +23,9 @@ describe("renders session details notes & npcs components", () => {
   it("Renders note / npc section list", () => {
     renderWithRouter(
       <DetailsNotesList
-        dataId={mockNote.id}
+        selected={mockNote.id}
         dataCollection={MOCK_DATA_COLLECTION}
-        setDataId={MOCK_FUNCTIONS.buttonFunction}
+        setSelected={MOCK_FUNCTIONS.buttonFunction}
       />
     );
 
@@ -37,9 +37,9 @@ describe("renders session details notes & npcs components", () => {
     renderWithRouter(
       <DetailsNotesListElement
         id={mockNote.id}
-        dataId={mockNote.id}
+        selected={mockNote.id}
         name={mockNote.name}
-        setDataId={MOCK_FUNCTIONS.buttonFunction}
+        setSelected={MOCK_FUNCTIONS.buttonFunction}
       />
     );
 

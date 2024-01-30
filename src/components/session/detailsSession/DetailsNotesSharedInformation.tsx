@@ -1,6 +1,5 @@
 import { Box, Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { Note, Npc } from "../../../types/types";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
 import { EditStateButton } from "../../buttons/EditStateButton";
@@ -11,9 +10,13 @@ import {
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+
+const { edit } = EDIT_STATE_BUTTON_LABELS;
+const { remove } = SESSION_ACTION_CATEGORIES;
 
 type Props = {
-  data: Note | Npc;
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;
   category: string;
 };
@@ -23,26 +26,28 @@ type RouteParams = {
 };
 
 export const DetailsNotesSharedInformation = ({
-  data,
   setIsEditable,
   category,
 }: Props) => {
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
-  const { edit } = EDIT_STATE_BUTTON_LABELS;
-  const { remove } = SESSION_ACTION_CATEGORIES;
+  const { selected, currentDataList } = useSelector(
+    (state: RootState) => state.manager
+  );
 
   const handleEditButton = (): void => {
     setIsEditable((prevState) => [true, ...prevState.slice(1)]);
   };
 
-  const noteID = data.id;
   const sessionID = parseInt(id as string);
 
   const handleDeleteButton = async (): Promise<void> => {
-    await handleNoteDelete(noteID, sessionID, category);
+    await handleNoteDelete(selected, sessionID, category);
     dispatch(fetchSession({ id }));
   };
+
+  const information =
+    currentDataList.find((info) => info.id === selected)?.information ?? "";
 
   return (
     <Paper elevation={4} className="note-box">
@@ -50,7 +55,7 @@ export const DetailsNotesSharedInformation = ({
         <EditStateButton onClick={handleEditButton} label={edit} />
         <DeleteButton onClick={handleDeleteButton} label={remove} />
       </Box>
-      <Box>{data.information}</Box>
+      <Box className="note-box-text">{information}</Box>
     </Paper>
   );
 };

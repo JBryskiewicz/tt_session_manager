@@ -13,6 +13,7 @@
 @mixin notesListWrapper() {
   &_wrapper {
     width: 100%;
+    word-break: break-all;
   }
 }
 
@@ -132,12 +133,21 @@
       height: 500px;
       max-height: 500px;
       font-size: 0.875rem;
-      overflow: hidden;
       padding: .75rem 1rem;
 
       &-btn-box {
         display: flex;
         column-gap: 1rem;
+      }
+
+      &-text {
+        overflow-y: scroll;
+        height: 100%;
+        
+        ::-webkit-scrollbar {
+          
+        }
+
       }
     } 
     

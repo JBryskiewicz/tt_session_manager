@@ -12,6 +12,7 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { setSelected } from "../../../redux/managerSlice";
 
 const { edit } = EDIT_STATE_BUTTON_LABELS;
 const { remove } = SESSION_ACTION_CATEGORIES;
@@ -40,10 +41,10 @@ export const DetailsNotesSharedInformation = ({
   };
 
   const sessionID = parseInt(id as string);
-
   const handleDeleteButton = async (): Promise<void> => {
     await handleNoteDelete(selected, sessionID, category);
     dispatch(fetchSession({ id }));
+    dispatch(setSelected(currentDataList[0].id));
   };
 
   const information =

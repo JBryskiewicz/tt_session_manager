@@ -21,7 +21,8 @@ export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
 
   useEffect(() => {
     dispatch(setCurrentDataList(dataCollection));
-  }, [dataCollection, dispatch]);
+    console.log(dataCollection);
+  }, []);
 
   if (selected === -1) {
     return null;

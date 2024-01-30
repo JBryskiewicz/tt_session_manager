@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { AddEntryButton } from "../../buttons/AddEntryButton";
+import { setSelected } from "../../../redux/managerSlice";
 
 type Props = {
   display: number;
@@ -33,11 +34,13 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
   const handleAddEntry = async (category: string): Promise<void> => {
     const tab = category === notes.label ? notes.tab : npcs.tab;
 
-    await handleAddNotesButton(parseInt(id as string), tab);
+    const response = await handleAddNotesButton(parseInt(id as string), tab);
 
     await dispatch(fetchSession({ id }));
-
     setDisplay(tab);
+    setTimeout(() => {
+      dispatch(setSelected(response.id));
+    }, 10);
   };
 
   return (

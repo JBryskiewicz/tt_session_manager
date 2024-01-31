@@ -48,7 +48,7 @@ export const DetailsNotesSharedInfoEdit = ({
   const [infoValue, setInfoValue] = useState<string>(data.information);
   const [infoChars, setInfoChars] = useState<number>(infoValue.length);
 
-  const nameLimit = CHAR_INPUT_LIMIT["title"];
+  const nameLimit = CHAR_INPUT_LIMIT["npcName"];
   const infoLimit = CHAR_INPUT_LIMIT[category];
 
   useEffect(() => {

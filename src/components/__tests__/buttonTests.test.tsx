@@ -8,14 +8,13 @@ import {
   LOGIN_BUTTONS,
   SESSION_ACTION_CATEGORIES,
 } from "../../utils/constants";
-import { AddEntryButton } from "../buttons/AddEntryButton";
 import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
-import { DeleteButton } from "../buttons/DeleteButton";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
 import { addressLibrary } from "../../utils/addressLibrary";
 import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
 import { LoginButtons } from "../buttons/LoginButtons";
+import { ConfirmPopout } from "../buttons/ConfirmPopout";
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -37,29 +36,52 @@ describe("Testing button components", () => {
     expect(navLink.getAttribute("href")).toBe("/dashboard");
   });
 
-  it("Renders clickable ADD ENTRY BUTTON with working onClick", () => {
-    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
-    const { buttonFunction } = MOCK_FUNCTIONS;
-    const { addNote } = EDIT_STATE_BUTTON_LABELS;
+  it("Renders Popout window with passed notification", () => {
+    const { fillerFunction } = MOCK_FUNCTIONS;
 
     renderWithRouter(
-      <AddEntryButton onClick={buttonFunction} label={addNote} />
+      <ConfirmPopout
+        notification={"confirm action"}
+        onClick={fillerFunction}
+        setPopout={fillerFunction}
+      />
     );
 
-    const entryButton = screen.getByText(addNote);
+    const notification = screen.getByText("confirm action");
+    expect(notification).toBeInTheDocument();
+  });
+
+  it("Renders Popout window with working CONFIRM BUTTON", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+    const { buttonFunction, fillerFunction } = MOCK_FUNCTIONS;
+
+    renderWithRouter(
+      <ConfirmPopout
+        notification={"confirm action"}
+        onClick={buttonFunction}
+        setPopout={fillerFunction}
+      />
+    );
+
+    const entryButton = screen.getByText("confirm");
     entryButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });
 
-  it("Renders clickable DELETE BUTTON with working onClick", () => {
+  it("Renders Popout window with working CANCEL BUTTON", () => {
     const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
-    const { buttonFunction } = MOCK_FUNCTIONS;
-    const { remove } = SESSION_ACTION_CATEGORIES;
+    const { buttonFunction, fillerFunction } = MOCK_FUNCTIONS;
 
-    renderWithRouter(<DeleteButton onClick={buttonFunction} label={remove} />);
+    renderWithRouter(
+      <ConfirmPopout
+        notification={"confirm action"}
+        onClick={fillerFunction}
+        setPopout={buttonFunction}
+      />
+    );
 
-    const deleteButton = screen.getByText(remove);
-    deleteButton.click();
+    const entryButton = screen.getByText("cancel");
+    entryButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });
 

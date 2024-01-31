@@ -8,9 +8,8 @@ import {
   SESSION_ACTION_CATEGORIES,
 } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
-import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { setSelected } from "../../../redux/managerSlice";
 
@@ -32,7 +31,7 @@ export const DetailsNotesSharedInformation = ({
 }: Props) => {
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
-  const { selected, currentDataList } = useSelector(
+  const { selected, currentDataList } = useAppSelector(
     (state: RootState) => state.manager
   );
 

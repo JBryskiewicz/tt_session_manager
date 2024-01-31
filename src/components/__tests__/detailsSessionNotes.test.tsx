@@ -12,6 +12,7 @@ import {
   NOTES_LIST_TEST_ID,
   SESSION_FIELDS_CATEGORIES,
 } from "../../utils/constants";
+import { DetailsNotesButtonGroup } from "../session/detailsSession/DetailsNotesButtonGroup";
 
 const mockNote = MOCK_DATA_COLLECTION[0];
 
@@ -20,6 +21,19 @@ afterEach(() => {
 });
 
 describe("renders session details notes & npcs components", () => {
+  it("Renders labels for button groups", () => {
+    const { fillerFunction } = MOCK_FUNCTIONS;
+    renderWithRouter(
+      <DetailsNotesButtonGroup display={0} setDisplay={fillerFunction} />
+    );
+
+    const displayElement = screen.getByText("Display");
+    expect(displayElement).toBeInTheDocument();
+
+    const createElement = screen.getByText("Create");
+    expect(createElement).toBeInTheDocument();
+  });
+
   it("Renders note / npc section list", () => {
     renderWithRouter(
       <DetailsNotesList dataCollection={MOCK_DATA_COLLECTION} />

@@ -54,6 +54,7 @@ export const LOGIN_BUTTONS: { [key: string]: string } = {
 export const CHAR_INPUT_LIMIT: { [key: string]: number } = {
   title: 100,
   description: 500,
+  npcName: 50,
   note: 5000,
   npc: 5000,
 };

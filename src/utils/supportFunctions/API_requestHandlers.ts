@@ -94,7 +94,7 @@ export const initializeNewSession = async (
 export const handleAddNotesButton = async (
   sessionID: number,
   changeTo: number
-): Promise<void> => {
+): Promise<Note | Npc> => {
   const noteObject: NewNote | NewNpc = {
     name: "New Entry",
     information: "",
@@ -112,6 +112,8 @@ export const handleAddNotesButton = async (
     : session.npcs.push(responseObject);
 
   await updateSession(sessionID, session);
+
+  return responseObject;
 };
 
 /** Send request to API to delete existing session with it's children */

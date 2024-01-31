@@ -1,21 +1,20 @@
 import { ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
 import { NOTES_LIST_TEST_ID } from "../../../utils/constants";
 import { ACCENT_COLOR } from "../../../sx/colors";
+import { setSelected } from "../../../redux/managerSlice";
+import { useAppDispatch } from "../../../redux/hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 type Props = {
   id: number;
-  dataId: number;
   name: string;
-  setDataId: Dispatch<SetStateAction<number>>;
 };
 
-export const DetailsNotesListElement = ({
-  id,
-  dataId,
-  name,
-  setDataId,
-}: Props) => {
+export const DetailsNotesListElement = ({ id, name }: Props) => {
+  const { selected } = useSelector((state: RootState) => state.manager);
+  const dispatch = useAppDispatch();
+
   return (
     <ListItem
       key={id}
@@ -26,9 +25,9 @@ export const DetailsNotesListElement = ({
       <Paper
         elevation={4}
         className={"notes-list-item_wrapper"}
-        sx={id === dataId ? { backgroundColor: `${ACCENT_COLOR}` } : null}
+        sx={id === selected ? { backgroundColor: `${ACCENT_COLOR}` } : null}
       >
-        <ListItemButton onClick={() => setDataId(id)}>
+        <ListItemButton onClick={() => dispatch(setSelected(id))}>
           <ListItemText primary={name} />
         </ListItemButton>
       </Paper>

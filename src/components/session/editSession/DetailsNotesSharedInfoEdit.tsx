@@ -16,9 +16,12 @@ import {
   checkCategoryToSetEditable,
   setCharCounter,
 } from "../../../utils/supportFunctions/formHandlers";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+
+const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
 
 type Props = {
-  data: Note | Npc;
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;
   category: string;
 };
@@ -28,19 +31,24 @@ type RouteParams = {
 };
 
 export const DetailsNotesSharedInfoEdit = ({
-  data,
   setIsEditable,
   category,
 }: Props) => {
   const { id } = useParams<RouteParams>();
+  const dispatch = useAppDispatch();
+  const { selected, currentDataList } = useSelector(
+    (state: RootState) => state.manager
+  );
+  const data: Note | Npc = currentDataList.find(
+    (data) => data.id === selected
+  ) as Note | Npc;
+
   const [nameValue, setNameValue] = useState<string>(data.name);
   const [nameChars, setNameChars] = useState<number>(nameValue.length);
   const [infoValue, setInfoValue] = useState<string>(data.information);
   const [infoChars, setInfoChars] = useState<number>(infoValue.length);
-  const dispatch = useAppDispatch();
-  const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
 
-  const nameLimit = CHAR_INPUT_LIMIT["title"];
+  const nameLimit = CHAR_INPUT_LIMIT["npcName"];
   const infoLimit = CHAR_INPUT_LIMIT[category];
 
   useEffect(() => {

@@ -46,3 +46,8 @@ export interface User extends NewUser {
   id: number;
   roles: Role[];
 }
+
+export type Manager = {
+  currentDataList: Note[] | Npc[];
+  selected: number;
+};

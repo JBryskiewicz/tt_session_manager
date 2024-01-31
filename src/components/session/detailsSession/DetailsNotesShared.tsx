@@ -4,6 +4,10 @@ import { Note, Npc } from "../../../types/types";
 import { DetailsNotesSharedInformation } from "./DetailsNotesSharedInformation";
 import { DetailsNotesSharedInfoEdit } from "../editSession/DetailsNotesSharedInfoEdit";
 import { DetailsNotesList } from "./DetailsNotesList";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+import { useAppDispatch } from "../../../redux/hooks";
+import { setCurrentDataList } from "../../../redux/managerSlice";
 
 type Props = {
   dataCollection: Note[] | Npc[];
@@ -11,40 +15,28 @@ type Props = {
 };
 
 export const DetailsNotesShared = ({ dataCollection, category }: Props) => {
+  const dispatch = useAppDispatch();
+  const { selected } = useSelector((state: RootState) => state.manager);
   const [isEditable, setIsEditable] = useState<boolean[]>([false, false]);
-  const [dataId, setDataId] = useState<number>(
-    dataCollection.length ? dataCollection[0].id : -1
-  );
-  const [data, setData] = useState<Note | Npc>(dataCollection[0]);
 
   useEffect(() => {
-    dataCollection.forEach((data) => {
-      if (data.id === dataId) {
-        setData(data);
-      }
-    });
-  }, [dataId, dataCollection]);
+    dispatch(setCurrentDataList(dataCollection));
+  }, [dataCollection, dispatch]);
 
-  if (dataId === -1) {
+  if (selected === -1) {
     return null;
   }
 
   return (
     <Box className="session-body-notes">
-      <DetailsNotesList
-        dataId={dataId}
-        dataCollection={dataCollection}
-        setDataId={setDataId}
-      />
+      <DetailsNotesList dataCollection={dataCollection} />
       {!isEditable[0] ? (
         <DetailsNotesSharedInformation
-          data={data}
           setIsEditable={setIsEditable}
           category={category}
         />
       ) : (
         <DetailsNotesSharedInfoEdit
-          data={data}
           setIsEditable={setIsEditable}
           category={category}
         />

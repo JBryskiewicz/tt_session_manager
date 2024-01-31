@@ -15,6 +15,8 @@ import { addressLibrary } from "../../utils/addressLibrary";
 import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { ConfirmPopout } from "../buttons/ConfirmPopout";
+import { DeleteButton } from "../buttons/DeleteButton";
+import { AddEntryButton } from "../buttons/AddEntryButton";
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -34,6 +36,25 @@ describe("Testing button components", () => {
 
     const navLink = screen.getByTestId(ACTION_BUTTON_TEST_ID);
     expect(navLink.getAttribute("href")).toBe("/dashboard");
+  });
+
+  it("Renders clickable ADD ENTRY BUTTON with working onClick", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+    const { buttonFunction } = MOCK_FUNCTIONS;
+    const { addNote } = EDIT_STATE_BUTTON_LABELS;
+
+    renderWithRouter(
+      <AddEntryButton
+        label={addNote}
+        popout={false}
+        setPopout={buttonFunction}
+        onClick={buttonFunction}
+      />
+    );
+
+    const entryButton = screen.getByText(addNote);
+    entryButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
   });
 
   it("Renders Popout window with passed notification", () => {
@@ -82,6 +103,25 @@ describe("Testing button components", () => {
 
     const entryButton = screen.getByText("cancel");
     entryButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
+  });
+
+  it("Renders clickable DELETE BUTTON with working onClick", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+    const { buttonFunction } = MOCK_FUNCTIONS;
+    const { remove } = SESSION_ACTION_CATEGORIES;
+
+    renderWithRouter(
+      <DeleteButton
+        label={remove}
+        popout={false}
+        setPopout={buttonFunction}
+        onClick={buttonFunction}
+      />
+    );
+
+    const deleteButton = screen.getByText(remove);
+    deleteButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });
 

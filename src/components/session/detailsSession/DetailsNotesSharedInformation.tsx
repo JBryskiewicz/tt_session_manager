@@ -1,5 +1,5 @@
 import { Box, Paper } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
 import { EditStateButton } from "../../buttons/EditStateButton";
@@ -29,6 +29,7 @@ export const DetailsNotesSharedInformation = ({
   setIsEditable,
   category,
 }: Props) => {
+  const [popout, setPopout] = useState<boolean>(false);
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
   const { selected, currentDataList } = useAppSelector(
@@ -53,7 +54,12 @@ export const DetailsNotesSharedInformation = ({
     <Paper elevation={4} className="note-box">
       <Box className="note-box-btn-box">
         <EditStateButton onClick={handleEditButton} label={edit} />
-        <DeleteButton onClick={handleDeleteButton} label={remove} />
+        <DeleteButton
+          onClick={handleDeleteButton}
+          label={remove}
+          popout={popout}
+          setPopout={setPopout}
+        />
       </Box>
       <Box className="note-box-text">{information}</Box>
     </Paper>

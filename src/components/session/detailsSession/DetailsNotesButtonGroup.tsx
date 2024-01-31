@@ -1,5 +1,5 @@
 import { Box, Grid, Paper } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
 import { handleAddNotesButton } from "../../../utils/supportFunctions/API_requestHandlers";
@@ -25,6 +25,7 @@ const displayTabs = {
 };
 
 export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
+  const [popout, setPopout] = useState<boolean>(false);
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
 
@@ -84,12 +85,16 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
           <span>Create</span>
         </Paper>
         <AddEntryButton
-          onClick={() => handleAddEntry(notes.label)}
           label={addNote}
+          popout={popout}
+          setPopout={setPopout}
+          onClick={() => handleAddEntry(notes.label)}
         />
         <AddEntryButton
-          onClick={() => handleAddEntry(npcs.label)}
           label={addNpc}
+          popout={popout}
+          setPopout={setPopout}
+          onClick={() => handleAddEntry(npcs.label)}
         />
       </Box>
     </Grid>

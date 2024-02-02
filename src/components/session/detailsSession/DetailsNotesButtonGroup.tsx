@@ -25,7 +25,8 @@ const displayTabs = {
 };
 
 export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
-  const [popout, setPopout] = useState<boolean>(false);
+  const [popoutNotes, setPopoutNotes] = useState<boolean>(false);
+  const [popoutNpcs, setPopoutNpcs] = useState<boolean>(false);
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
 
@@ -86,14 +87,14 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
         </Paper>
         <AddEntryButton
           label={addNote}
-          popout={popout}
-          setPopout={setPopout}
+          popout={popoutNotes}
+          setPopout={setPopoutNotes}
           onClick={() => handleAddEntry(notes.label)}
         />
         <AddEntryButton
           label={addNpc}
-          popout={popout}
-          setPopout={setPopout}
+          popout={popoutNpcs}
+          setPopout={setPopoutNpcs}
           onClick={() => handleAddEntry(npcs.label)}
         />
       </Box>

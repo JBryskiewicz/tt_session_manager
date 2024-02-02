@@ -69,4 +69,6 @@ export const ADDRESS_LIB: { [key: string]: string } = {
   dashboard: "/dashboard",
   sessionDetails: "/session-details/",
   sessionNew: "/new-session",
+  account: "/account",
+  profile: "/user-profile",
 };

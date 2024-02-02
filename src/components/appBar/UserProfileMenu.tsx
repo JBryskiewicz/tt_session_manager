@@ -18,7 +18,7 @@ function UserProfileMenu() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
-  const { login } = ADDRESS_LIB;
+  const { login, account, profile } = ADDRESS_LIB;
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -27,6 +27,12 @@ function UserProfileMenu() {
     if (setting === "Logout") {
       await signOut(auth);
       navigate(login);
+    }
+    if (setting === "Account") {
+      navigate(account);
+    }
+    if (setting === "Profile") {
+      navigate(profile);
     }
     setAnchorElUser(null);
   };

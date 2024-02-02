@@ -8,9 +8,10 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { TextInputField } from "../../TextInputField";
 import { EditStateButton } from "../../buttons/EditStateButton";
 import {
-  CHAR_INPUT_LIMIT,
-  EDIT_STATE_BUTTON_LABELS,
-} from "../../../utils/constants";
+  CHAR_LIMIT_LIB,
+  BUTTON_LABELS_LIB,
+  SESSION_TEXT_FIELDS_CATEGORIES_LIB,
+} from "../../../utils/libs/constants";
 import { SaveButton } from "../../buttons/SaveButton";
 import {
   checkCategoryToSetEditable,
@@ -19,7 +20,8 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 
-const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
+const { save, cancel } = BUTTON_LABELS_LIB;
+const { npcName } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
 type Props = {
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;
@@ -48,8 +50,8 @@ export const DetailsNotesSharedInfoEdit = ({
   const [infoValue, setInfoValue] = useState<string>(data.information);
   const [infoChars, setInfoChars] = useState<number>(infoValue.length);
 
-  const nameLimit = CHAR_INPUT_LIMIT["npcName"];
-  const infoLimit = CHAR_INPUT_LIMIT[category];
+  const nameLimit = CHAR_LIMIT_LIB[npcName];
+  const infoLimit = CHAR_LIMIT_LIB[category];
 
   useEffect(() => {
     setCharCounter(nameValue, setNameValue, setNameChars, nameLimit);

@@ -3,16 +3,19 @@ import { Box } from "@mui/system";
 import { TextInputField } from "../../TextInputField";
 import { useEffect, useState } from "react";
 import {
-  CHAR_INPUT_LIMIT,
-  EDIT_STATE_BUTTON_LABELS,
-  SESSION_FIELDS_CATEGORIES,
-} from "../../../utils/constants";
+  CHAR_LIMIT_LIB,
+  BUTTON_LABELS_LIB,
+  SESSION_TEXT_FIELDS_CATEGORIES_LIB,
+} from "../../../utils/libs/constants";
 import { initializeNewSession } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useNavigate } from "react-router-dom";
 import { SaveButton } from "../../buttons/SaveButton";
 import { findUser } from "../../../redux/userSlice";
 import { useSelector } from "react-redux";
 import { setCharCounter } from "../../../utils/supportFunctions/formHandlers";
+
+const { title, desc } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
+const { save } = BUTTON_LABELS_LIB;
 
 export const SessionNewInfoInputs = () => {
   const [titleValue, setTitleValue] = useState<string>("");
@@ -22,11 +25,8 @@ export const SessionNewInfoInputs = () => {
   const user = useSelector(findUser);
   const navigate = useNavigate();
 
-  const { title, desc } = SESSION_FIELDS_CATEGORIES;
-  const { save } = EDIT_STATE_BUTTON_LABELS;
-
-  const titleLimit = CHAR_INPUT_LIMIT["title"];
-  const descLimit = CHAR_INPUT_LIMIT["description"];
+  const titleLimit = CHAR_LIMIT_LIB[title];
+  const descLimit = CHAR_LIMIT_LIB[desc];
 
   useEffect(() => {
     setCharCounter(titleValue, setTitleValue, setTitleChars, titleLimit);

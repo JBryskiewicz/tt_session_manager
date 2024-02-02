@@ -1,12 +1,13 @@
-import { SESSION_ACTION_CATEGORIES } from "../../../utils/constants";
+import { SESSION_CATEGORY_LIB } from "../../../utils/libs/constants";
 import { ActionButtonSection } from "../../ActionButtonSection";
 import { SessionNewHeader } from "./SessionNewHeader";
 
+const { newSession } = SESSION_CATEGORY_LIB;
+
 export function SessionNew() {
-  const categoryNew = SESSION_ACTION_CATEGORIES.newSession;
   return (
     <>
-      <ActionButtonSection sessionCategory={categoryNew} />
+      <ActionButtonSection sessionCategory={newSession} />
       <SessionNewHeader />
     </>
   );

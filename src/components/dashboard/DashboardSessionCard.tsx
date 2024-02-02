@@ -6,9 +6,12 @@ import { applyDate } from "../../utils/supportFunctions/dateHandlers";
 import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
-  SESSION_ACTION_CATEGORIES,
-} from "../../utils/constants";
-import { addressLibrary } from "../../utils/addressLibrary";
+  BUTTON_LABELS_LIB,
+} from "../../utils/libs/constants";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
+
+const { view } = BUTTON_LABELS_LIB;
+const { sessionDetails } = ADDRESS_LIB;
 
 type Props = {
   session: Session;
@@ -16,8 +19,6 @@ type Props = {
 
 export function DashboardSessionCard({ session }: Props) {
   const { id, name, description, plannedDate } = session;
-  const { view } = SESSION_ACTION_CATEGORIES;
-  const { sessionDetails } = addressLibrary;
 
   const addressPath: string = sessionDetails + id;
 

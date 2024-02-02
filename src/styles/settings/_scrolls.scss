@@ -1,0 +1,16 @@
+@mixin defaultScroll() {
+    &::-webkit-scrollbar {
+        width: .75rem;         
+    }
+      
+    &::-webkit-scrollbar-thumb {
+        background-color: $secondary_color;
+        border-radius: 20px;
+    }
+}
+
+@mixin defaultSmallScreenScroll() {
+    &::-webkit-scrollbar {
+        height: .5rem;         
+    }
+}

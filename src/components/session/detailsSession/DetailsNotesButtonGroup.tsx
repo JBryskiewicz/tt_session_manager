@@ -4,7 +4,7 @@ import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
 import { handleAddNotesButton } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useAppDispatch } from "../../../redux/hooks";
-import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
+import { BUTTON_LABELS_LIB } from "../../../utils/libs/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { AddEntryButton } from "../../buttons/AddEntryButton";
 import { setSelected } from "../../../redux/managerSlice";
@@ -25,11 +25,12 @@ const displayTabs = {
 };
 
 export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
-  const [popout, setPopout] = useState<boolean>(false);
+  const [popoutNotes, setPopoutNotes] = useState<boolean>(false);
+  const [popoutNpcs, setPopoutNpcs] = useState<boolean>(false);
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
 
-  const { addNote, addNpc } = EDIT_STATE_BUTTON_LABELS;
+  const { addNote, addNpc } = BUTTON_LABELS_LIB;
   const { none, notes, npcs } = displayTabs;
 
   const handleAddEntry = async (category: string): Promise<void> => {
@@ -86,14 +87,14 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
         </Paper>
         <AddEntryButton
           label={addNote}
-          popout={popout}
-          setPopout={setPopout}
+          popout={popoutNotes}
+          setPopout={setPopoutNotes}
           onClick={() => handleAddEntry(notes.label)}
         />
         <AddEntryButton
           label={addNpc}
-          popout={popout}
-          setPopout={setPopout}
+          popout={popoutNpcs}
+          setPopout={setPopoutNpcs}
           onClick={() => handleAddEntry(npcs.label)}
         />
       </Box>

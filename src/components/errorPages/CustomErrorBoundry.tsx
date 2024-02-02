@@ -1,4 +1,5 @@
-import { PageNotFound } from "./PageNotFound";
+import { ERROR_MESSAGE_LIB } from "../../utils/libs/constants";
+import { ErrorPageView } from "./ErrorPageView";
 import { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 interface State {
   hasError: boolean;
 }
+
+const { pageNotFound: notFound } = ERROR_MESSAGE_LIB;
 
 export class CustomErrorBoundary extends Component<Props, State> {
   public state: State = {
@@ -25,7 +28,7 @@ export class CustomErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return <PageNotFound />;
+      return <ErrorPageView errorMsg={notFound} />;
     }
     return this.props.children;
   }

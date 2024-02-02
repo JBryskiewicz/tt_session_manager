@@ -2,15 +2,20 @@ import Box from "@mui/material/Box";
 import { ActionButton } from "./buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
-  SESSION_ACTION_CATEGORIES,
-} from "../utils/constants";
+  BUTTON_LABELS_LIB,
+  SESSION_CATEGORY_LIB,
+} from "../utils/libs/constants";
 import { DeleteButton } from "./buttons/DeleteButton";
 import { useNavigate } from "react-router-dom";
 import { handleSessionDelete } from "../utils/supportFunctions/API_requestHandlers";
-import { addressLibrary } from "../utils/addressLibrary";
+import { ADDRESS_LIB } from "../utils/libs/constants";
 import { useSelector } from "react-redux";
 import { findUser } from "../redux/userSlice";
 import { useState } from "react";
+
+const { exit, remove } = BUTTON_LABELS_LIB;
+const { details } = SESSION_CATEGORY_LIB;
+const { dashboard } = ADDRESS_LIB;
 
 type Props = {
   sessionCategory: string;
@@ -21,8 +26,6 @@ export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
   const [popout, setPopout] = useState<boolean>(false);
   const user = useSelector(findUser);
   const navigate = useNavigate();
-  const { exit, remove } = SESSION_ACTION_CATEGORIES;
-  const { dashboard } = addressLibrary;
 
   const handleDeleteButton = async (): Promise<void> => {
     await handleSessionDelete(user.id, toDelete as number);
@@ -36,7 +39,7 @@ export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
         label={exit}
         testId={ACTION_BUTTON_TEST_ID}
       />
-      {sessionCategory === SESSION_ACTION_CATEGORIES.details ? (
+      {sessionCategory === details ? (
         <DeleteButton
           label={remove}
           popout={popout}

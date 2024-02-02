@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { applyDate } from "../../utils/supportFunctions/dateHandlers";
 import Box from "@mui/material/Box";
 import { selectOneSession } from "../../redux/sessionSlice";
-import { DATE_TEST_IDS } from "../../utils/constants";
+import { DATE_TEST_IDS } from "../../utils/libs/constants";
 import { useState } from "react";
 import { DateChip } from "./DateChip";
 import { CustomDatePicker } from "./CustomDatePicker";

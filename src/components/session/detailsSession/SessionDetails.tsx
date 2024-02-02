@@ -5,14 +5,21 @@ import { DetailsNotesBody } from "./DetailsNotesBody";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import { ActionButtonSection } from "../../ActionButtonSection";
-import { SESSION_ACTION_CATEGORIES } from "../../../utils/constants";
+import {
+  ERROR_MESSAGE_LIB,
+  SESSION_CATEGORY_LIB,
+} from "../../../utils/libs/constants";
 import { useSelector } from "react-redux";
 import { fetchUser, findUser } from "../../../redux/userSlice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase";
 import { checkUserSessionOwnership } from "../../../utils/supportFunctions/userHandlers";
 import { CustomLoading } from "../../loaders/CustomLoading";
-import { SessionNotFound } from "../../errorPages/SessionNotFound";
+
+import { ErrorPageView } from "../../errorPages/ErrorPageView";
+
+const { sessionNotFound } = ERROR_MESSAGE_LIB;
+const { details } = SESSION_CATEGORY_LIB;
 
 type RouteParams = {
   id: string;
@@ -26,8 +33,6 @@ export function SessionDetails() {
 
   const sessionID = parseInt(id as string);
   const email = user?.email as string;
-
-  const { details } = SESSION_ACTION_CATEGORIES;
 
   useEffect(() => {
     dispatch(fetchSession({ id }));
@@ -43,7 +48,7 @@ export function SessionDetails() {
       <DetailsNotesBody />
     </>
   ) : (
-    <SessionNotFound />
+    <ErrorPageView errorMsg={sessionNotFound} />
   );
 
   return loading ? <CustomLoading /> : SessionDetailsBody;

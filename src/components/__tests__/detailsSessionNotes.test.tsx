@@ -10,8 +10,8 @@ import { DetailsNotesListElement } from "../session/detailsSession/DetailsNotesL
 import { DetailsNotesSharedInformation } from "../session/detailsSession/DetailsNotesSharedInformation";
 import {
   NOTES_LIST_TEST_ID,
-  SESSION_FIELDS_CATEGORIES,
-} from "../../utils/constants";
+  SESSION_TEXT_FIELDS_CATEGORIES_LIB,
+} from "../../utils/libs/constants";
 import { DetailsNotesButtonGroup } from "../session/detailsSession/DetailsNotesButtonGroup";
 
 const mockNote = MOCK_DATA_COLLECTION[0];
@@ -53,7 +53,7 @@ describe("renders session details notes & npcs components", () => {
   });
 
   it("Renders note / npc information", () => {
-    const { note } = SESSION_FIELDS_CATEGORIES;
+    const { note } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
     renderWithRouter(
       <DetailsNotesSharedInformation

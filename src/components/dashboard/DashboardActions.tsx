@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 import {
   ACTION_BUTTON_TEST_ID,
-  SESSION_ACTION_CATEGORIES,
-} from "../../utils/constants";
+  BUTTON_LABELS_LIB,
+} from "../../utils/libs/constants";
 import { ActionButton } from "../buttons/ActionButton";
 
 export const DashboardActions = () => {
-  const { sessionNew } = addressLibrary;
-  const { newSession } = SESSION_ACTION_CATEGORIES;
+  const { sessionNew } = ADDRESS_LIB;
+  const { newSession } = BUTTON_LABELS_LIB;
 
   return (
     <Box className="actions">

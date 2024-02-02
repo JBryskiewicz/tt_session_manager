@@ -1,5 +1,5 @@
 import { ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
-import { NOTES_LIST_TEST_ID } from "../../../utils/constants";
+import { NOTES_LIST_TEST_ID } from "../../../utils/libs/constants";
 import { ACCENT_COLOR } from "../../../sx/colors";
 import { setSelected } from "../../../redux/managerSlice";
 import { useAppDispatch } from "../../../redux/hooks";

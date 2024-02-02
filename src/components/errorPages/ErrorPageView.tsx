@@ -1,7 +1,11 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
-export const PageNotFound = () => {
+type Props = {
+  errorMsg: string;
+};
+
+export const ErrorPageView = ({ errorMsg }: Props) => {
   return (
     <Box
       sx={{
@@ -12,7 +16,7 @@ export const PageNotFound = () => {
       }}
     >
       <Typography variant="h2" sx={{ textAlign: "center" }}>
-        Seems like this page does not exist
+        {errorMsg}
       </Typography>
     </Box>
   );

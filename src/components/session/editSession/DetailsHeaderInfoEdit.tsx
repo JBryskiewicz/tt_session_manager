@@ -9,14 +9,16 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { TextInputField } from "../../TextInputField";
 import { EditStateButton } from "../../buttons/EditStateButton";
 import {
-  CHAR_INPUT_LIMIT,
-  EDIT_STATE_BUTTON_LABELS,
-} from "../../../utils/constants";
+  CHAR_LIMIT_LIB,
+  BUTTON_LABELS_LIB,
+} from "../../../utils/libs/constants";
 import { SaveButton } from "../../buttons/SaveButton";
 import {
   checkCategoryToSetEditable,
   setCharCounter,
 } from "../../../utils/supportFunctions/formHandlers";
+
+const { save, cancel } = BUTTON_LABELS_LIB;
 
 type Props = {
   category: string;
@@ -41,9 +43,8 @@ export const DetailsHeaderInfoEdit = ({
   const [formValue, setFormValue] = useState<string>(data);
   const [chars, setChars] = useState<number>(formValue.length);
   const dispatch = useAppDispatch();
-  const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
 
-  const limit = CHAR_INPUT_LIMIT[category];
+  const limit = CHAR_LIMIT_LIB[category];
 
   useEffect(() => {
     setCharCounter(formValue, setFormValue, setChars, limit);

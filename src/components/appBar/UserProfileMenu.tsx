@@ -10,7 +10,7 @@ import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 
 const settings = ["Profile", "Account", "Logout"];
 
@@ -18,14 +18,14 @@ function UserProfileMenu() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
-  const { login } = addressLibrary;
+  const { login } = ADDRESS_LIB;
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-  const handleCloseUserMenu = (setting: string) => {
+  const handleCloseUserMenu = async (setting: string) => {
     if (setting === "Logout") {
-      signOut(auth);
+      await signOut(auth);
       navigate(login);
     }
     setAnchorElUser(null);

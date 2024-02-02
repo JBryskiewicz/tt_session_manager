@@ -2,8 +2,17 @@
 @import "./settings/screenSize";
 @import "./settings/loading";
 @import "./settings/buttons";
+@import "./settings/scrolls";
 
 @import "./components/login";
 @import "./components/layout";
 @import "./components/datePicker";
 @import "./components/session";
+
+* {
+    @include defaultScroll();
+}
+
+body {
+    
+}

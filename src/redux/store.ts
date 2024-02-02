@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sessionReducer from "./sessionSlice";
-import userSlice from "./userSlice";
-import managerSlice from "./managerSlice";
+import userReducer from "./userSlice";
+import managerReducer from "./managerSlice";
 
 export const store = configureStore({
   reducer: {
     session: sessionReducer,
-    user: userSlice,
-    manager: managerSlice,
+    user: userReducer,
+    manager: managerReducer,
   },
 });
 

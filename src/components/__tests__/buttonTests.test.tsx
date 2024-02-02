@@ -8,14 +8,15 @@ import {
   LOGIN_BUTTONS,
   SESSION_ACTION_CATEGORIES,
 } from "../../utils/constants";
-import { AddEntryButton } from "../buttons/AddEntryButton";
 import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
-import { DeleteButton } from "../buttons/DeleteButton";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
 import { addressLibrary } from "../../utils/addressLibrary";
 import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
 import { LoginButtons } from "../buttons/LoginButtons";
+import { ConfirmPopout } from "../buttons/ConfirmPopout";
+import { DeleteButton } from "../buttons/DeleteButton";
+import { AddEntryButton } from "../buttons/AddEntryButton";
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -43,10 +44,64 @@ describe("Testing button components", () => {
     const { addNote } = EDIT_STATE_BUTTON_LABELS;
 
     renderWithRouter(
-      <AddEntryButton onClick={buttonFunction} label={addNote} />
+      <AddEntryButton
+        label={addNote}
+        popout={false}
+        setPopout={buttonFunction}
+        onClick={buttonFunction}
+      />
     );
 
     const entryButton = screen.getByText(addNote);
+    entryButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
+  });
+
+  it("Renders Popout window with passed notification", () => {
+    const { fillerFunction } = MOCK_FUNCTIONS;
+
+    renderWithRouter(
+      <ConfirmPopout
+        notification={"confirm action"}
+        onClick={fillerFunction}
+        setPopout={fillerFunction}
+      />
+    );
+
+    const notification = screen.getByText("confirm action");
+    expect(notification).toBeInTheDocument();
+  });
+
+  it("Renders Popout window with working CONFIRM BUTTON", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+    const { buttonFunction, fillerFunction } = MOCK_FUNCTIONS;
+
+    renderWithRouter(
+      <ConfirmPopout
+        notification={"confirm action"}
+        onClick={buttonFunction}
+        setPopout={fillerFunction}
+      />
+    );
+
+    const entryButton = screen.getByText("confirm");
+    entryButton.click();
+    expect(buttonSpy).toHaveBeenCalled();
+  });
+
+  it("Renders Popout window with working CANCEL BUTTON", () => {
+    const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
+    const { buttonFunction, fillerFunction } = MOCK_FUNCTIONS;
+
+    renderWithRouter(
+      <ConfirmPopout
+        notification={"confirm action"}
+        onClick={fillerFunction}
+        setPopout={buttonFunction}
+      />
+    );
+
+    const entryButton = screen.getByText("cancel");
     entryButton.click();
     expect(buttonSpy).toHaveBeenCalled();
   });
@@ -56,7 +111,14 @@ describe("Testing button components", () => {
     const { buttonFunction } = MOCK_FUNCTIONS;
     const { remove } = SESSION_ACTION_CATEGORIES;
 
-    renderWithRouter(<DeleteButton onClick={buttonFunction} label={remove} />);
+    renderWithRouter(
+      <DeleteButton
+        label={remove}
+        popout={false}
+        setPopout={buttonFunction}
+        onClick={buttonFunction}
+      />
+    );
 
     const deleteButton = screen.getByText(remove);
     deleteButton.click();

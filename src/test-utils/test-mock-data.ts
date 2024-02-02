@@ -42,5 +42,6 @@ export const MOCK_SESSION_LIST: Session[] = [MOCK_SESSION];
 
 export const MOCK_FUNCTIONS = {
   buttonFunction: vi.fn(),
+  fillerFunction: vi.fn(),
   mockOnChange: vi.fn(),
 };

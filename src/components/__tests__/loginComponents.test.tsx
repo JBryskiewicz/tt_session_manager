@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
 import { renderWithRouter } from "../../test-utils/test-utils";
 import { LoginInputField } from "../loginPage/LoginInputField";
+import { AuthValidationMessage } from "../loginPage/AuthValidationMessage";
 
 describe("Login / Register components", () => {
   afterEach(() => {
@@ -26,5 +27,13 @@ describe("Login / Register components", () => {
     const textField = screen.getByLabelText("login *");
     fireEvent.change(textField, { target: target });
     expect(textFieldSpy).toHaveBeenCalledWith("new value");
+  });
+
+  it("Renders validation message", () => {
+    const msg = "test auth message";
+    renderWithRouter(<AuthValidationMessage msg={msg} />);
+
+    const message = screen.getByText(msg);
+    expect(message).toBeInTheDocument();
   });
 });

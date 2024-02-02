@@ -1,5 +1,5 @@
 import { Box, Paper } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
 import { EditStateButton } from "../../buttons/EditStateButton";
@@ -8,9 +8,8 @@ import {
   SESSION_ACTION_CATEGORIES,
 } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
-import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { setSelected } from "../../../redux/managerSlice";
 
@@ -30,9 +29,10 @@ export const DetailsNotesSharedInformation = ({
   setIsEditable,
   category,
 }: Props) => {
+  const [popout, setPopout] = useState<boolean>(false);
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
-  const { selected, currentDataList } = useSelector(
+  const { selected, currentDataList } = useAppSelector(
     (state: RootState) => state.manager
   );
 
@@ -54,7 +54,12 @@ export const DetailsNotesSharedInformation = ({
     <Paper elevation={4} className="note-box">
       <Box className="note-box-btn-box">
         <EditStateButton onClick={handleEditButton} label={edit} />
-        <DeleteButton onClick={handleDeleteButton} label={remove} />
+        <DeleteButton
+          onClick={handleDeleteButton}
+          label={remove}
+          popout={popout}
+          setPopout={setPopout}
+        />
       </Box>
       <Box className="note-box-text">{information}</Box>
     </Paper>

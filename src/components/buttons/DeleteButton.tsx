@@ -1,16 +1,16 @@
 import { Box, Button } from "@mui/material";
 import { BUTTON_SETTINGS } from "../../sx/buttonsStyle";
-import { useState } from "react";
 import { ConfirmPopout } from "./ConfirmPopout";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
-  onClick: () => void;
   label: string;
+  popout: boolean;
+  setPopout: Dispatch<SetStateAction<boolean>>;
+  onClick: () => void;
 };
 
-export const DeleteButton = ({ onClick, label }: Props) => {
-  const [popout, setPopout] = useState<boolean>(false);
-
+export const DeleteButton = ({ label, popout, setPopout, onClick }: Props) => {
   const handleConfrim = () => {
     onClick();
     setPopout(false);

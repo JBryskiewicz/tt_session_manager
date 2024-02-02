@@ -12,6 +12,7 @@ import {
   NOTES_LIST_TEST_ID,
   SESSION_FIELDS_CATEGORIES,
 } from "../../utils/constants";
+import { DetailsNotesButtonGroup } from "../session/detailsSession/DetailsNotesButtonGroup";
 
 const mockNote = MOCK_DATA_COLLECTION[0];
 
@@ -20,13 +21,22 @@ afterEach(() => {
 });
 
 describe("renders session details notes & npcs components", () => {
+  it("Renders labels for button groups", () => {
+    const { fillerFunction } = MOCK_FUNCTIONS;
+    renderWithRouter(
+      <DetailsNotesButtonGroup display={0} setDisplay={fillerFunction} />
+    );
+
+    const displayElement = screen.getByText("Display");
+    expect(displayElement).toBeInTheDocument();
+
+    const createElement = screen.getByText("Create");
+    expect(createElement).toBeInTheDocument();
+  });
+
   it("Renders note / npc section list", () => {
     renderWithRouter(
-      <DetailsNotesList
-        selected={mockNote.id}
-        dataCollection={MOCK_DATA_COLLECTION}
-        setSelected={MOCK_FUNCTIONS.buttonFunction}
-      />
+      <DetailsNotesList dataCollection={MOCK_DATA_COLLECTION} />
     );
 
     const listElements = screen.getAllByTestId(NOTES_LIST_TEST_ID);
@@ -35,12 +45,7 @@ describe("renders session details notes & npcs components", () => {
 
   it("Renders note / npc section's list element", () => {
     renderWithRouter(
-      <DetailsNotesListElement
-        id={mockNote.id}
-        selected={mockNote.id}
-        name={mockNote.name}
-        setSelected={MOCK_FUNCTIONS.buttonFunction}
-      />
+      <DetailsNotesListElement id={mockNote.id} name={mockNote.name} />
     );
 
     const listElement = screen.getByText(mockNote.name);
@@ -48,17 +53,16 @@ describe("renders session details notes & npcs components", () => {
   });
 
   it("Renders note / npc information", () => {
-    const data = MOCK_DATA_COLLECTION[0];
     const { note } = SESSION_FIELDS_CATEGORIES;
 
     renderWithRouter(
       <DetailsNotesSharedInformation
-        data={data}
         setIsEditable={MOCK_FUNCTIONS.buttonFunction}
         category={note}
       />
     );
-    const information = screen.getByText(mockNote.information);
+
+    const information = screen.getByText("info");
     expect(information).toBeInTheDocument();
   });
 });

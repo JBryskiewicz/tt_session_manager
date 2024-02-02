@@ -1,17 +1,22 @@
 import { Button } from "@mui/material";
 import { BUTTON_SETTINGS } from "../../sx/buttonsStyle";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Box } from "@mui/system";
 import { ConfirmPopout } from "./ConfirmPopout";
 
 type Props = {
-  onClick: () => void;
   label: string;
+  popout: boolean;
+  setPopout: Dispatch<SetStateAction<boolean>>;
+  onClick: () => void;
 };
 
-export const AddEntryButton = ({ onClick, label }: Props) => {
-  const [popout, setPopout] = useState<boolean>(false);
-
+export const AddEntryButton = ({
+  label,
+  popout,
+  setPopout,
+  onClick,
+}: Props) => {
   const handleConfrim = () => {
     onClick();
     setPopout(false);

@@ -10,6 +10,7 @@ import { handleSessionDelete } from "../utils/supportFunctions/API_requestHandle
 import { addressLibrary } from "../utils/addressLibrary";
 import { useSelector } from "react-redux";
 import { findUser } from "../redux/userSlice";
+import { useState } from "react";
 
 type Props = {
   sessionCategory: string;
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
+  const [popout, setPopout] = useState<boolean>(false);
   const user = useSelector(findUser);
   const navigate = useNavigate();
   const { exit, remove } = SESSION_ACTION_CATEGORIES;
@@ -35,7 +37,12 @@ export const ActionButtonSection = ({ sessionCategory, toDelete }: Props) => {
         testId={ACTION_BUTTON_TEST_ID}
       />
       {sessionCategory === SESSION_ACTION_CATEGORIES.details ? (
-        <DeleteButton onClick={handleDeleteButton} label={remove} />
+        <DeleteButton
+          label={remove}
+          popout={popout}
+          setPopout={setPopout}
+          onClick={handleDeleteButton}
+        />
       ) : null}
     </Box>
   );

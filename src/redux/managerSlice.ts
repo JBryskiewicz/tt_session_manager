@@ -5,8 +5,8 @@ export const initialState: Manager = {
   currentDataList: [
     {
       id: 0,
-      name: "",
-      information: "",
+      name: "name",
+      information: "info",
     },
   ],
   selected: 0,

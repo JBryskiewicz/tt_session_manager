@@ -23,9 +23,9 @@ function UserProfileMenu() {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-  const handleCloseUserMenu = (setting: string) => {
+  const handleCloseUserMenu = async (setting: string) => {
     if (setting === "Logout") {
-      signOut(auth);
+      await signOut(auth);
       navigate(login);
     }
     setAnchorElUser(null);

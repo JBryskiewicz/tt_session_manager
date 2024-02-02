@@ -147,6 +147,7 @@
       &-text {
         overflow-y: scroll;
         height: 100%;
+        padding-right: .5rem;
       }
     } 
     
@@ -161,6 +162,8 @@
         display: flex;
         column-gap: 1rem;
         overflow-x: scroll;
+
+        @include defaultSmallScreenScroll();
 
         .notes-list-item {
           min-width: 12rem;

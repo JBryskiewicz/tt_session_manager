@@ -7,7 +7,10 @@ import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import { TextInputField } from "../../TextInputField";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import { CHAR_LIMIT_LIB, BUTTON_LABELS_LIB } from "../../../utils/constants";
+import {
+  CHAR_LIMIT_LIB,
+  BUTTON_LABELS_LIB,
+} from "../../../utils/libs/constants";
 import { SaveButton } from "../../buttons/SaveButton";
 import {
   checkCategoryToSetEditable,

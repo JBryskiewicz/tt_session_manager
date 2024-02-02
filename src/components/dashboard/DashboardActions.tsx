@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 import {
   ACTION_BUTTON_TEST_ID,
   BUTTON_LABELS_LIB,
-} from "../../utils/constants";
+} from "../../utils/libs/constants";
 import { ActionButton } from "../buttons/ActionButton";
 
 export const DashboardActions = () => {

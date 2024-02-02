@@ -4,7 +4,7 @@ import { MOCK_FUNCTIONS, MOCK_SESSION } from "../../test-utils/test-mock-data";
 import { renderWithRouter } from "../../test-utils/test-utils";
 import { TextInputField } from "../TextInputField";
 import { DetailsHeaderInfoEdit } from "../session/editSession/DetailsHeaderInfoEdit";
-import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../../utils/constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../../utils/libs/constants";
 
 afterEach(() => {
   cleanup();

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DetailsNotesButtonGroup } from "./DetailsNotesButtonGroup";
 import { useSelector } from "react-redux";
 import { DetailsNotesShared } from "./DetailsNotesShared";
-import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../../../utils/constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../../../utils/libs/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export function DetailsNotesBody() {

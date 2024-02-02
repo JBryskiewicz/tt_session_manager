@@ -6,7 +6,7 @@ import { DetailsHeaderInfoEdit } from "../editSession/DetailsHeaderInfoEdit";
 import {
   SESSION_CATEGORY_LIB,
   SESSION_TEXT_FIELDS_CATEGORIES_LIB,
-} from "../../../utils/constants";
+} from "../../../utils/libs/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export const DetailsHeader = () => {

@@ -4,7 +4,7 @@ import { NewUser } from "../../types/types";
 import { createUser } from "../API/userCRUD";
 import { loginSchema, registerSchema } from "../validation/schema";
 import { NavigateFunction } from "react-router-dom";
-import { ADDRESS_LIB } from "../addressLibrary";
+import { ADDRESS_LIB } from "../libs/constants";
 import { auth } from "../../firebase";
 
 const { login, dashboard } = ADDRESS_LIB;

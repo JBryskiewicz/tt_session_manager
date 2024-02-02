@@ -5,11 +5,11 @@ import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
   BUTTON_LABELS_LIB,
-} from "../../utils/constants";
+} from "../../utils/libs/constants";
 import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { ConfirmPopout } from "../buttons/ConfirmPopout";

@@ -1,4 +1,4 @@
-import { SESSION_CATEGORY_LIB } from "../../../utils/constants";
+import { SESSION_CATEGORY_LIB } from "../../../utils/libs/constants";
 import { HeaderDatesSection } from "../../datePicker/HeaderDatesSection";
 import { SessionNewInfoInputs } from "./SessionNewInfoInputs";
 

@@ -62,3 +62,10 @@ export const ERROR_MESSAGE_LIB = {
   notImplemented: "Feature not yet implemented",
   sessionNotFound: "Session with this ID not found!",
 };
+
+export const ADDRESS_LIB = {
+  login: "/",
+  dashboard: "/dashboard",
+  sessionDetails: "/session-details/",
+  sessionNew: "/new-session",
+};

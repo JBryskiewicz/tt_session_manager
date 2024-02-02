@@ -11,7 +11,7 @@ import { DetailsNotesSharedInformation } from "../session/detailsSession/Details
 import {
   NOTES_LIST_TEST_ID,
   SESSION_TEXT_FIELDS_CATEGORIES_LIB,
-} from "../../utils/constants";
+} from "../../utils/libs/constants";
 import { DetailsNotesButtonGroup } from "../session/detailsSession/DetailsNotesButtonGroup";
 
 const mockNote = MOCK_DATA_COLLECTION[0];

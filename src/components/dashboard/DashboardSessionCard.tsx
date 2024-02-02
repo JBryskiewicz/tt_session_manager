@@ -7,8 +7,8 @@ import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
   BUTTON_LABELS_LIB,
-} from "../../utils/constants";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+} from "../../utils/libs/constants";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 
 const { view } = BUTTON_LABELS_LIB;
 const { sessionDetails } = ADDRESS_LIB;

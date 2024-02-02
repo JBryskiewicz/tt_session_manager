@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE_LIB } from "../../utils/constants";
+import { ERROR_MESSAGE_LIB } from "../../utils/libs/constants";
 import { ErrorPageView } from "./ErrorPageView";
 import { Component, ErrorInfo, ReactNode } from "react";
 

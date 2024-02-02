@@ -6,7 +6,7 @@ import {
   CHAR_LIMIT_LIB,
   BUTTON_LABELS_LIB,
   SESSION_TEXT_FIELDS_CATEGORIES_LIB,
-} from "../../../utils/constants";
+} from "../../../utils/libs/constants";
 import { initializeNewSession } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useNavigate } from "react-router-dom";
 import { SaveButton } from "../../buttons/SaveButton";

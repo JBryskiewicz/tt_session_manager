@@ -8,7 +8,7 @@ import { ActionButtonSection } from "../../ActionButtonSection";
 import {
   ERROR_MESSAGE_LIB,
   SESSION_CATEGORY_LIB,
-} from "../../../utils/constants";
+} from "../../../utils/libs/constants";
 import { useSelector } from "react-redux";
 import { fetchUser, findUser } from "../../../redux/userSlice";
 import { useAuthState } from "react-firebase-hooks/auth";

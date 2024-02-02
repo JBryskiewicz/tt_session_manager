@@ -16,7 +16,7 @@ import {
   getOneSession,
   updateSession,
 } from "../API/sessionCRUD";
-import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../libs/constants";
 
 const { title, note } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 

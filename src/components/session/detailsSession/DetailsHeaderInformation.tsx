@@ -2,7 +2,7 @@ import { Box, Paper, Typography } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { checkCategoryToSetEditable } from "../../../utils/supportFunctions/formHandlers";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import { BUTTON_LABELS_LIB } from "../../../utils/constants";
+import { BUTTON_LABELS_LIB } from "../../../utils/libs/constants";
 
 type Props = {
   category: string;

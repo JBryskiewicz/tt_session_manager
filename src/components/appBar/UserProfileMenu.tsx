@@ -10,7 +10,7 @@ import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 
 const settings = ["Profile", "Account", "Logout"];
 

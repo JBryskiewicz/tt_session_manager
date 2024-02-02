@@ -4,11 +4,11 @@ import {
   ACTION_BUTTON_TEST_ID,
   BUTTON_LABELS_LIB,
   SESSION_CATEGORY_LIB,
-} from "../utils/constants";
+} from "../utils/libs/constants";
 import { DeleteButton } from "./buttons/DeleteButton";
 import { useNavigate } from "react-router-dom";
 import { handleSessionDelete } from "../utils/supportFunctions/API_requestHandlers";
-import { ADDRESS_LIB } from "../utils/addressLibrary";
+import { ADDRESS_LIB } from "../utils/libs/constants";
 import { useSelector } from "react-redux";
 import { findUser } from "../redux/userSlice";
 import { useState } from "react";

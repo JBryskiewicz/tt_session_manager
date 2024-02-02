@@ -3,7 +3,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import { LogoDesktop, LogoMobile } from "./LogoComponents";
 import { SECONDARY_COLOR } from "../../sx/colors";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 
 const APP_BAR_STYLE = {
   minHeight: "68.5px",

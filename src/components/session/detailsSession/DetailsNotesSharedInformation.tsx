@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import { BUTTON_LABELS_LIB } from "../../../utils/constants";
+import { BUTTON_LABELS_LIB } from "../../../utils/libs/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";

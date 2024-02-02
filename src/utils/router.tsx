@@ -6,7 +6,7 @@ import { SessionNew } from "../components/session/newSession/SessionNew.tsx";
 import { Login } from "../components/loginPage/Login.tsx";
 import { Register } from "../components/loginPage/Register.tsx";
 import { ErrorPageView } from "../components/errorPages/ErrorPageView.tsx";
-import { ERROR_MESSAGE_LIB } from "./constants.ts";
+import { ERROR_MESSAGE_LIB } from "./libs/constants.ts";
 
 const { pageNotFound: notFound, notImplemented } = ERROR_MESSAGE_LIB;
 

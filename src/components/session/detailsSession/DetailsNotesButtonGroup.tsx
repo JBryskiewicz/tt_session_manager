@@ -4,7 +4,7 @@ import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
 import { handleAddNotesButton } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useAppDispatch } from "../../../redux/hooks";
-import { BUTTON_LABELS_LIB } from "../../../utils/constants";
+import { BUTTON_LABELS_LIB } from "../../../utils/libs/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { AddEntryButton } from "../../buttons/AddEntryButton";
 import { setSelected } from "../../../redux/managerSlice";

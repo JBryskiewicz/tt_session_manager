@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../libs/constants";
 
 const { title, desc, note, npc } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 

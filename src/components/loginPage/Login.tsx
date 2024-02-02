@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import {
   BUTTON_LABELS_LIB,
   LOGIN_TEXTFIELD_LABELS_LIB,
-} from "../../utils/constants";
+} from "../../utils/libs/constants";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { AuthValidationMessage } from "./AuthValidationMessage";
 import { onLoginSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 import { CustomLoading } from "../loaders/CustomLoading";
 
 const { email, password } = LOGIN_TEXTFIELD_LABELS_LIB;

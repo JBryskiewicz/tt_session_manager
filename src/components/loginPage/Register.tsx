@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {
   BUTTON_LABELS_LIB,
   LOGIN_TEXTFIELD_LABELS_LIB,
-} from "../../utils/constants";
+} from "../../utils/libs/constants";
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
@@ -16,7 +16,7 @@ import { LoginButtons } from "../buttons/LoginButtons";
 import { onRegisterSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { AuthValidationMessage } from "./AuthValidationMessage";
 import { CustomLoading } from "../loaders/CustomLoading";
-import { ADDRESS_LIB } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/libs/constants";
 
 const { email, password, confirmPass } = LOGIN_TEXTFIELD_LABELS_LIB;
 const { register, toLogin } = BUTTON_LABELS_LIB;

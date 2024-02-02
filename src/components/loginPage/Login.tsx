@@ -7,17 +7,23 @@ import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { AuthValidationMessage } from "./AuthValidationMessage";
-import { onLoginSubmit } from "../../utils/supportFunctions/loginHandlers";
+import { onLoginSubmit } from "../../utils/supportFunctions/LoginHandlers";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
+import { addressLibrary } from "../../utils/addressLibrary";
+import { CustomLoading } from "../loaders/CustomLoading";
+
+const { email, password } = LOGIN_LABELS;
+const { login, register, toRegister } = LOGIN_BUTTONS;
+const { dashboard } = addressLibrary;
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(true);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-
-  const { email, password } = LOGIN_LABELS;
-  const { login, register, toRegister } = LOGIN_BUTTONS;
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     onLoginSubmit(
@@ -30,6 +36,11 @@ export const Login = () => {
       event
     );
   };
+
+  if (user || loading) {
+    navigate(dashboard);
+    return <CustomLoading />;
+  }
 
   return (
     <form onSubmit={onSubmit}>

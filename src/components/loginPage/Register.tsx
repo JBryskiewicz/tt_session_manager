@@ -4,11 +4,20 @@ import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { LoginButtons } from "../buttons/LoginButtons";
-import { onRegisterSubmit } from "../../utils/supportFunctions/loginHandlers";
+import { onRegisterSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { AuthValidationMessage } from "./AuthValidationMessage";
+import { CustomLoading } from "../loaders/CustomLoading";
+import { addressLibrary } from "../../utils/addressLibrary";
+
+const { email, password, confirmPass } = LOGIN_LABELS;
+const { register, toLogin } = LOGIN_BUTTONS;
+const { dashboard } = addressLibrary;
 
 export const Register = () => {
   const [emailValue, setEmailValue] = useState<string>("");
@@ -16,12 +25,10 @@ export const Register = () => {
   const [repeatPassValue, setRepeatPassValue] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(true);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
-
-  const { email, password, confirmPass } = LOGIN_LABELS;
-  const { register, toLogin } = LOGIN_BUTTONS;
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     onRegisterSubmit(
@@ -35,6 +42,11 @@ export const Register = () => {
       event
     );
   };
+
+  if (user || loading) {
+    navigate(dashboard);
+    return <CustomLoading />;
+  }
 
   return (
     <form onSubmit={onSubmit}>

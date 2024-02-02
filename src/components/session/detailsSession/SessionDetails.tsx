@@ -3,13 +3,12 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DetailsNotesBody } from "./DetailsNotesBody";
 import { fetchSession } from "../../../redux/sessionSlice";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { ActionButtonSection } from "../../ActionButtonSection";
 import {
   ERROR_MESSAGE_LIB,
   SESSION_CATEGORY_LIB,
 } from "../../../utils/libs/constants";
-import { useSelector } from "react-redux";
 import { fetchUser, findUser } from "../../../redux/userSlice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase";
@@ -29,7 +28,7 @@ export function SessionDetails() {
   const { id } = useParams<RouteParams>();
   const [user, loading] = useAuthState(auth);
   const dispatch = useAppDispatch();
-  const userData = useSelector(findUser);
+  const userData = useAppSelector(findUser);
 
   const sessionID = parseInt(id as string);
   const email = user?.email as string;
@@ -41,15 +40,19 @@ export function SessionDetails() {
     }
   }, [dispatch, id, email, loading]);
 
-  const SessionDetailsBody = checkUserSessionOwnership(userData, sessionID) ? (
+  if (loading || !userData) {
+    return <CustomLoading />;
+  }
+
+  if (!checkUserSessionOwnership(userData, sessionID)) {
+    return <ErrorPageView errorMsg={sessionNotFound} />;
+  }
+
+  return (
     <>
       <ActionButtonSection sessionCategory={details} toDelete={sessionID} />
       <DetailsHeader />
       <DetailsNotesBody />
     </>
-  ) : (
-    <ErrorPageView errorMsg={sessionNotFound} />
   );
-
-  return loading ? <CustomLoading /> : SessionDetailsBody;
 }

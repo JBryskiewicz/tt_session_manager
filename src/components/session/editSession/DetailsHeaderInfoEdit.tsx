@@ -18,6 +18,8 @@ import {
   setCharCounter,
 } from "../../../utils/supportFunctions/formHandlers";
 
+const { save, cancel } = BUTTON_LABELS_LIB;
+
 type Props = {
   category: string;
   data: string;
@@ -41,7 +43,6 @@ export const DetailsHeaderInfoEdit = ({
   const [formValue, setFormValue] = useState<string>(data);
   const [chars, setChars] = useState<number>(formValue.length);
   const dispatch = useAppDispatch();
-  const { save, cancel } = BUTTON_LABELS_LIB;
 
   const limit = CHAR_LIMIT_LIB[category];
 

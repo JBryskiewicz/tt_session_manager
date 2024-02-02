@@ -14,6 +14,9 @@ import { findUser } from "../../../redux/userSlice";
 import { useSelector } from "react-redux";
 import { setCharCounter } from "../../../utils/supportFunctions/formHandlers";
 
+const { title, desc } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
+const { save } = BUTTON_LABELS_LIB;
+
 export const SessionNewInfoInputs = () => {
   const [titleValue, setTitleValue] = useState<string>("");
   const [titleChars, setTitleChars] = useState<number>(titleValue.length);
@@ -22,11 +25,8 @@ export const SessionNewInfoInputs = () => {
   const user = useSelector(findUser);
   const navigate = useNavigate();
 
-  const { title, desc } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
-  const { save } = BUTTON_LABELS_LIB;
-
-  const titleLimit = CHAR_LIMIT_LIB["title"];
-  const descLimit = CHAR_LIMIT_LIB["description"];
+  const titleLimit = CHAR_LIMIT_LIB[title];
+  const descLimit = CHAR_LIMIT_LIB[desc];
 
   useEffect(() => {
     setCharCounter(titleValue, setTitleValue, setTitleChars, titleLimit);

@@ -8,11 +8,12 @@ export const DATE_TEST_IDS = {
 };
 export const NOTES_LIST_TEST_ID = "session-notes-list-element";
 
-export const SESSION_TEXT_FIELDS_CATEGORIES_LIB = {
+export const SESSION_TEXT_FIELDS_CATEGORIES_LIB: { [key: string]: string } = {
   title: "title",
   desc: "description",
   note: "note",
   npc: "npc",
+  npcName: "npcName",
   session: "session",
 };
 
@@ -50,20 +51,20 @@ export const LOGIN_TEXTFIELD_LABELS_LIB: { [key: string]: string } = {
 };
 
 export const CHAR_LIMIT_LIB: { [key: string]: number } = {
-  titleLimit: 100,
-  descLimit: 500,
-  npcNameLimit: 50,
-  noteLimit: 5000,
-  npcLimit: 5000,
+  title: 100,
+  description: 500,
+  npcName: 50,
+  note: 5000,
+  npc: 5000,
 };
 
-export const ERROR_MESSAGE_LIB = {
+export const ERROR_MESSAGE_LIB: { [key: string]: string } = {
   pageNotFound: "Seems like this page does not exist",
   notImplemented: "Feature not yet implemented",
   sessionNotFound: "Session with this ID not found!",
 };
 
-export const ADDRESS_LIB = {
+export const ADDRESS_LIB: { [key: string]: string } = {
   login: "/",
   dashboard: "/dashboard",
   sessionDetails: "/session-details/",

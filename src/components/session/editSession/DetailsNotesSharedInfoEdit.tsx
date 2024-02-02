@@ -10,6 +10,7 @@ import { EditStateButton } from "../../buttons/EditStateButton";
 import {
   CHAR_LIMIT_LIB,
   BUTTON_LABELS_LIB,
+  SESSION_TEXT_FIELDS_CATEGORIES_LIB,
 } from "../../../utils/libs/constants";
 import { SaveButton } from "../../buttons/SaveButton";
 import {
@@ -20,6 +21,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 
 const { save, cancel } = BUTTON_LABELS_LIB;
+const { npcName } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
 type Props = {
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;
@@ -48,7 +50,7 @@ export const DetailsNotesSharedInfoEdit = ({
   const [infoValue, setInfoValue] = useState<string>(data.information);
   const [infoChars, setInfoChars] = useState<number>(infoValue.length);
 
-  const nameLimit = CHAR_LIMIT_LIB["npcName"];
+  const nameLimit = CHAR_LIMIT_LIB[npcName];
   const infoLimit = CHAR_LIMIT_LIB[category];
 
   useEffect(() => {

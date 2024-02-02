@@ -3,18 +3,14 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useParams } from "react-router-dom";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import {
-  EDIT_STATE_BUTTON_LABELS,
-  SESSION_ACTION_CATEGORIES,
-} from "../../../utils/constants";
+import { BUTTON_LABELS_LIB } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
 import { RootState } from "../../../redux/store";
 import { setSelected } from "../../../redux/managerSlice";
 
-const { edit } = EDIT_STATE_BUTTON_LABELS;
-const { remove } = SESSION_ACTION_CATEGORIES;
+const { edit, remove } = BUTTON_LABELS_LIB;
 
 type Props = {
   setIsEditable: Dispatch<SetStateAction<boolean[]>>;

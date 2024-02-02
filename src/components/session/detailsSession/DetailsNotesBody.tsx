@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DetailsNotesButtonGroup } from "./DetailsNotesButtonGroup";
 import { useSelector } from "react-redux";
 import { DetailsNotesShared } from "./DetailsNotesShared";
-import { SESSION_FIELDS_CATEGORIES } from "../../../utils/constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../../../utils/constants";
 import { selectOneSession } from "../../../redux/sessionSlice";
 
 export function DetailsNotesBody() {
@@ -10,7 +10,7 @@ export function DetailsNotesBody() {
   const [isNotesEmpty, setIsNotesEmpty] = useState<boolean>(true);
   const [isNpcsEmpty, setIsNpcsEmpty] = useState<boolean>(true);
   const { notes, npcs } = useSelector(selectOneSession);
-  const { note, npc } = SESSION_FIELDS_CATEGORIES;
+  const { note, npc } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
   useEffect(() => {
     setIsNotesEmpty(notes.length === 0);

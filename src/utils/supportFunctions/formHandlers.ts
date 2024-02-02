@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { SESSION_FIELDS_CATEGORIES } from "../constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../constants";
 
-const { title, desc, note, npc } = SESSION_FIELDS_CATEGORIES;
+const { title, desc, note, npc } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
 /**
  * Check Category To Set Editable function checks category for

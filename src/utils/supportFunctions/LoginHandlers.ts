@@ -4,10 +4,10 @@ import { NewUser } from "../../types/types";
 import { createUser } from "../API/userCRUD";
 import { loginSchema, registerSchema } from "../validation/schema";
 import { NavigateFunction } from "react-router-dom";
-import { addressLibrary } from "../addressLibrary";
+import { ADDRESS_LIB } from "../addressLibrary";
 import { auth } from "../../firebase";
 
-const { login, dashboard } = addressLibrary;
+const { login, dashboard } = ADDRESS_LIB;
 
 /** Handles register form submit, on yup validation failure, sets error message.
  *  On success creates user for firebase auth & session manager backend, then

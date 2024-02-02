@@ -4,19 +4,20 @@ import { renderWithRouter } from "../../test-utils/test-utils";
 import { ActionButton } from "../buttons/ActionButton";
 import {
   ACTION_BUTTON_TEST_ID,
-  EDIT_STATE_BUTTON_LABELS,
-  LOGIN_BUTTONS,
-  SESSION_ACTION_CATEGORIES,
+  BUTTON_LABELS_LIB,
 } from "../../utils/constants";
 import { MOCK_FUNCTIONS } from "../../test-utils/test-mock-data";
 import { EditStateButton } from "../buttons/EditStateButton";
 import { SaveButton } from "../buttons/SaveButton";
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/addressLibrary";
 import { DetailsNotesButton } from "../buttons/DetailsNotesButton";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { ConfirmPopout } from "../buttons/ConfirmPopout";
 import { DeleteButton } from "../buttons/DeleteButton";
 import { AddEntryButton } from "../buttons/AddEntryButton";
+
+const { save, edit, remove, exit, addNote, login, register, toRegister } =
+  BUTTON_LABELS_LIB;
 
 describe("Testing button components", () => {
   afterEach(() => {
@@ -24,8 +25,7 @@ describe("Testing button components", () => {
   });
 
   it("Renders ACTION BUTTON component with desired navigation", () => {
-    const { exit } = SESSION_ACTION_CATEGORIES;
-    const { dashboard } = addressLibrary;
+    const { dashboard } = ADDRESS_LIB;
     renderWithRouter(
       <ActionButton
         addressPath={dashboard}
@@ -41,7 +41,6 @@ describe("Testing button components", () => {
   it("Renders clickable ADD ENTRY BUTTON with working onClick", () => {
     const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
     const { buttonFunction } = MOCK_FUNCTIONS;
-    const { addNote } = EDIT_STATE_BUTTON_LABELS;
 
     renderWithRouter(
       <AddEntryButton
@@ -109,7 +108,6 @@ describe("Testing button components", () => {
   it("Renders clickable DELETE BUTTON with working onClick", () => {
     const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
     const { buttonFunction } = MOCK_FUNCTIONS;
-    const { remove } = SESSION_ACTION_CATEGORIES;
 
     renderWithRouter(
       <DeleteButton
@@ -147,7 +145,6 @@ describe("Testing button components", () => {
   it("Renders clickable EDIT BUTTON with working onClick", () => {
     const buttonSpy = vi.spyOn(MOCK_FUNCTIONS, "buttonFunction");
     const { buttonFunction } = MOCK_FUNCTIONS;
-    const { edit } = EDIT_STATE_BUTTON_LABELS;
 
     renderWithRouter(<EditStateButton label={edit} onClick={buttonFunction} />);
 
@@ -157,7 +154,6 @@ describe("Testing button components", () => {
   });
 
   it("Renders SAVE BUTTON component", () => {
-    const { save } = EDIT_STATE_BUTTON_LABELS;
     renderWithRouter(<SaveButton label={save} />);
 
     const saveButton = screen.getByText(save);
@@ -165,7 +161,6 @@ describe("Testing button components", () => {
   });
 
   it("Renders LOGIN BUTTONS component", () => {
-    const { login, register, toRegister } = LOGIN_BUTTONS;
     renderWithRouter(
       <LoginButtons
         submitButton={login}

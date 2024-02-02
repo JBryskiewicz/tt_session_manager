@@ -16,9 +16,9 @@ import {
   getOneSession,
   updateSession,
 } from "../API/sessionCRUD";
-import { SESSION_FIELDS_CATEGORIES } from "../constants";
+import { SESSION_TEXT_FIELDS_CATEGORIES_LIB } from "../constants";
 
-const { title, note } = SESSION_FIELDS_CATEGORIES;
+const { title, note } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
 /**
  * Check Category of editable data and overwrite session's matching attribute.

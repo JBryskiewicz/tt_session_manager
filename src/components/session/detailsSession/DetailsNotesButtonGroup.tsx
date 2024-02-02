@@ -4,7 +4,7 @@ import { DetailsNotesButton } from "../../buttons/DetailsNotesButton";
 import { useParams } from "react-router-dom";
 import { handleAddNotesButton } from "../../../utils/supportFunctions/API_requestHandlers";
 import { useAppDispatch } from "../../../redux/hooks";
-import { EDIT_STATE_BUTTON_LABELS } from "../../../utils/constants";
+import { BUTTON_LABELS_LIB } from "../../../utils/constants";
 import { fetchSession } from "../../../redux/sessionSlice";
 import { AddEntryButton } from "../../buttons/AddEntryButton";
 import { setSelected } from "../../../redux/managerSlice";
@@ -29,7 +29,7 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
   const { id } = useParams<RouteParams>();
   const dispatch = useAppDispatch();
 
-  const { addNote, addNpc } = EDIT_STATE_BUTTON_LABELS;
+  const { addNote, addNpc } = BUTTON_LABELS_LIB;
   const { none, notes, npcs } = displayTabs;
 
   const handleAddEntry = async (category: string): Promise<void> => {

@@ -5,7 +5,10 @@ import { SessionDetails } from "../components/session/detailsSession/SessionDeta
 import { SessionNew } from "../components/session/newSession/SessionNew.tsx";
 import { Login } from "../components/loginPage/Login.tsx";
 import { Register } from "../components/loginPage/Register.tsx";
-import { PageNotFound } from "../components/errorPages/PageNotFound.tsx";
+import { ErrorPageView } from "../components/errorPages/ErrorPageView.tsx";
+import { ERROR_MESSAGE_LIB } from "./constants.ts";
+
+const { pageNotFound: notFound, notImplemented } = ERROR_MESSAGE_LIB;
 
 export const router = createBrowserRouter([
   {
@@ -33,8 +36,16 @@ export const router = createBrowserRouter([
         element: <SessionDetails />,
       },
       {
+        path: "user-profile",
+        element: <ErrorPageView errorMsg={notImplemented} />,
+      },
+      {
+        path: "account",
+        element: <ErrorPageView errorMsg={notImplemented} />,
+      },
+      {
         path: "*",
-        element: <PageNotFound />,
+        element: <ErrorPageView errorMsg={notFound} />,
       },
     ],
   },

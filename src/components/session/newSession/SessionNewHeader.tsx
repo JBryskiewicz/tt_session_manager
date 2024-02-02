@@ -1,9 +1,9 @@
-import { SESSION_CATEGORY } from "../../../utils/constants";
+import { SESSION_CATEGORY_LIB } from "../../../utils/constants";
 import { HeaderDatesSection } from "../../datePicker/HeaderDatesSection";
 import { SessionNewInfoInputs } from "./SessionNewInfoInputs";
 
 export const SessionNewHeader = () => {
-  const { newSession } = SESSION_CATEGORY;
+  const { newSession } = SESSION_CATEGORY_LIB;
   return (
     <>
       <HeaderDatesSection

@@ -7,7 +7,7 @@ import { NavMenuDesktop, NavMenuMobile } from "./NavMenuComponents";
 import { useState } from "react";
 import { SECONDARY_COLOR } from "../../sx/colors";
 
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/addressLibrary";
 
 const APP_BAR_STYLE = {
   minHeight: "68.5px",
@@ -18,7 +18,7 @@ const APP_BAR_STYLE = {
   zIndex: (theme: any) => theme.zIndex.drawer + 1,
 };
 
-const { dashboard } = addressLibrary;
+const { dashboard } = ADDRESS_LIB;
 
 export function UsersAppBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);

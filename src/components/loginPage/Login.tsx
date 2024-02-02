@@ -3,19 +3,22 @@ import { Box } from "@mui/system";
 import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
+import {
+  BUTTON_LABELS_LIB,
+  LOGIN_TEXTFIELD_LABELS_LIB,
+} from "../../utils/constants";
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { AuthValidationMessage } from "./AuthValidationMessage";
 import { onLoginSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/addressLibrary";
 import { CustomLoading } from "../loaders/CustomLoading";
 
-const { email, password } = LOGIN_LABELS;
-const { login, register, toRegister } = LOGIN_BUTTONS;
-const { dashboard } = addressLibrary;
+const { email, password } = LOGIN_TEXTFIELD_LABELS_LIB;
+const { login, register, toRegister } = BUTTON_LABELS_LIB;
+const { dashboard } = ADDRESS_LIB;
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState<string>("");

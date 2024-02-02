@@ -8,10 +8,7 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { TextInputField } from "../../TextInputField";
 import { EditStateButton } from "../../buttons/EditStateButton";
-import {
-  CHAR_INPUT_LIMIT,
-  EDIT_STATE_BUTTON_LABELS,
-} from "../../../utils/constants";
+import { CHAR_LIMIT_LIB, BUTTON_LABELS_LIB } from "../../../utils/constants";
 import { SaveButton } from "../../buttons/SaveButton";
 import {
   checkCategoryToSetEditable,
@@ -41,9 +38,9 @@ export const DetailsHeaderInfoEdit = ({
   const [formValue, setFormValue] = useState<string>(data);
   const [chars, setChars] = useState<number>(formValue.length);
   const dispatch = useAppDispatch();
-  const { save, cancel } = EDIT_STATE_BUTTON_LABELS;
+  const { save, cancel } = BUTTON_LABELS_LIB;
 
-  const limit = CHAR_INPUT_LIMIT[category];
+  const limit = CHAR_LIMIT_LIB[category];
 
   useEffect(() => {
     setCharCounter(formValue, setFormValue, setChars, limit);

@@ -3,7 +3,10 @@ import { Box } from "@mui/system";
 import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
 import { useNavigate } from "react-router-dom";
-import { LOGIN_BUTTONS, LOGIN_LABELS } from "../../utils/constants";
+import {
+  BUTTON_LABELS_LIB,
+  LOGIN_TEXTFIELD_LABELS_LIB,
+} from "../../utils/constants";
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
@@ -13,11 +16,11 @@ import { LoginButtons } from "../buttons/LoginButtons";
 import { onRegisterSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { AuthValidationMessage } from "./AuthValidationMessage";
 import { CustomLoading } from "../loaders/CustomLoading";
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/addressLibrary";
 
-const { email, password, confirmPass } = LOGIN_LABELS;
-const { register, toLogin } = LOGIN_BUTTONS;
-const { dashboard } = addressLibrary;
+const { email, password, confirmPass } = LOGIN_TEXTFIELD_LABELS_LIB;
+const { register, toLogin } = BUTTON_LABELS_LIB;
+const { dashboard } = ADDRESS_LIB;
 
 export const Register = () => {
   const [emailValue, setEmailValue] = useState<string>("");

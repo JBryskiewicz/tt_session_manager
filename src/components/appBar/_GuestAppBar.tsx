@@ -3,7 +3,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import { LogoDesktop, LogoMobile } from "./LogoComponents";
 import { SECONDARY_COLOR } from "../../sx/colors";
-import { addressLibrary } from "../../utils/addressLibrary";
+import { ADDRESS_LIB } from "../../utils/addressLibrary";
 
 const APP_BAR_STYLE = {
   minHeight: "68.5px",
@@ -14,7 +14,7 @@ const APP_BAR_STYLE = {
   zIndex: (theme: any) => theme.zIndex.drawer + 1,
 };
 
-const { login } = addressLibrary;
+const { login } = ADDRESS_LIB;
 
 export function GuestAppBar() {
   return (

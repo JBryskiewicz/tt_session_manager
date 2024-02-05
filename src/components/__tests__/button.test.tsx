@@ -174,6 +174,6 @@ describe("Testing button components", () => {
 
     const redirectButton = screen.getByText(toRegister);
     const linkElement = redirectButton.closest("a");
-    expect(linkElement.getAttribute("href")).toBe("/register");
+    expect(linkElement?.getAttribute("href")).toBe("/register");
   });
 });

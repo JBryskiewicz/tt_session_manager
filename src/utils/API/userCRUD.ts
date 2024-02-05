@@ -1,7 +1,7 @@
 import { NewUser, User } from "../../types/types";
 import axios from "axios";
 
-const USER_URL = "http://localhost:8081/api/users";
+const USER_URL = "http://dms-demo-api.onrender.com/api/users";
 
 /** ----- Functions resposinble for creating & finding users ----- */
 

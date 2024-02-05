@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NewSession, Session } from "../../types/types";
 
-const SESSIONS_URL = "http://localhost:8081/api/sessions";
+const SESSIONS_URL = "http://dms-demo-api.onrender.com/api/sessions";
 
 /** ----- Functions resposinble for Session CRUD ----- */
 

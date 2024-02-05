@@ -2,7 +2,7 @@ import axios from "axios";
 import { NewNpc, Npc } from "../../types/types";
 import { getOneSession, updateSession } from "./sessionCRUD";
 
-const NPCS_URL = "http://localhost:8081/api/npcs";
+const NPCS_URL = "http://dms-demo-api.onrender.com/api/npcs";
 
 /** ----- Functions resposinble for NPCs CRUD ----- */
 

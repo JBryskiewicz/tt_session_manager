@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
@@ -14,7 +14,6 @@ import { onLoginSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { ADDRESS_LIB } from "../../utils/libs/constants";
-import { CustomLoading } from "../loaders/CustomLoading";
 
 const { email, password } = LOGIN_TEXTFIELD_LABELS_LIB;
 const { login, register, toRegister } = BUTTON_LABELS_LIB;
@@ -25,7 +24,7 @@ export const Login = () => {
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(true);
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -40,10 +39,11 @@ export const Login = () => {
     );
   };
 
-  if (user || loading) {
-    navigate(dashboard);
-    return <CustomLoading />;
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(dashboard);
+    }
+  });
 
   return (
     <form onSubmit={onSubmit}>

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Paper, Typography } from "@mui/material";
 import { LoginInputField } from "./LoginInputField";
@@ -15,7 +15,6 @@ import { auth } from "../../firebase";
 import { LoginButtons } from "../buttons/LoginButtons";
 import { onRegisterSubmit } from "../../utils/supportFunctions/LoginHandlers";
 import { AuthValidationMessage } from "./AuthValidationMessage";
-import { CustomLoading } from "../loaders/CustomLoading";
 import { ADDRESS_LIB } from "../../utils/libs/constants";
 
 const { email, password, confirmPass } = LOGIN_TEXTFIELD_LABELS_LIB;
@@ -28,7 +27,7 @@ export const Register = () => {
   const [repeatPassValue, setRepeatPassValue] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [validated, setValidated] = useState<boolean>(true);
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
@@ -46,10 +45,11 @@ export const Register = () => {
     );
   };
 
-  if (user || loading) {
-    navigate(dashboard);
-    return <CustomLoading />;
-  }
+  useEffect(() => {
+    if (user) {
+      navigate(dashboard);
+    }
+  });
 
   return (
     <form onSubmit={onSubmit}>

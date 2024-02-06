@@ -6,15 +6,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 import { GuestAppBar } from "./components/appBar/_GuestAppBar";
 import { UsersAppBar } from "./components/appBar/_UsersAppBar";
+import { CustomLoading } from "./components/loaders/CustomLoading";
 
 export function App() {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   return (
     <>
-      {user === null ? <GuestAppBar /> : <UsersAppBar />}
+      {!user ? <GuestAppBar /> : <UsersAppBar />}
       <Box className="dashboard">
         <Container maxWidth="xl">
-          <Outlet />
+          {loading ? <CustomLoading /> : <Outlet />}
         </Container>
       </Box>
     </>

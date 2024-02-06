@@ -1,8 +1,7 @@
 import axios from "axios";
 import { NewNpc, Npc } from "../../types/types";
 import { getOneSession, updateSession } from "./sessionCRUD";
-
-const NPCS_URL = "https://dms-demo-api.onrender.com/api/npcs";
+import { NPCS_URL } from "../libs/url";
 
 /** ----- Functions resposinble for NPCs CRUD ----- */
 

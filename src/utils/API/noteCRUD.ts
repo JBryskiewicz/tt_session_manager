@@ -1,8 +1,7 @@
 import axios from "axios";
 import { NewNote, Note } from "../../types/types";
 import { getOneSession, updateSession } from "./sessionCRUD";
-
-const NOTES_URL = "https://dms-demo-api.onrender.com/api/notes";
+import { NOTES_URL } from "../libs/url";
 
 /** ----- Functions resposinble for Notes CRUD ----- */
 

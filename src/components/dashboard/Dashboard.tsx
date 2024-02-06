@@ -22,16 +22,14 @@ export function Dashboard() {
     }
   }, [dispatch, email, loading]);
 
+  if (loading || userData.id === 0) {
+    return <CustomLoading />;
+  }
+
   return (
     <>
-      {loading ? (
-        <CustomLoading />
-      ) : (
-        <>
-          <DashboardActions />
-          <DashboardSessionList sessionList={sessionList} />
-        </>
-      )}
+      <DashboardActions />
+      <DashboardSessionList sessionList={sessionList} />
     </>
   );
 }

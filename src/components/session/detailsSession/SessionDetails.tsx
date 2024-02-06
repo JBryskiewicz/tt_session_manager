@@ -44,7 +44,7 @@ export function SessionDetails() {
     return <CustomLoading />;
   }
 
-  if (!checkUserSessionOwnership(userData, sessionID)) {
+  if (!checkUserSessionOwnership(userData, sessionID) && userData.id !== 0) {
     return <ErrorPageView errorMsg={sessionNotFound} />;
   }
 

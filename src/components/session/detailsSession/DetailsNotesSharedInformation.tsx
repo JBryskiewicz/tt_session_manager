@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { handleNoteDelete } from "../../../utils/supportFunctions/API_requestHandlers";
 import { RootState } from "../../../redux/store";
 import { setSelected } from "../../../redux/managerSlice";
+import { NoteNotSelected } from "./NoteNotSelected";
 
 const { edit, remove } = BUTTON_LABELS_LIB;
 
@@ -48,16 +49,22 @@ export const DetailsNotesSharedInformation = ({
 
   return (
     <Paper elevation={4} className="note-box">
-      <Box className="note-box-btn-box">
-        <EditStateButton onClick={handleEditButton} label={edit} />
-        <DeleteButton
-          onClick={handleDeleteButton}
-          label={remove}
-          popout={popout}
-          setPopout={setPopout}
-        />
-      </Box>
-      <Box className="note-box-text">{information}</Box>
+      {selected !== 0 ? (
+        <>
+          <Box className="note-box-btn-box">
+            <EditStateButton onClick={handleEditButton} label={edit} />
+            <DeleteButton
+              onClick={handleDeleteButton}
+              label={remove}
+              popout={popout}
+              setPopout={setPopout}
+            />
+          </Box>
+          <Box className="note-box-text">{information}</Box>
+        </>
+      ) : (
+        <NoteNotSelected />
+      )}
     </Paper>
   );
 };

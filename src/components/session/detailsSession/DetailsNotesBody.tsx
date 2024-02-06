@@ -15,7 +15,7 @@ export function DetailsNotesBody() {
   useEffect(() => {
     setIsNotesEmpty(notes.length === 0);
     setIsNpcsEmpty(npcs.length === 0);
-  }, [notes, npcs]);
+  }, [notes.length, npcs.length]);
 
   return (
     <>

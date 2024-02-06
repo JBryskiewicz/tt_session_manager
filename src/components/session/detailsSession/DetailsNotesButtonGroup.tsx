@@ -40,9 +40,7 @@ export const DetailsNotesButtonGroup = ({ display, setDisplay }: Props) => {
 
     await dispatch(fetchSession({ id }));
     setDisplay(tab);
-    setTimeout(() => {
-      dispatch(setSelected(response.id));
-    }, 10);
+    dispatch(setSelected(response.id));
   };
 
   return (

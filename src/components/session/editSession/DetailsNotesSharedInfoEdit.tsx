@@ -19,6 +19,7 @@ import {
 } from "../../../utils/supportFunctions/formHandlers";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { setSelected } from "../../../redux/managerSlice";
 
 const { save, cancel } = BUTTON_LABELS_LIB;
 const { npcName } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
@@ -63,6 +64,7 @@ export const DetailsNotesSharedInfoEdit = ({
     await checkCategoryToUpdateNotes(category, data, infoValue, nameValue);
     dispatch(fetchSession({ id }));
     checkCategoryToSetEditable(category, setIsEditable, false);
+    dispatch(setSelected(selected));
   };
 
   const handleCancelButton = () => {

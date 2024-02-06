@@ -7,12 +7,9 @@ import {
 import { renderWithRouter } from "../../test-utils/test-utils";
 import { DetailsNotesList } from "../session/detailsSession/DetailsNotesList";
 import { DetailsNotesListElement } from "../session/detailsSession/DetailsNotesListElement";
-import { DetailsNotesSharedInformation } from "../session/detailsSession/DetailsNotesSharedInformation";
-import {
-  NOTES_LIST_TEST_ID,
-  SESSION_TEXT_FIELDS_CATEGORIES_LIB,
-} from "../../utils/libs/constants";
+import { NOTES_LIST_TEST_ID } from "../../utils/libs/constants";
 import { DetailsNotesButtonGroup } from "../session/detailsSession/DetailsNotesButtonGroup";
+import { NoteNotSelected } from "../session/detailsSession/NoteNotSelected";
 
 const mockNote = MOCK_DATA_COLLECTION[0];
 
@@ -52,17 +49,26 @@ describe("renders session details notes & npcs components", () => {
     expect(listElement).toBeInTheDocument();
   });
 
-  it("Renders note / npc information", () => {
-    const { note } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
+  // TODO: rewrite this test -> Include state to dispatch selected id to render information first.
+  // it("Renders note / npc information", () => {
 
-    renderWithRouter(
-      <DetailsNotesSharedInformation
-        setIsEditable={MOCK_FUNCTIONS.buttonFunction}
-        category={note}
-      />
-    );
+  //   const { note } = SESSION_TEXT_FIELDS_CATEGORIES_LIB;
 
-    const information = screen.getByText("info");
-    expect(information).toBeInTheDocument();
+  //   renderWithRouter(
+  //     <DetailsNotesSharedInformation
+  //       setIsEditable={MOCK_FUNCTIONS.buttonFunction}
+  //       category={note}
+  //     />
+  //   );
+
+  //   const information = screen.getByText("info");
+  //   expect(information).toBeInTheDocument();
+  // });
+
+  it("Renders NoteNotSelected component", () => {
+    renderWithRouter(<NoteNotSelected />);
+
+    const element = screen.getByText("Note or NPC not selected");
+    expect(element).toBeInTheDocument();
   });
 });

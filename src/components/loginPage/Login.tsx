@@ -70,6 +70,12 @@ export const Login = () => {
             redirectButton={toRegister}
             address={register}
           />
+          <Typography sx={{ fontStyle: "italic" }}>
+            Demo's service is hosted on the free version of the web service
+            render.com. If you're experiencing a long loading screen in the
+            dashboard, please be patient until the server restarts due to
+            limitations of the free version.
+          </Typography>
         </Paper>
       </Box>
     </form>

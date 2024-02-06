@@ -21,7 +21,6 @@ const managerSlice = createSlice({
     },
     setCurrentDataList: (state, action: PayloadAction<Note[] | Npc[]>) => {
       state.currentDataList = action.payload;
-      state.selected = state.currentDataList[0].id;
     },
     RESET_STATE: () => {
       return initialState;

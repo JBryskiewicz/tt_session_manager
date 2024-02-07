@@ -8,7 +8,7 @@ import { Register } from "../components/loginPage/Register.tsx";
 import { ErrorPageView } from "../components/errorPages/ErrorPageView.tsx";
 import { ERROR_MESSAGE_LIB } from "./libs/constants.ts";
 
-const { pageNotFound: notFound, notImplemented } = ERROR_MESSAGE_LIB;
+const { pageNotFound, notImplemented } = ERROR_MESSAGE_LIB;
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <ErrorPageView errorMsg={notFound} />,
+        element: <ErrorPageView errorMsg={pageNotFound} />,
       },
     ],
   },

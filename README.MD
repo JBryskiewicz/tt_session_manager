@@ -13,6 +13,6 @@ This app requires communication with REST API, that is not yet deployed publicly
 
 3. Once you have both frontend and backend apps running, you can now use this app locally in form of functionality demo.
 
-## Final goal
+## Deployed Demo
+[Link to demo webapp](https://tt-session-manager.vercel.app)
 
-Currently this project is being improved constantly. Once all the functionalities are implemented and all bugs are fixed, it will be deployed publicly. This way demo will be more accessable to everyone who wants to try using it.
